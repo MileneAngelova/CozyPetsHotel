@@ -1,104 +1,67 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="~{/fragments/head}">
+<head th:insert="~{/fragments/head}">
+    <link rel="stylesheet" href="/css/indexStyle.css">
     <title>PetsHotel</title>
 </head>
 <body>
-<header th:replace="~{/fragments/navbar}">
-    <main>
-        <section class="about-us">
-            <h3>ABOUT US</h3>
-            <p>Nunc auctor turpis quis mollis porttitor</p>
-            <p>Penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce a metus et mauris suscipit
-                maximus. Vestibulum eget tellus et nulla vestibulum vulputate. Mauris eget magna eget orci consequat
-                interdum. Aenean vel nisi sollicitudin. Penatibus et magnis dis parturient montes, nascetur ridiculus
-                mus. Fusce a metus et mauris suscipit maximus.</p>
-        </section>
-        <section class="team-description">
-            <div class="team-description-wrapper">
-                <h3>OUR FABULOUS TEAM</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <ul>
-                    <li>
-                        <img src="/static/img/dog-and-cat.jpg" alt="pic">
-                        <p>John Doe</p>
-                        <p>Cortina, Italy</p>
-                    </li>
-                    <li>
-                        <img src="/static/img/dog-and-cat.jpg" alt="pic">
-                        <p>Jessica Simpson</p>
-                        <p>Chamonix-Mont-Blanc, France</p>
-                    </li>
-                    <li>
-                        <img src="/static/img/dog-and-cat.jpg">
-                        <p>Lily Chapman</p>
-                        <p>London, United Kingdom</p>
-                    </li>
-                    <li>
-                        <img src="/static/img/dog-and-cat.jpg" alt="pic">
-                        <p>Robert Brown</p>
-                        <p>Kitzbuhel, Austria</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section class="choose-us">
-            <ul>
-                <li>
-                    <img src="./images/icon-1.png" alt="cloud">
-                    <h4>In every conditions</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem harum aspernatur sapiente
-                        error,
-                        voluptas fuga, laudantium ullam magni fugit. Qui!</p>
-                </li>
-                <li>
-                    <img src="/static/img/dog-and-cat.jpg" alt="bag">
-                    <h4>Professional Team</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem harum aspernatur sapiente
-                        error,
-                        voluptas fuga, laudantium ullam magni fugit. Qui!</p>
-                </li>
-                <li>
-                    <img src="/static/img/dog-and-cat.jpg" alt="knife">
-                    <h4>Expert hikers</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem harum aspernatur sapiente
-                        error,
-                        voluptas fuga, laudantium ullam magni fugit. Qui!</p>
-                </li>
-            </ul>
-
-        </section>
-        <section class="blog-news">
-            <h3>BLOG NEWS</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <ul class="blog-list">
-                <li class="item">
-                    <section class="avatar">
-                        <img src="/static/img/dog-and-cat.jpg">
-                    </section>
-                    <section class="content">
-                        <h4>PROJECT DESCRIPTION VIDEO</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquid
-                            scire se gaudeant? Immo
-                            alio genere; Quod vestri non.</p>
-                    </section>
-                </li>
-                <li class="item">
-                    <section class="avatar">
-                        <img src="/static/img/dog-and-cat.jpg">
-                    </section>
-                    <section class="content">
-                        <h4>PROJECT DESCRIPTION IMAGE</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquid
-                            scire se gaudeant? Immo
-                            alio genere; Quod vestri non.</p>
-                    </section>
-                </li>
-            </ul>
-
-        </section>
-    </main>
-<footer replace="~{/fragments/navbar}"></footer>
+<header>
+    <nav th:replace="~{/fragments/navbar}"></nav>
+    <section class="header-title">
+        <h1>It's time to start your adventures</h1>
+        <p>Welcome to Cozy Pets Boutique Hotel!</p>
+        <p>Enjoy your holidays while your pets are with us.</p>
+        <button class="info" th:src="/templates/as">MORE INFO</button>
+    </section>
+</header>
+<main>
+    <section class="team-description">
+        <h3>OUR FABULOUS TEAM</h3>
+        <div class="team-description-wrapper">
+            <article class="team-list">
+                <img src="/images/team/Omar-Trainner.jpg" alt="person">
+                <h4>Omar</h4>
+                <p>Trainner</p>
+            </article>
+            <article class="team-list">
+                <img src="/images/team/Dr.Bardeau.jpg" alt="person">
+                <h4>Dr.Badeau’s</h4>
+                <p>Preventative care, internal medicine, and dermatology.</p>
+            </article>
+            <article class="team-list">
+                <img src="/images/team/Samuel.jpg" alt="person">
+                <h4>Samuel</h4>
+                <p>Kennel Technician
+                    & Weekend Caretaker</p>
+            </article>
+            <article class="team-list">
+                <img src="/images/team/Stephanie-Veterinary-Technician.jpg" alt="person">
+                <h4>Stephanie</h4>
+                <p>Trainner</p>
+            </article>
+            <article class="team-list">
+                <img src="/images/team/Mary-Liz-Kennel-Technician.jpg" alt="person">
+                <h4>Mary-Liz</h4>
+                <p>Veterinary-Technician</p>
+            </article>
+            <article class="team-list">
+                <img src="/images/team/Lesly-Receptionist.jpg" alt="person">
+                <h4>Lesly</h4>
+                <p>Receptionist</p>
+            </article>
+        </div>
+    </section>
+    <section id="about" class="about-us">
+        <h3>ABOUT US</h3>
+        <h5>We make our hotel a special place for your pet</h5>
+        <p>Cozy Pets Boutique Hotel is a family-run business.Our mission is to deliver the highest hotel experience for
+            your pet while you enjoy your time off.Each team member at Cozy Pet Boutique Hotel pledges to uphold our
+            core values:
+            Communication, Consistency, Empathy, Safety, working together for pets and commitment to quality of care to
+            ensure exceptional experiences for each pet, each person, each day.</p>
+    </section>
+</main>
+<footer th:replace="~{/fragments/footer}"></footer>
 </body>
 </html>
