@@ -1,0 +1,89 @@
+body {
+    background-color: darkolivegreen;
+}
+
+nav {
+    width: 90%;
+    padding: 1%;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 3%;
+    color: #1e1915;
+}
+
+.content-left {
+    width: 38%;
+    /*font-weight: bold;*/
+    /*font-size: 22px;*/
+    padding: 2%;
+}
+
+.content-right img {
+    width: 100%;
+}
+
+.content-right {
+    width: 33%;
+    display: flex;
+    color: #E5E7EB;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-right h3 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #bfbfbf;
+}
+
+.group {
+    width: 75%;
+    display: block;
+    margin-bottom: 2%;
+}
+
+.group label {
+    font-size: 14px;
+    margin-top: 2%;
+    text-transform: uppercase;
+}
+
+.input {
+    width: 100%;
+    color: #000000;
+    display: block;
+    border: none;
+    /*padding: 15px 20px;*/
+    padding: 3% 4%;
+    border-radius: 25px;
+    background: #e5e7eb;
+    margin: 1% -3%;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-info {
+    width: 122px;
+    height: 39px;
+    border: 1px solid #56680b;
+    color: #292b29;
+    background-color: #799506;
+    box-shadow: 1px 1px 12px #292b29;
+    margin-top: 5%;
+    border-radius: 7px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/*footer {*/
+/*    width: 100%;*/
+/*    height: 18%;*/
+/*}*/

@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i");
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: PT Sans, sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    box-sizing: inherit;
+    max-width: 100vw;
+    background-color: #EFE6DB;
+    color: #67686b;
+}
+
+li {
+    list-style: none;
+}
+
+nav a img {
+    width: 120px;
+    border-radius: 25px;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    /*padding: 2rem;*/
+}
+
+nav ul li {
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 1em;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: larger;
+}
+
+nav ul li a:hover {
+    color: burlywood;
+    text-decoration: none;
+}
+
+footer {
+    position: relative;
+    height: 25%;
+    background: #3a2716;
+    text-align: center;
+    color: white;
+    padding: 1em 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-decoration: none;
+}
+
+.contact-us {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+footer .mail {
+    color: burlywood;
+}
+
+.footer-header {
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ff7a18;
+}
+
+.contacts {
+    text-align: left;
+}
+
+.contacts p {
+    line-height: 1.3em;
+}
+

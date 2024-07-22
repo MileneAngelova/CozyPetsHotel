@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/reset-css.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/register.css">
     <title>PetsHotel</title>
 </head>
 <body>
@@ -16,22 +16,34 @@
 <main>
     <div class="content">
         <div class="content-left">
+            <img src="/images/runTogether.jpg" alt="cat and dog">
+        </div>
+        <div class="content-right">
             <h3>Enter your details below: <br><br></h3>
+
+            <div class="group">
+                <label for="username" class="text-white font-weight-bold">Username: </label>
+                <input placeholder="Username" id="username" type="text" class="input">
+            </div>
+
             <div class="group">
                 <label for="email" class="text-white font-weight-bold">Email: </label>
                 <input placeholder="Email address" id="email" type="text" class="input">
             </div>
+
             <div class="group">
                 <label for="password" class="text-white font-weight-bold">Password: </label>
                 <input placeholder="Password" id="password" type="password" class="input">
             </div>
-            <div class="button">
-                <button type="submit" class="submit-info" value="Sign In">Sign In</button>
-            </div>
-        </div>
 
-        <div class="content-right">
-            <img src="/images/playing-cats.jpg" alt="cats picture">
+            <div class="group">
+                <label for="confirmPassword" class="text-white font-weight-bold">Confirm password: </label>
+                <input id="confirmPassword" placeholder="Confirm Password" type="password" class="input">
+            </div>
+
+            <div class="button">
+                <button type="submit" class="submit-info" value="Sign Up">Sign Up</button>
+            </div>
         </div>
     </div>
 </main>

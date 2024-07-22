@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:insert="~{/fragments/head}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/reset-css.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/infoStyle.css">
     <title>PetsHotel</title>
 </head>
 <title>Hotel Info</title>
-<body>
+<body class="body-info-page">
+<!--<img src="/images/cute.png" alt="dog and cat picture">-->
 <nav th:replace="~{/fragments/navbar}"></nav>
 <main>
-    <section>
-    <aside>
-        <img src="/images/asideCat.webp" alt="cat picture">
-    </aside>
-    <section></section>
-    <aside>
-        <img src="/images/asideDog.webp" alt="dog picture">
-    </aside>
+    <section class="content">
+        <aside class="image">
+            <img src="/images/asideCat.webp" alt="cat picture">
+        </aside>
+        <div class="content-text">
+            <p class="text">
+                The idea for Cozy Pet Hotel was sparked by the need for more personalized pet care and boarding. While
+                there's nothing wrong with larger facilities, they may struggle to provide every dog in their care with
+                the attention and enrichment they need to truly prosper while away from their beloved pet parents. This
+                sparked an idea, and then a dream, within us. We proudly opened our doors on August 15th, 2022, and have
+                been serving Belton and surrounding families since!
+            </p>
+            <p class="text">
+                We make it our dedicated mission as a smaller care facility is to provide individualized and fully
+                attentive care for every pet that is trusted into our care, because we believe that sometimes even the
+                littlest things are what make the difference.
+            </p>
+            <p class="text">
+                All of our employees have a deep passion and care for animals, and we do too! After all, that's how we
+                got here!
+            </p>
+            <p class="text">
+                Without our four-legged friends, our lives would be less entertaining and full of love. At Cozy Pet, we
+                hold these feelings as core principles in everything we do.
+            </p>
+            <p class="text">
+                You and your pet are family to us, so check into Cozy Pet Hotel today!
+            </p>
+        </div>
+        <aside class="image">
+            <img src="/images/asideDog.webp" alt="dog picture">
+        </aside>
     </section>
 </main>
+<footer th:replace="~{/fragments/footer}"></footer>
 </body>
 </html>
