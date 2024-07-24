@@ -1,0 +1,87 @@
+body {
+  background-color: darkolivegreen;
+}
+
+nav {
+    padding: 2rem 6rem;
+}
+
+.price {
+    border-bottom-right-radius: 18%;
+    border-top-left-radius: 18%;
+    margin: 2% 1%;
+    background-color: #c0d995;
+    box-shadow: 5px 2px 22px greenyellow;
+}
+
+.price h1 {
+    text-align: center;
+    font-family: 'Cormorant', Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 75px;
+    color: #03222f !important;
+    padding: 2%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 2%;
+}
+
+.price article {
+    display: flex;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 7px;
+    flex-direction: column;
+    box-shadow: 4px 5px 8px;
+}
+
+.services {
+    width: 25%;
+}
+
+.content {
+    padding: 7%;
+    line-height: 1.3rem;
+}
+
+.content img {
+    width: 100%;
+}
+
+.content-title {
+    margin-top: 3%;
+    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+    color: #03222f;
+}
+
+.content-text {
+    margin: 6% 0%;
+    font-style: oblique;
+    font-weight: bold;
+    color: #03222f;
+}
+
+.content ul {
+    color: #03222f;
+}
+
+.book-now {
+    border-color: RGBA(255, 255, 255, 0);
+    border-radius: 30px;
+    font-size: 18px;
+    font-family: 'Cormorant', Georgia, "Times New Roman", serif !important;
+    font-weight: 700 !important;
+    height: 46px;
+    background-color: #7aa038;
+    width: 60%;
+    margin: 4% 0;
+}
+.other-pets {
+    margin-top: 6%;
+    color: black;
+}

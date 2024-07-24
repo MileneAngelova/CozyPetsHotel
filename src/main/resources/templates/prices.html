@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/reset-css.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/prices.css">
+    <title>PetsHotel</title>
+</head>
+<body>
+<nav th:replace="~{/fragments/navbar}"></nav>
+<main>
+    <section class="price dogs">
+        <h1>Prices</h1>
+        <div class="container">
+            <article class="services">
+                <div class="content">
+                    <img src="/images/smallDog.jpg" alt="dog">
+                    <h4 class="content-title">Small Dogs</h4>
+                    <p class="content-text">Day Trial:</p>
+                    <ul>
+                        <li>• One dog: £22.</li>
+                        <li>• Two dog: £32.</li>
+                        <li>• Three dog: £42.</li>
+                    </ul>
+                    <p class="content-text">Boarding per day</p>
+                    <ul>
+                        <li>• 1x dog: £33.</li>
+                        <li>• 2x dog: £45 same family.</li>
+                        <li>• 3x dog: £53 same family.</li>
+                        <li>• 4x dog: £56 same family.</li>
+                    </ul>
+                </div>
+                <button class="book-now" href="/">Book now</button>
+            </article>
+            <article class="services">
+                <div class="content">
+                    <img src="/images/mediumDog.jpg" alt="dog">
+                    <h4 class="content-title">Medium Dogs</h4>
+                    <p class="content-text">Day Trial:</p>
+                    <ul>
+                        <li>• One dog: £25.</li>
+                        <li>• Two dog: £37.</li>
+                        <li>• Three dog: £47.</li>
+                    </ul>
+                    <p class="content-text">Boarding per day:</p>
+                    <ul>
+                        <li>• 1x dog: £35 same family.</li>
+                        <li>• 2x dog: £47 same family.</li>
+                        <li>• 3x dog: £58 same family.</li>
+                        <li>• 4x dog: £61 same family.</li>
+                    </ul>
+                </div>
+                <button class="book-now" href="/">Book now</button>
+            </article>
+            <article class="services">
+                <div class="content">
+                    <img src="/images/largeDog.jpg" alt="dog">
+                    <h4 class="content-title">Large Dogs</h4>
+                    <p class="content-text">Day Trial:</p>
+                    <ul>
+                        <li>• One dog: £25.</li>
+                        <li>• Two dog: £37.</li>
+                        <li>• Three dog: £47.</li>
+                    </ul>
+                    <p class="content-text">Boarding per day:</p>
+                    <ul>
+                        <li>• 1x dog: £35 same family.</li>
+                        <li>• 2x dog: £47 same family.</li>
+                        <li>• 3x dog: £58 same family.</li>
+                        <li>• 4x dog: £61 same family.</li>
+                    </ul>
+                </div>
+                <button class="book-now" href="/">Book now</button>
+            </article>
+        </div>
+    </section>
+    <section class="price cats">
+        <h1>Services</h1>
+        <div class="container">
+            <article class="services">
+                <div class="content">
+                    <img src="/images/singleCat.jpg" alt="cat">
+                    <h4 class="content-title">Cats</h4>
+                    <ul>
+                        <li>• 1x cat: £21 same family (same room).</li>
+                        <li>• 2x cat: £30 same family (same room).</li>
+                        <li>• 3x cat: £37 same family (same room).</li>
+                        <li>• 4x cat: £40 same family (same room).</li>
+                        <li>• 5x cat: £45 same family (same room).</li>
+                    </ul>
+                </div>
+                    <button class="book-now" href="/">Book now</button>
+            </article>
+            <article class="services">
+                <div class="content">
+                    <img src="/images/extraServices.jpg" alt="animal">
+                    <h4 class="content-title">Extra services</h4>
+                    <p class="content-text">Dog bath</p>
+                    <ul>
+                        <li>• Small dog: £21.</li>
+                        <li>• M/L dog: £26.</li>
+                    </ul>
+                    <h4 class="content-title">Walks/Playing time</h4>
+                    <p class="content-text">Boarding per day:</p>
+                    <ul>
+                        <li>• One dog: £12(30min).</li>
+                        <li>• Two Dogs: £15 same family (30 minutes)</li>
+                    </ul>
+                </div>
+                <button class="book-now" href="/">Book now</button>
+            </article>
+            <article class="services">
+                <div class="content">
+                    <img src="/images/otherAnimals.jpg" alt="dog">
+                    <h4 class="content-title">Other pets</h4>
+                    <p class="other-pets">We also take Parrots, Rabbits, Hamsters, etc. Please contact us to discuss your needs</p>
+                </div>
+                <button class="book-now" href="/">Book now</button>
+            </article>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{/fragments/footer}"></footer>
+</body>
+</html>

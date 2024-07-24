@@ -27,6 +27,7 @@ nav a img {
 }
 
 nav {
+    padding: 2rem;
     display: flex;
     width: 100%;
     margin: 0 auto;
@@ -49,6 +50,11 @@ nav ul li a {
 }
 
 nav ul li a:hover {
+    color: burlywood;
+    text-decoration: none;
+}
+
+nav ul li a:active {
     color: burlywood;
     text-decoration: none;
 }
@@ -77,6 +83,7 @@ footer .mail {
 }
 
 .footer-header {
+    margin-left: 11%;
     margin-bottom: 10px;
     font-weight: 600;
     text-transform: uppercase;
@@ -84,10 +91,18 @@ footer .mail {
 }
 
 .contacts {
+    width: 20%;
     text-align: left;
 }
 
 .contacts p {
     line-height: 1.3em;
+}
+
+footer i {
+    color: #9b8d14;
+    font-weight: 600;
+    position: relative;
+    bottom: -16px;
 }
 
