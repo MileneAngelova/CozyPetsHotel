@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://kit.fontawesome.com/09676a0005.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/reset-css.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/prices.css">
+
     <title>PetsHotel</title>
 </head>
 <body>
 <nav th:replace="~{/fragments/navbar}"></nav>
 <main>
-    <section class="price dogs">
+    <section class="price">
         <h1>Prices</h1>
         <div class="container">
             <article class="services">
@@ -79,7 +81,7 @@
             </article>
         </div>
     </section>
-    <section class="price cats">
+    <section class="price">
         <h1>Services</h1>
         <div class="container">
             <article class="services">
@@ -94,7 +96,7 @@
                         <li>• 5x cat: £45 same family (same room).</li>
                     </ul>
                 </div>
-                    <button class="book-now" href="/">Book now</button>
+                <button class="book-now" href="/">Book now</button>
             </article>
             <article class="services">
                 <div class="content">
@@ -118,9 +120,12 @@
                 <div class="content">
                     <img src="/images/otherAnimals.jpg" alt="dog">
                     <h4 class="content-title">Other pets</h4>
-                    <p class="other-pets">We also take Parrots, Rabbits, Hamsters, etc. Please contact us to discuss your needs</p>
+                    <p class="other-pets">We also take Parrots, Rabbits, Hamsters, etc. Please contact us to discuss
+                        your needs</p>
                 </div>
-                <button class="book-now" href="/">Book now</button>
+                <div>
+                    <button class="book-now" href="/">Book now</button>
+                </div>
             </article>
         </div>
     </section>

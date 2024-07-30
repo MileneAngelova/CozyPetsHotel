@@ -11,7 +11,7 @@ nav {
     border-top-left-radius: 18%;
     margin: 2% 1%;
     background-color: #c0d995;
-    box-shadow: 5px 2px 22px greenyellow;
+    box-shadow: 0 2px 14px greenyellow;
 }
 
 .price h1 {
@@ -43,6 +43,7 @@ nav {
 }
 
 .content {
+    height: 87%;
     padding: 7%;
     line-height: 1.3rem;
 }
@@ -70,17 +71,17 @@ nav {
     color: #03222f;
 }
 
-.book-now {
-    border-color: RGBA(255, 255, 255, 0);
-    border-radius: 30px;
-    font-size: 18px;
-    font-family: 'Cormorant', Georgia, "Times New Roman", serif !important;
-    font-weight: 700 !important;
-    height: 46px;
-    background-color: #7aa038;
-    width: 60%;
-    margin: 4% 0;
-}
+/*.book-now {*/
+/*    border-color: RGBA(255, 255, 255, 0);*/
+/*    border-radius: 30px;*/
+/*    font-size: 18px;*/
+/*    font-family: 'Cormorant', Georgia, "Times New Roman", serif !important;*/
+/*    font-weight: 700 !important;*/
+/*    height: 52px;*/
+/*    background-color: #7aa038;*/
+/*    width: 55%;*/
+/*    margin: 4% 0;*/
+/*}*/
 .other-pets {
     margin-top: 6%;
     color: black;

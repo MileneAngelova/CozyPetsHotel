@@ -1,0 +1,121 @@
+.body {
+    color: #0b0a0a;
+    line-height: 1.3em;
+    background-color: rgb(208 159 99 / 29%);
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    padding: 1% 6rem;
+    box-shadow: 1px 1px 4px 1px;
+    opacity: 90%;
+    background-color: rgb(143 88 14 / 68%);
+}
+
+.content {
+    margin: 7% 8% 5% 8%;
+    display: flex;
+    justify-content: center;
+    /* padding: 4em 5em; */
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-text {
+    width: 75%;
+}
+
+.services {
+    display: flex;
+}
+
+.kennel {
+    width: 31%;
+    height: 5%;
+}
+
+/*.description {*/
+    /*position: absolute;*/
+    /*width: 65%;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: start;*/
+/*}*/
+
+.description article {
+    margin: 0 0 3% 10%;;
+}
+
+.description article h1 {
+    font-size: 47px;
+    font-weight: 600;
+    color: #2d231c;
+}
+
+.description p {
+    margin-top: 4%;
+    color: #0b0a0a;
+    font-size: 19px;
+    line-height: 1.3em;
+}
+
+.reception {
+    width: 100%;
+}
+
+.text {
+    margin-top: 3%;
+    color: #0b0a0a;
+    font-size: 19px;
+    line-height: 1.3em;
+    margin-bottom: 3%;
+}
+
+.payment-info {
+    margin-top: 12%;
+    text-align: justify;
+}
+
+.payment-info h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.text strong, .payment-info span {
+    font-weight: bold;
+    font-size: 19px;
+}
+.payment-info span {
+    color: black;
+}
+
+.green-area img {
+    object-fit: cover;
+    width: 100%;
+    height: 410px;
+    image-rendering: auto;
+    margin-bottom: -2px;
+}
+
+.book-now {
+    /*border-color: RGBA(255, 255, 255, 0);*/
+    /*border-radius: 30px;*/
+    /*font-size: 18px;*/
+    /*font-family: 'Cormorant', Georgia, "Times New Roman", serif !important;*/
+    /*font-weight: 700 !important;*/
+    /*height: 52px;*/
+    /*background-color: #7aa038;*/
+    width: 17%;
+    margin-top: 8%;
+    margin-bottom: 0;
+
+}
+
+.bottom {
+    width: 100%;
+    object-fit: cover;
+    height: 450px;
+    margin-bottom: -2px;
+}

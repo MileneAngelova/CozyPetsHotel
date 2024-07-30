@@ -11,7 +11,7 @@
 nav {
     position: sticky;
     top: 0;
-    padding: 0 6rem;
+    padding: 2rem 6rem;
     background: #556b2fa6;
     z-index: 1;
 }
