@@ -20,7 +20,7 @@ public class RoleService {
             Arrays.stream(RoleNameEnum.values())
                     .forEach(roleNameEnum -> {
                         Role role = new Role();
-                        role.setName(roleNameEnum);
+                        role.setRole(roleNameEnum);
                         this.roleRepository.save(role);
                     });
         }

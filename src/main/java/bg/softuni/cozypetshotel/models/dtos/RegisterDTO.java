@@ -1,16 +1,17 @@
 package bg.softuni.cozypetshotel.models.dtos;
 
+import bg.softuni.cozypetshotel.validation.FieldsMatch;
 import bg.softuni.cozypetshotel.validation.UniqueUserEmail;
 import bg.softuni.cozypetshotel.validation.UniqueUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
+@FieldsMatch(first = "password", second = "confirmPassword", message = "Passwords do not match!")
 public class RegisterDTO {
-    @NotBlank(message = "This field must not be empty!")
-    @UniqueUsername(message = "Username already exists! Choose another one!")
-    @Size(min = 3, max = 50)
-    private String username;
+//    @NotBlank(message = "This field must not be empty!")
+//    @UniqueUsername(message = "Username already exists! Choose another one!")
+//    @Size(min = 3, max = 50)
+//    private String username;
 
     @NotBlank(message = "Enter your email")
     @Email(message = "Email format is not valid!")
@@ -28,14 +29,14 @@ public class RegisterDTO {
     public RegisterDTO() {
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public RegisterDTO setUsername(String username) {
-        this.username = username;
-        return this;
-    }
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public RegisterDTO setUsername(String username) {
+//        this.username = username;
+//        return this;
+//    }
 
     public String getEmail() {
         return email;
@@ -62,5 +63,14 @@ public class RegisterDTO {
     public RegisterDTO setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "RegisterDTO{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                '}';
     }
 }

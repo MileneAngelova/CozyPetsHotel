@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,36 +17,87 @@
 <nav th:replace="~{/fragments/navbar}"></nav>
 <main>
     <div class="content">
+         <form class="data"
+    th:action="@{/register}"
+    th:method="post"
+    th:object="${registerModel}">
         <div class="content-left">
             <img src="/images/run-together.webp" alt="cat and dog">
         </div>
         <div class="content-right">
             <h3>Enter your details below: <br><br></h3>
 
-            <div class="group">
-                <label for="username" class="text-white font-weight-bold">Username: </label>
-                <input placeholder="Username" id="username" type="text" class="input">
-            </div>
+<!--            <div class="group">-->
+<!--                <label for="username" class="text-white font-weight-bold">Username: </label>-->
+<!--                <input type="text" min="30" max="50"-->
+<!--                       placeholder="Username"-->
+<!--                       id="username"-->
+<!--                       class="input"-->
+<!--                       name="username"-->
+<!--                       th:field="*{username}"-->
+<!--                       th:errorclass="is-invalid"/>-->
+<!--                <small class="invalid-feedback text-danger">-->
+<!--                    <div th:each="err : ${#fields.errors('username')}"-->
+<!--                         th:text="${err}">-->
+<!--                    </div>-->
+<!--                </small>-->
+<!--            </div>-->
 
             <div class="group">
                 <label for="email" class="text-white font-weight-bold">Email: </label>
-                <input placeholder="Email address" id="email" type="text" class="input">
+                <input required
+                       placeholder="Email address"
+                       id="email"
+                       type="text"
+                       class="input"
+                       name="email"
+                       th:field="*{email}"
+                       th:errorclass="is-invalid"/>
+                <small class="invalid-feedback text-danger">
+                    <div th:each="err : ${#fields.errors('email')}"
+                         th:text="${err}">
+                    </div>
+                </small>
             </div>
 
             <div class="group">
                 <label for="password" class="text-white font-weight-bold">Password: </label>
-                <input placeholder="Password" id="password" type="password" class="input">
+                <input required
+                       placeholder="Password"
+                       id="password"
+                       type="password" min="3" max="30"
+                       class="input"
+                       name="password"
+                       th:field="*{password}"
+                       th:errorclass="is-invalid"/>
+                <small class="invalid-feedback text-danger">
+                    <div th:each="err : ${#fields.errors('password')}"
+                         th:text="${err}">
+                    </div>
+                </small>
             </div>
 
             <div class="group">
                 <label for="confirmPassword" class="text-white font-weight-bold">Confirm password: </label>
-                <input id="confirmPassword" placeholder="Confirm Password" type="password" class="input">
+                <input required
+                       id="confirmPassword"
+                       placeholder="Confirm Password"
+                       type="password" min="3" max="30"
+                       class="input"
+                       name="confirmPassword"
+                       th:field="*{confirmPassword}"
+                       th:errorclass="is-invalid"/>
+                <small class="invalid-feedback text-danger">Passwords should match.</small>
             </div>
 
             <div class="button">
-                <button type="submit" class="submit-info" value="Sign Up">Sign Up</button>
+                <button type="submit"
+                        class="submit-info"
+                        value="Sign Up"
+                >Sign Up</button>
             </div>
         </div>
+         </form>
     </div>
 </main>
 <footer th:replace="~{/fragments/footer}"></footer>

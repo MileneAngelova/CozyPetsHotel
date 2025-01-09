@@ -7,7 +7,7 @@ nav {
     padding: 2rem 4rem;
 }
 
-.content {
+.data {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -17,17 +17,15 @@ nav {
 
 .content-left {
     width: 38%;
-    /*font-weight: bold;*/
-    /*font-size: 22px;*/
     padding: 2%;
 }
 
-.content-right img {
+.content-left img {
     width: 100%;
 }
 
 .content-right {
-    width: 33%;
+    width: 38%;
     display: flex;
     color: #E5E7EB;
     flex-direction: column;

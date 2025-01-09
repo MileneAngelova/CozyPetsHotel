@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -71,11 +72,12 @@
             </p>
         </div>
     </div>
-    <button class="book-now" href="/">Book now</button>
-
+    <button type="submit" class="book-now">
+        <a th:href="@{/book-now}"></a>
+            Book now</button>
 </section>
 <section>
-    <img class="bottom" src="/images/services/green-areas.jpg" alt="green land">
+    <img class="area" src="/images/services/green-areas.jpg" alt="green land">
 </section>
 </main>
 <footer th:replace="~{/fragments/footer}"></footer>

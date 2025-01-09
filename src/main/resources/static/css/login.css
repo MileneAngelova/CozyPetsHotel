@@ -7,7 +7,7 @@ nav {
     padding: 2rem 4rem;
 }
 
-.content {
+.info-data {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -84,11 +84,3 @@ nav {
     font-weight: bold;
     cursor: pointer;
 }
-
-
-/*footer {*/
-/*    position: fixed;*/
-/*    bottom: 0;*/
-/*    width: 100%;*/
-/*    height: 18%;*/
-/*}*/

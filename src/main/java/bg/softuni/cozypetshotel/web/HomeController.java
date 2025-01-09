@@ -29,4 +29,9 @@ public class HomeController {
     public String services() {
         return "services";
     }
+
+    @GetMapping("/book-now")
+    public String bookNow() {
+        return "book-now";
+    }
 }

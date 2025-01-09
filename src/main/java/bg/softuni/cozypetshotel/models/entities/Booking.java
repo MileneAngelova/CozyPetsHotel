@@ -10,18 +10,25 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String fullName;
+
     @Column(nullable = false)
     private String email;
+
     @Column(nullable = false)
     private String phoneNumber;
+
     @Column(name = "check-in", nullable = false)
     private LocalDate CheckIn;
+
     @Column(name = "check-out", nullable = false)
     private LocalDate CheckOut;
+
     @Column(nullable = false)
     private int numberOfPets;
+
     @Column(name = "additional_information")
     private String additionalInformation;
 

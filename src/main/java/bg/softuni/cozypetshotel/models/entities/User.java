@@ -2,6 +2,9 @@ package bg.softuni.cozypetshotel.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -9,11 +12,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstname;
+     @Column(name = "first_name")
+    private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -22,9 +27,13 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id")
+    )
+    private Set<Role> roles;
 
     @Column(nullable = false)
     private int age;
@@ -35,12 +44,16 @@ public class User {
 
     private String phoneNumber;
 
+    public User() {
+        this.roles = new HashSet<>();
+    }
+
     public String getFirstname() {
-        return firstname;
+        return firstName;
     }
 
     public User setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstName = firstname;
         return this;
     }
 
@@ -70,15 +83,13 @@ public class User {
         this.address = address;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public User() {
+    public User setRoles(Set<Role> roles) {
+        this.roles = roles;
+        return this;
     }
 
     public Long getId() {
