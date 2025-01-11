@@ -36,7 +36,6 @@ public class RegisterController {
 
             return "redirect:/register";
         }
-
             this.userService.register(registerModel);
             return "redirect:/login";
     }

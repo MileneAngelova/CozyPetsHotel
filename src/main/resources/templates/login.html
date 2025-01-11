@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="https://kit.fontawesome.com/09676a0005.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/reset-css.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/login.css">
-    <title>PetsHotel</title>
+    <title>CozyPetsHotel</title>
 </head>
 <body>
 <nav th:replace="~{/fragments/navbar}"></nav>
@@ -20,7 +19,7 @@
         <form class="info-data"
               th:action="@{/login}"
               th:method="post"
-              th:object="${loginModel}">>
+              th:object="${loginModel}">
             <div class="content-left">
                 <h3>Enter your details below: <br><br></h3>
                 <div class="group">
@@ -32,11 +31,9 @@
                            type="text"
                            th:field="*{email}"
                            th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback text-danger">
-                        <div th:each="err : ${#fields.errors('email')}"
-                             th:text="${err}">
-                        </div>
-                    </small>
+<!--                    <div th:if="${loginError}" class="alert text-danger text-center">-->
+<!--                        <p th:text="${loginError}"></p>-->
+<!--                    </div>-->
                 </div>
                 <div class="group">
                     <label for="password" class="text-white font-weight-bold">Password: </label>
@@ -47,11 +44,9 @@
                            class="input"
                            th:field="*{password}"
                            th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback text-danger">
-                        <div th:each="err : ${#fields.errors('password')}"
-                             th:text="${err}">
-                        </div>
-                    </small>
+                </div>
+                <div th:if="${loginError}" class="alert alert-danger text-center">
+                    <p th:text="${loginError}"></p>
                 </div>
                 <div class="button">
                     <button type="submit" class="submit-info" value="Sign In">Sign In</button>

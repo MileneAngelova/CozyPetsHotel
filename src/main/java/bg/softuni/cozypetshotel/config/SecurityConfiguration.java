@@ -16,21 +16,22 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.authorizeHttpRequests(
+        return httpSecurity
+                .authorizeHttpRequests(
                         authorizeRequests -> authorizeRequests
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/home", "/account", "/booking").authenticated()
-                                .requestMatchers("/", "/gallery", "/services", "/info", "/prices", "login", "/register", "/error").permitAll()
+//                                .requestMatchers("/home", "/account", "/book-now", "/logout").authenticated()
+                                .requestMatchers("/", "/gallery", "/services", "/info", "/prices", "/login", "/register", "/error").permitAll()
                                 .anyRequest()
                                 .authenticated())
-                .formLogin(formLogin -> {
-                    formLogin
-                            .loginPage("/login")
-                            .usernameParameter("email")
-                            .passwordParameter("password")
-                            .defaultSuccessUrl("/", true)
-                            .failureForwardUrl("/login-error");
-                })
+                .formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/login")
+                                .usernameParameter("email")
+                                .passwordParameter("password")
+                                .defaultSuccessUrl("/", true)
+                                .failureForwardUrl("/login-error"))
+
                 .logout(logout ->
                         logout.logoutUrl("/logout")
                                 .logoutSuccessUrl("/")
@@ -47,5 +48,4 @@ public class SecurityConfiguration {
     public PasswordEncoder passwordEncoder() {
         return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
-
 }

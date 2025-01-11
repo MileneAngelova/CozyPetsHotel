@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i");
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: PT Sans, sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    box-sizing: inherit;
+    max-width: 100vw;
+    background-color: #a48d71;
+    color: #67686b;
+}
+
+.container {
+    margin-top: 15%;
+    font-size: x-large;
+}
+.container h1 {
+    color: #ffffff;
+}
+
+.container a {
+    color: #186570;
+    font-size: large;
+    font-weight: bold;
+}

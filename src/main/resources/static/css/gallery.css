@@ -27,8 +27,21 @@ nav ul li:active {
 nav ul li a {
     color: #292424;
 }
+
 nav ul li a:hover {
     color: #292424;
+}
+
+nav form {
+    width: 90%;
+}
+
+nav form .logout {
+    width: 122%;
+    padding: 0;
+    color: #292424;
+    background-color: #bba4a4;
+    border-style: none;
 }
 
 /*nav ul li a:hover {*/

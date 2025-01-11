@@ -16,6 +16,16 @@ nav {
     z-index: 1;
 }
 
+nav form .logout {
+    background-color: rgb(143 88 14 / 83%);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: larger;
+    border-color: rgb(143 88 14 / 83%);
+    width: 172%;
+    padding: 11%;
+}
+
 .content {
     margin: 1% 1%;
     display: flex;

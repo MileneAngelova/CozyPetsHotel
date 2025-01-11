@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <nav>
     <a href="/">
         <img src="/images/logo.png" alt="hotelLogo">
     </a>
     <ul>
-        <li sec:authorize="isAuthenticated()"><a href="#">Home</a></li>
+        <li sec:authorize="isAuthenticated()">
+            <a href="#">Home</a>
+        </li>
         <li>
             <a th:href="@{/gallery}">Gallery</a>
         </li>
@@ -16,7 +18,9 @@
         <li>
             <a th:href="@{/services}">Services</a>
         </li>
-        <li sec:authorize="isAuthenticated()"><a href="#">My account</a></li>
+        <li sec:authorize="isAuthenticated()">
+            <a href="#">My account</a>
+        </li>
     </ul>
     <ul>
         <li sec:authorize="!isAuthenticated()">
@@ -26,7 +30,10 @@
             <a th:href="@{/register}">Register</a>
         </li>
         <li sec:authorize="isAuthenticated()">
-            <a th:href="@{/logout}">Logout</a>
+            <form th:method="post"
+                  th:action="@{/logout}">
+                <input class="logout" type="submit" value="Logout">
+            </form>
         </li>
     </ul>
 </nav>

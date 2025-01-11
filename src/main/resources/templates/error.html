@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Not Found...</title>
-  <th:block th:insert="~{fragments/head}"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://kit.fontawesome.com/09676a0005.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/reset-css.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/error.css">
+  <title>CozyPetsHotel</title>
 </head>
 <body>
-<div th:replace="~{fragments/navbar}"></div>
+<main>
+<!--<div th:replace="~{fragments/navbar}"></div>-->
 <section class="container" style="text-align: center">
-  <h1 class="align-content-lg-center" style="color: #fff3cd">Ooops...Something went wrong! </h1>
-  <h2 class="align-content-lg-center" style="color: #fff3cd">Page Not Found!</h2>
-  <a class="align-content-lg-center" style="color: aqua; font-size: large;" href="/">Go to Home page</a>
+  <h1 class="align-content-lg-center">Ooops...Something went wrong! </h1>
+<!--  <h2 class="align-content-lg-center" style="color: #fff3cd">Page Not Found!</h2>-->
+  <br>
+  <a class="align-content-lg-center" href="/">Go to Home page</a>
 </section>
-<div th:replace="~{fragments/footer}"></div>
+<!--<div th:replace="~{fragments/footer}"></div>-->
+</main>
 </body>
 </html>
