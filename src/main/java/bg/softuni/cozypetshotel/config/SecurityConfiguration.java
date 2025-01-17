@@ -20,8 +20,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                         authorizeRequests -> authorizeRequests
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-//                                .requestMatchers("/home", "/account", "/book-now", "/logout").authenticated()
-                                .requestMatchers("/", "/gallery", "/services", "/info", "/prices", "/login", "/register", "/error").permitAll()
+                                .requestMatchers("/home", "/account", "/book-now", "/logout").authenticated()
+                                .requestMatchers("/", "/gallery", "/services", "/info", "/prices", "/login", "/register", "/login-error").permitAll()
                                 .anyRequest()
                                 .authenticated())
                 .formLogin(formLogin ->

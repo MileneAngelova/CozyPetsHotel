@@ -55,13 +55,12 @@ nav {
     text-transform: uppercase;
 }
 
-.input {
+.form-control {
     width: 92%;
     color: #000000;
     display: block;
     border: none;
-    /*padding: 15px 20px;*/
-    padding: 3% 4%;
+    padding: 2.5% 4%;
     border-radius: 25px;
     background: #e5e7eb;
     margin: 1% -3%;
@@ -83,4 +82,18 @@ nav {
     text-align: center;
     font-weight: bold;
     cursor: pointer;
+}
+
+.alert {
+    position: relative;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .5rem;
+}
+
+.text-danger p {
+    font-size: 21px;
+    color: #640303;
+    font-weight: 700;
 }

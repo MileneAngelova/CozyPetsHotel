@@ -48,15 +48,15 @@
                        placeholder="Email address"
                        id="email"
                        type="text"
-                       class="input"
+                       class="form-control"
                        name="email"
                        th:field="*{email}"
                        th:errorclass="is-invalid"/>
-                <small class="invalid-feedback text-danger">
+                <div class="invalid-feedback errors alert alert-danger">
                     <div th:each="err : ${#fields.errors('email')}"
                          th:text="${err}">
                     </div>
-                </small>
+                </div>
             </div>
 
             <div class="group">
@@ -64,12 +64,12 @@
                 <input required
                        placeholder="Password"
                        id="password"
-                       type="password" min="3" max="30"
-                       class="input"
+                       type="password"
+                       class="form-control"
                        name="password"
                        th:field="*{password}"
                        th:errorclass="is-invalid"/>
-                <small class="invalid-feedback text-danger">
+                <small class="invalid-feedback errors alert alert-danger">
                     <div th:each="err : ${#fields.errors('password')}"
                          th:text="${err}">
                     </div>
@@ -80,12 +80,12 @@
                 <input required
                        id="confirmPassword"
                        placeholder="Confirm Password"
-                       type="password" min="3" max="30"
-                       class="input"
+                       type="password"
+                       class="form-control"
                        name="confirmPassword"
                        th:field="*{confirmPassword}"
                        th:errorclass="is-invalid"/>
-                <small class="invalid-feedback text-danger">Passwords should match.</small>
+                <small class="invalid-feedback errors alert alert-danger">Passwords should match.</small>
             </div>
 
             <div class="button">

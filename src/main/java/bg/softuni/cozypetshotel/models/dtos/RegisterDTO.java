@@ -19,11 +19,11 @@ public class RegisterDTO {
     private String email;
 
     @NotBlank(message = "Choose a password!")
-    @Size(min = 3, max = 30, message = "Password must be between 3 and 30 symbols long!")
+    @Size(min = 4, max = 30, message = "Password must be between 4 and 30 symbols long!")
     private String password;
 
     @NotBlank
-    @Size(min = 3, max = 30)
+    @Size(min = 4, max = 30)
     private String confirmPassword;
 
     public RegisterDTO() {

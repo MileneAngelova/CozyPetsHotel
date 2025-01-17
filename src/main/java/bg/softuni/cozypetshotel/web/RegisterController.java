@@ -30,7 +30,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String register(@Valid RegisterDTO registerModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors() || !registerModel.getPassword().equals(registerModel.getConfirmPassword())) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registerModel", registerModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerModel", bindingResult);
 

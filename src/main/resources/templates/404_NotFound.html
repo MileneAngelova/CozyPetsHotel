@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,18 +8,15 @@
   <link rel="stylesheet" href="/css/reset-css.css">
   <link rel="stylesheet" href="/css/responsive.css">
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/index.css">
+<!--  <link rel="stylesheet" href="/css/index.css">-->
   <link rel="stylesheet" href="/css/error.css">
   <title>CozyPetsHotel</title>
 </head>
 <body>
-<main>
-<section class="container" style="text-align: center">
-  <h1 class="align-content-lg-center">Ooops...Something went wrong! </h1>
-  <br>
-  <a class="align-content-lg-center" href="/">Go to Home page</a>
-</section>
-</main>
-<div th:replace="~{fragments/footer}"></div>
+<div class="container">
+  <h1>Page Not Found!</h1>
+  <p>This page was removed or does not exist.</p>
+  <a th:href="@{/}">Go to home page</a>
+</div>
 </body>
 </html>

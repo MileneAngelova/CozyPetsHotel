@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--      xmlns="http://www.w3.org/1999/html">-->
 <nav>
     <a href="/">
         <img src="/images/logo.png" alt="hotelLogo">
@@ -21,10 +22,13 @@
         <li sec:authorize="isAuthenticated()">
             <a href="#">My account</a>
         </li>
+        <li sec:authorize="hasRole('ADMIN')">
+            <a href="#">Admin Panel</a>
+        </li>
     </ul>
     <ul>
         <li sec:authorize="!isAuthenticated()">
-            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/login}" th:classappend="${activeLink == 'login'}? 'active'">Login</a>
         </li>
         <li sec:authorize="!isAuthenticated()">
             <a th:href="@{/register}">Register</a>

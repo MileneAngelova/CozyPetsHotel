@@ -1,6 +1,7 @@
 package bg.softuni.cozypetshotel.services;
 
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
+import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.Role;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.models.enums.RoleNameEnum;

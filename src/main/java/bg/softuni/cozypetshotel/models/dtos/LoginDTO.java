@@ -7,7 +7,7 @@ public class LoginDTO {
     @Email(message = "Wrong email format ")
     private String email;
 
-    @Size(min = 2, max = 20)
+    @Size(min = 4, max = 30)
     private String password;
 
     public LoginDTO() {
