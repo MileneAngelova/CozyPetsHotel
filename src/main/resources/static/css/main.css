@@ -123,7 +123,7 @@ footer i {
 }
 
 .book-now {
-    border-color: RGBA(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
     border-radius: 30px;
     font-size: 18px;
     font-family: 'Cormorant', Georgia, "Times New Roman", serif !important;
@@ -132,5 +132,9 @@ footer i {
     background-color: #7aa038;
     width: 55%;
     margin: 4% 0;
+}
+
+.book-now:hover {
+    cursor: pointer;
 }
 

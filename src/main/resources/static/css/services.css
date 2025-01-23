@@ -91,9 +91,14 @@ nav {
 }
 
 .book-now {
-    width: 17%;
+    width: 190px;
     margin-top: 8%;
-    margin-bottom: 0;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    color: black;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
 .book-now:hover {

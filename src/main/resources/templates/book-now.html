@@ -1,129 +1,223 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">>
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="https://kit.fontawesome.com/09676a0005.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="/css/reset-css.css">
-  <link rel="stylesheet" href="/css/responsive.css">
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/index.css">
-  <title>CozyPetsHotel</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://kit.fontawesome.com/09676a0005.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/reset-css.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/book-now.css">
+    <title>CozyPetsHotel</title>
 </head>
 <body>
 <nav th:replace="~{/fragments/navbar}"></nav>
 <main>
-  <div class="et_pb_section et_pb_section_1 et_pb_with_background et_section_regular section_has_divider et_pb_bottom_divider">
-    <div class="et_pb_with_border et_pb_row et_pb_row_3 et_pb_equal_columns et_pb_gutters1">
-      <div class="et_pb_column et_pb_column_4_4 et_pb_column_3  et_pb_css_mix_blend_mode_passthrough et-last-child">
-        <div class="et_pb_module dvppl_cf7_styler dvppl_cf7_styler_0">
-
-          <div class="et_pb_module_inner">
-            <div class="dipe-cf7-container dipe-cf7-button-right">
-
-              <div class="dipe-cf7 dipe-cf7-styler dipe-cf7-cr">
-
-                <div class="wpcf7 js" id="wpcf7-f431-p20-o1" lang="en-GB" dir="ltr">
-                  <div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
-                  <form action="/book-your-accommodation-for-pets/#wpcf7-f431-p20-o1" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-                    <div style="display: none;">
-                      <input type="hidden" name="_wpcf7" value="431">
-                      <input type="hidden" name="_wpcf7_version" value="5.9.7">
-                      <input type="hidden" name="_wpcf7_locale" value="en_GB">
-                      <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f431-p20-o1">
-                      <input type="hidden" name="_wpcf7_container_post" value="20">
-                      <input type="hidden" name="_wpcf7_posted_data_hash" value="">
-                    </div>
-                    <div class="tfs-row">
-                      <div class="tfs-col tfs-col-12 tfs-col-md-6 tfs-col-lg-6">
-                        <label> Full name </label>
-                        <span class="wpcf7-form-control-wrap" data-name="Yourname"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Enter your full name" value="" type="text" name="Yourname"></span>
-                      </div>
-                    </div>
-
-
-                    <div class="tfs-row">
-                      <div class="tfs-col tfs-col-12 tfs-col-md-6 tfs-col-lg-6">
-                        <label>Email</label>
-                        <span class="wpcf7-form-control-wrap" data-name="email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Enter your email" value="" type="email" name="email"></span>
-                      </div>
-                      <div class="tfs-col tfs-col-12 tfs-col-md-6 tfs-col-lg-6">
-                        <label>Contact number</label>
-                        <span class="wpcf7-form-control-wrap" data-name="Contactnumber"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-tel wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Enter your Contact number" value="" type="tel" name="Contactnumber"></span>
-                      </div>
-                    </div>
-
-                    <div class="tfs-row">
-                      <div class="tfs-col tfs-col-12">
-                        <label>Select your booking day</label>
-                      </div>
-                    </div>
-
-                    <div class="tfs-row">
-                      <div class="tfs-col tfs-col-12 tfs-col-md-3 tfs-col-lg-3">
-                        <label>Check-in</label>
-                        <span class="wpcf7-form-control-wrap" data-name="Check-in"><input class="wpcf7-form-control wpcf7-date wpcf7-validates-as-required wpcf7-validates-as-date" min="2023-01-03" max="2024-12-31" aria-required="true" aria-invalid="false" placeholder="" value="" type="date" name="Check-in"></span>
-                      </div>
-                      <div class="tfs-col tfs-col-12 tfs-col-md-3 tfs-col-lg-3">
-                        <label>Check-out</label>
-                        <span class="wpcf7-form-control-wrap" data-name="Check-out"><input class="wpcf7-form-control wpcf7-date wpcf7-validates-as-required wpcf7-validates-as-date" min="2023-01-03" max="2024-12-31" aria-required="true" aria-invalid="false" placeholder="" value="" type="date" name="Check-out"></span>
-                      </div>
-                    </div>
-
-                    <div class="tfs-row">
-                      <div class="tfs-col tfs-col-12">
-                        <label>I am looking for service for my</label>
-                      </div>
-                      <div class="tfs-row"></div>
-                      <span class="wpcf7-form-control-wrap" data-name="Pets"><span class="wpcf7-form-control wpcf7-checkbox"><span class="wpcf7-list-item first last"><label><input type="checkbox" name="Pets[]" value="Dog"><span class="wpcf7-list-item-label">Dog</span></label></span></span></span> <img decoding="async" src="http://cozypetsboutiquehotel.co.uk/wp-content/uploads/2022/11/ph_dog.png">
-                      <span class="wpcf7-form-control-wrap" data-name="Pets"><span class="wpcf7-form-control wpcf7-checkbox"><span class="wpcf7-list-item first last"><label><input type="checkbox" name="Pets[]" value="Cat"><span class="wpcf7-list-item-label">Cat</span></label></span></span></span> <img decoding="async" src="http://cozypetsboutiquehotel.co.uk/wp-content/uploads/2022/11/fluent-emoji-high-contrast_cat-face.png">
-                      <span class="wpcf7-form-control-wrap" data-name="Pets"><span class="wpcf7-form-control wpcf7-checkbox"><span class="wpcf7-list-item first last"><label><input type="checkbox" name="Pets[]" value="Other pets"><span class="wpcf7-list-item-label">Other pets</span></label></span></span></span> <img decoding="async" src="http://cozypetsboutiquehotel.co.uk/wp-content/uploads/2022/11/fluent-emoji-high-contrast_parrot-1.png">
-                    </div>
-
-
-
-
-
-                    <div class="tfs-row">
-                      <div class="tfs-col tfs-col-12 tfs-col-md-4 tfs-col-lg-4">
-                        <label>Number of pets?</label>
-                        <span class="wpcf7-form-control-wrap" data-name="Numberofpets"><select class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false" name="Numberofpets"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></span>
-                      </div>
-                      <div class="tfs-col tfs-col-12 tfs-col-md-4 tfs-col-lg-4">
-                        <label>Name of your pet?</label>
-                        <span class="wpcf7-form-control-wrap" data-name="yourpetsname"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Enter your pet name" value="" type="text" name="yourpetsname"></span>
-                      </div>
-                      <div class="tfs-col tfs-col-12 tfs-col-md-4 tfs-col-lg-4">
-                        <label>What breed is your pet?</label>
-                        <span class="wpcf7-form-control-wrap" data-name="Whatbreedisyourpet"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Please enter the breed of your dogs" value="" type="text" name="Whatbreedisyourpet"></span>
-                      </div>
-                    </div>
-
-
-                    <label>Please, enter additional information about your pet</label>
-                    <span class="wpcf7-form-control-wrap" data-name="message"><textarea cols="40" rows="10" maxlength="2000" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Enter additional information" name="message"></textarea></span>
-
-
-
-                    <label>By continuing, you agree to Cozy Pets Boutique Hotel
-                      <a href="https://cozypetsboutiquehotel.co.uk/terms-and-conditions/"> Terms and conditions</a> and <a href="https://cozypetsboutiquehotel.co.uk/privacy-policy/"> Privacy Policy</a> </label>
-
-                    <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Send information"><span class="wpcf7-spinner"></span><div class="wpcf7-response-output" aria-hidden="true"></div>
-                  </form>
+    <section class="reservation">
+        <h3>RESERVATION FORM: <br><br></h3>
+        <form class="data"
+              th:action="@{/book-now}">
+            <!--              th:method="post"-->
+            <!--              th:object="${booking}">-->
+            <div class="form-position">
+                <div class="details">
+                    <label for="firstName" class="text-white font-weight-bold">First name: </label>
+                    <input required
+                           placeholder="First name"
+                           id="firstName"
+                           type="text"
+                           class="form-control"
+                           name="firstName">
+                    <!--                           th:field="*{fullname}"-->
+                    <!--                           th:errorclass="is-invalid"/>-->
+                    <!--                    <div class="invalid-feedback errors alert alert-danger">-->
+                    <!--                        <div th:each="err : ${#fields.errors('fullName')}"-->
+                    <!--                             th:text="${err}">-->
+                    <!--                        </div>-->
+                </div>
+                <div class="details">
+                    <label for="LastName" class="text-white font-weight-bold">Last name: </label>
+                    <input required
+                           placeholder="Last name"
+                           id="LastName"
+                           type="text"
+                           class="form-control"
+                           name="LastName">
+                    <!--                           th:field="*{fullname}"-->
+                    <!--                           th:errorclass="is-invalid"/>-->
+                    <!--                    <div class="invalid-feedback errors alert alert-danger">-->
+                    <!--                        <div th:each="err : ${#fields.errors('fullName')}"-->
+                    <!--                             th:text="${err}">-->
+                    <!--                        </div>-->
                 </div>
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                <div class="details">
+                    <label for="email">Email: </label>
+                    <input required
+                           placeholder="Email"
+                           id="email"
+                           type="text"
+                           class="form-control"
+                           name="email">
+                    <!--                           th:field="*{password}"-->
+                    <!--                           th:errorclass="is-invalid"/>-->
+                    <!--                    <small class="invalid-feedback errors alert alert-danger">-->
+                    <!--                        <div th:each="err : ${#fields.errors('email')}"-->
+                    <!--                             th:text="${err}">-->
+                    <!--                        </div>-->
+                    <!--                    </small>-->
+                </div>
+                <div class="details">
+                    <label for="contactNumber" class="text-white font-weight-bold">Contact number: </label>
+                    <input required
+                           id="contactNumber"
+                           placeholder="Contact number"
+                           type="text"
+                           class="form-control"
+                           name="contactNumber">
+                    <!--                           th:field="*{contactNumber}"-->
+                    <!--                           th:errorclass="is-invalid"/-->
+                    <!--                    <small class="invalid-feedback errors alert alert-danger">Enter your contact number!</small>-->
+                </div>
 
-    </div>
+                <div class="details">
+                    <label>Check-in</label>
+                    <input class="form-control"
+                           min="2025-01-01" max="2030-12-31"
+                           aria-required="true"
+                           aria-invalid="false"
+                           placeholder=""
+                           value="" type="date" name="Check-in">
+                </div>
+                <div class="details">
+                    <label>Check-out</label>
+                    <input class="form-control"
+                           min="2025-01-01" max="2030-12-31"
+                           aria-required="true"
+                           aria-invalid="false"
+                           placeholder=""
+                           value=""
+                           type="date"
+                           name="Check-out">
+                </div>
+            </div>
+
+            <div class="petsInfo">
+                <div class="tfs-row">
+                    <label>I am looking for service for my</label>
+                    <span class="form-control-wrap" data-name="Pets">
+                      <span class="pcf7-form-control pcf7-checkbox">
+                        <span class="pcf7-list-item first last">
+                            <label>
+                            <input type="checkbox"
+                                   name="Pets"
+                                   value="Dog">
+                                <span class="pcf7-list-item-label">Dog</span>
+                            </label>
+                        </span>
+
+                </span>
+                    <img class="petImage"
+                            decoding="async"
+                         src="/images/bookingForm/dog.png"
+                         alt="dog">
+                    </span>
+
+                    <span class="form-control-wrap" data-name="Pets">
+                    <span class="pcf7-form-control pcf7-checkbox">
+                        <span class="pcf7-list-item first last">
+                            <label>
+                                <input type="checkbox" name="Pets" value="Cat">
+                                <span class="pcf7-list-item-label">Cat</span>
+                            </label>
+                        </span>
+                    </span>
+                </span>
+                    <img class="petImage"
+                            decoding="async"
+                         src="/images/bookingForm/cat.png"
+                         alt="cat">
+                    <span class="form-control-wrap" data-name="Pets">
+                    <span class="pcf7-form-control pcf7-checkbox">
+                        <span class="pcf7-list-item first last">
+                            <label>
+                                <input type="checkbox" name="Pets" value="Other pets">
+                                <span class="pcf7-list-item-label">Other pets</span>
+                </label>
+                </span>
+                </span>
+                </span>
+                    <img class="petImage" decoding="async"
+                         src="/images/bookingForm/bird.png"
+                         alt="bird">
+                </div>
+
+                <div class="petsData">
+                    <div class="tfs-col tfs-col-12 tfs-col-md-4 tfs-col-lg-4">
+                        <label>Number of pets?</label>
+                        <span class="pcf7-form-control-wrap" data-name="NumberOfPets">
+                        <select class="option"
+                                aria-required="true"
+                                aria-invalid="false"
+                                name="NumberOfPets">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="4">5</option>
+                    </select>
+                    </span>
+                    </div>
+                    <div class="tfs-col tfs-col-12 tfs-col-md-4 tfs-col-lg-4">
+                        <label>Name of your pet?</label>
+                        <span class="pcf7-form-control-wrap" data-name="yourPetsName">
+                            <input size="40" maxlength="400"
+                                   class="pcf7-form-control pcf7-text"
+                                   aria-invalid="false"
+                                   placeholder="Enter your pet name"
+                                   value="" type="text"
+                                   name="yourPetsName">
+                        </span>
+                    </div>
+                    <div class="tfs-col tfs-col-12 tfs-col-md-4 tfs-col-lg-4">
+                        <label>What breed is your pet?</label>
+                        <span class="pcf7-form-control-wrap" data-name="WhatBreedIsYourPet">
+                            <input size="40"
+                                   maxlength="400"
+                                   class="pcf7-form-control pcf7-text pcf7-validates-as-required"
+                                   aria-required="true"
+                                   aria-invalid="false"
+                                   placeholder="The breed of your pet"
+                                   value="" type="text"
+                                   name="WhatBreedIsYourPet"></span>
+                    </div>
+                </div>
+                <div class="text-area">
+                    <label class="additional-info">Additional information about your pet</label>
+                    <span class="pcf7-form-control-wrap" data-name="message">
+                    <textarea cols="40" rows="10" maxlength="2000"
+                              class="pcf7-form-control pcf7-textarea"
+                              aria-invalid="false"
+                              placeholder="Enter additional information"
+                              name="message">
+                    </textarea>
+                </span>
+                </div>
+
+                <p class="terms">By continuing, you agree to Cozy Pets Hotel
+                    <a href="https://cozypetsboutiquehotel.co.uk/terms-and-conditions/"> Terms and conditions</a> and
+                    <a href="https://cozypetsboutiquehotel.co.uk/privacy-policy/"> Privacy Policy</a>
+                </p>
+            </div>
+            <input class="bookingButton" type="submit" value="Submit">
+            <!--                <span class="wpcf7-spinner"></span>-->
+        </form>
+    </section>
 
     <div class="et_pb_bottom_inside_divider" style=""></div>
-  </div>
 </main>
 <footer th:replace="~{/fragments/footer}"></footer>
 </body>
