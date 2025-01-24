@@ -7,42 +7,62 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class BookingDTO {
-    @NotBlank(message = "Please enter your name!")
-    private String fullName;
+    @NotBlank(message = "Please enter your first name!")
+    private String firstName;
+
+    @NotBlank(message = "Please enter your last name!")
+    private String lastName;
 
     @Email(message = "Email format is not valid!")
     @NotBlank(message = "This field can not be empty!")
     private String email;
 
     @NotBlank(message = "This field can not be empty!")
-    private String phoneNumber;
+    private String contactNumber;
 
-    @NotBlank(message = "This field can not be empty!")
+    @NotNull(message = "This field can not be empty!")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @FutureOrPresent
-    private LocalDate CheckIn;
+    @FutureOrPresent(message = "The date can not be in the past!")
+    private LocalDate checkIn;
 
-    @NotBlank(message = "This field can not be empty!")
+    @NotNull(message = "This field can not be empty!")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @FutureOrPresent
-    private LocalDate CheckOut;
+    @Future(message = "Checkout can not earlier than the checkIn date!")
+    private LocalDate checkOut;
+
+    @NotBlank(message = "Please select one option!")
+    private String petType;
 
     @NotNull(message = "Choose between 1 and 5")
     @Positive
     private int numberOfPets;
 
-    @Column(name = "additional_information")
+    @NotBlank(message = "This field can not be empty!")
+    private String petName;
+
+    @NotBlank(message = "This field can not be empty!")
+    private String breed;
+
     private String additionalInformation;
 
     public BookingDTO() {
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public BookingDTO setFullName(String fullName) {
-        this.fullName = fullName;
+    public BookingDTO setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public BookingDTO setLastName(String lastName) {
+        this.lastName = lastName;
         return this;
     }
 
@@ -55,30 +75,39 @@ public class BookingDTO {
         return this;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public BookingDTO setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public BookingDTO setContactNumber(String phoneNumber) {
+        this.contactNumber = phoneNumber;
         return this;
     }
 
     public LocalDate getCheckIn() {
-        return CheckIn;
+        return checkIn;
     }
 
     public BookingDTO setCheckIn(LocalDate checkIn) {
-        CheckIn = checkIn;
+        this.checkIn = checkIn;
         return this;
     }
 
     public LocalDate getCheckOut() {
-        return CheckOut;
+        return checkOut;
     }
 
     public BookingDTO setCheckOut(LocalDate checkOut) {
-        CheckOut = checkOut;
+        this.checkOut = checkOut;
+        return this;
+    }
+
+    public String getPetType() {
+        return petType;
+    }
+
+    public BookingDTO setPetType(String petType) {
+        this.petType = petType;
         return this;
     }
 
@@ -88,6 +117,24 @@ public class BookingDTO {
 
     public BookingDTO setNumberOfPets(int numberOfPets) {
         this.numberOfPets = numberOfPets;
+        return this;
+    }
+
+    public String getPetName() {
+        return petName;
+    }
+
+    public BookingDTO setPetName(String petName) {
+        this.petName = petName;
+        return this;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public BookingDTO setBreed(String breed) {
+        this.breed = breed;
         return this;
     }
 

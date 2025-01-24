@@ -38,9 +38,9 @@ public class UserService {
 
     public void register(RegisterDTO registerDTO) {
         User newUser = this.modelMapper.map(registerDTO, User.class);
-//        Role newUserRole = this.roleRepository.findByRole(RoleNameEnum.USER);
+        Role newUserRole = this.roleRepository.findByRole(RoleNameEnum.USER);
         newUser.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
-//        newUser.getRoles().add(newUserRole);
+        newUser.getRoles().add(newUserRole);
 
         userRepository.save(newUser);
     }

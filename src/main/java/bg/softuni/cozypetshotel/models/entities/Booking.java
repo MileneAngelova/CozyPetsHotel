@@ -11,23 +11,35 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String fullName;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
     @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
-    private String phoneNumber;
+    private String contactNumber;
 
-    @Column(name = "check-in", nullable = false)
+    @Column(name = "check_in", nullable = false)
     private LocalDate CheckIn;
 
-    @Column(name = "check-out", nullable = false)
+    @Column(name = "check_out", nullable = false)
     private LocalDate CheckOut;
+
+    @Column(name = "animal_type", nullable = false)
+    private String petType;
 
     @Column(nullable = false)
     private int numberOfPets;
+
+    @Column(nullable = false)
+    private String petName;
+
+    @Column(nullable = false)
+    private String breed;
 
     @Column(name = "additional_information")
     private String additionalInformation;
@@ -44,12 +56,21 @@ public class Booking {
         return this;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Booking setFullName(String fullName) {
-        this.fullName = fullName;
+    public Booking setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Booking setLastName(String lastName) {
+        this.lastName = lastName;
         return this;
     }
 
@@ -62,12 +83,12 @@ public class Booking {
         return this;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public Booking setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public Booking setContactNumber(String phoneNumber) {
+        this.contactNumber = phoneNumber;
         return this;
     }
 
@@ -95,6 +116,33 @@ public class Booking {
 
     public Booking setNumberOfPets(int numberOfPets) {
         this.numberOfPets = numberOfPets;
+        return this;
+    }
+
+    public String getPetTypeType() {
+        return petType;
+    }
+
+    public Booking setPetType(String animalType) {
+        this.petType = animalType;
+        return this;
+    }
+
+    public String getPetName() {
+        return petName;
+    }
+
+    public Booking setPetName(String petName) {
+        this.petName = petName;
+        return this;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public Booking setBreed(String breed) {
+        this.breed = breed;
         return this;
     }
 
