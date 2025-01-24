@@ -30,7 +30,7 @@ public class NavigationController {
         return "services";
     }
 
-    @GetMapping("/account")
+    @GetMapping("/my-account")
     public String account() {
         return "my-account";
     }
