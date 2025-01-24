@@ -1,10 +1,8 @@
 -- INSERT INTO users(username, password, email, age)
--- VALUES ('admin', '$2a$12$7Po.tztIQqDgEQjwgxFn5uNapx7.fHswq1A8UvWisN3zXghHF0IpG', 'admin@mail.com', 33),
--- ('moderator', '$2a$12$maj5R6Ay6p3dsjPggxkSq.PuRvijUquAG0klb/0vU6zgSCOQrbOt2', 'moderator@mail.com', 29),
--- ('ivan', '$2a$12$LCTtz233bDYj3Ib2M9asve7sCOk9/Cy/Ut7Bnbc7eK9meFTpN4GKm', 'ivan@abv.bg', 23);
---
--- INSERT INTO users_roles(user_id, roles_id)
--- VALUES(1, 1),
---       (1, 2),
---       (2, 2),
---       (3, 3);
+-- VALUES ('admin', '$2a$12$PHmYvNAlTL08tYVEMjMTK.7Uc20VcxVznHXQyqhV9PNRwY7bNXF0i', 'admin@mail.com', 33);
+-- ('petar', '$2a$12$pp/k7HzJ2E86kPfX7YA8Oe7tjHgNMhGv8pVSOS3Pz0ppAwIfSbR1C', 'petar@abv.bg', 23);
+
+INSERT INTO users_roles(user_id, roles_id)
+VALUES(1, 1),
+      (1, 2);
+--       (2, 2);

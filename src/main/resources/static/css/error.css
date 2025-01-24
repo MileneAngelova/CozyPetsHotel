@@ -17,17 +17,24 @@ body {
     color: #67686b;
 }
 
-.container {
-    margin-top: 15%;
+.not-found {
+    margin-top: 10%;
     font-size: x-large;
 }
-.container h1 {
+.not-found_header {
+    line-height: 56px;
+    margin-bottom: 24px;
     color: #ffffff;
 }
 
-.container a {
+.not-found_description {
+    line-height: 30px;
+    margin-bottom: 24px;
+}
+
+.not-found a {
     color: #186570;
-    font-size: large;
+    font-size: x-large;
     font-weight: bold;
 }
 

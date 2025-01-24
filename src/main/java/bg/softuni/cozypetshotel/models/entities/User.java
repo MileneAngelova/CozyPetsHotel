@@ -3,6 +3,7 @@ package bg.softuni.cozypetshotel.models.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,14 +36,15 @@ public class User {
     )
     private Set<Role> roles;
 
-    @Column(nullable = false)
-    private int age;
+    private Integer age;
 
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
 
-    private String phoneNumber;
+    private String contactNumber;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Booking> bookings;
 
     public User() {
         this.roles = new HashSet<>();
@@ -67,11 +69,11 @@ public class User {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return contactNumber;
     }
 
     public User setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.contactNumber = phoneNumber;
         return this;
     }
 
@@ -128,12 +130,30 @@ public class User {
         return this;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public User setAge(int age) {
+    public User setAge(Integer age) {
         this.age = age;
+        return this;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public User setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public User setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
         return this;
     }
 }

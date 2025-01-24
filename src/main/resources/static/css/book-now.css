@@ -1,0 +1,124 @@
+body {
+    background-color: #a8b695;
+}
+
+nav {
+    background-color: darkolivegreen;
+    padding: 1% 5%;
+    width: 100%;
+}
+
+.reservation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3% 0%;
+}
+
+.data {
+    width: 70%;
+    margin: 3% 0;
+    border: 2px solid #67686b;
+    border-radius: 20px;
+    padding: 2%;
+    background-color: #7ba24d;
+    /*background-color: #768c5c;*/
+    /*background-color: #929b87;*/
+}
+
+.details {
+    display: inline-block;
+    width: 35%;
+    margin-bottom: 1.5%;
+}
+
+.details h3 {
+    margin: 3%;
+    text-align: center;
+}
+
+.details label {
+    font-size: 14px;
+    margin: 1.5% 5.3%;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.form-position {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.form-control {
+    display: block;
+    padding: 2.5% 4%;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fafafaf5;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 25px;
+}
+
+.form-control-wrap {
+    margin-left: 2%;
+}
+
+.petsInfo {
+    margin-top: 3%;
+}
+
+.petsInfo label {
+    color: #0b0a0a;
+    font-size: 18px;
+    line-height: 1.7rem;
+}
+
+.petImage {
+    width: 22px;
+}
+
+.petsData input {
+    width: 30%;
+    line-height: 25px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 1%;
+/*!* margin-left: 7%;*/
+}
+
+.additional-info {
+    display: block;
+    margin: 5% 0 1.5%;
+    color: #03222f;
+    font-weight: 600;
+}
+textarea {
+    width: 60%;
+}
+
+.terms {
+    margin: 2% 0 4%;
+    color: #0b0a0a;
+    font-size: 14px;
+}
+
+.terms a{
+    color: darkblue;
+}
+
+ .bookingButton {
+     cursor: pointer;
+     border-color: rgba(255, 255, 255, 0);
+     border-radius: 30px;
+     font-size: 18px;
+     font-family: 'Cormorant', Georgia, "Times New Roman", serif !important;
+     font-weight: 700 !important;
+     height: 52px;
+     width: 190px;
+     background-color: #006400d1;
+ }

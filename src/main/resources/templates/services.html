@@ -15,69 +15,76 @@
 <body>
 <nav th:replace="~{/fragments/navbar}"></nav>
 <main>
-<section class="content">
-    <div class="content-text">
-        <article class="services">
-            <img class="kennel" src="/images/services/kennel-dog-care-1.jpg" alt="building">
-            <div class="description">
-                <article>
-                    <h1>Payment</h1>
-                    <p>Payment can be made onboarding arrival or collection by either cash or credit/debit card. Please
-                        note
-                        that we do not accept cheque payments. Rates are per calendar day, full days charge made for the
-                        day of
-                        arrival, regardless of arrival time.
-                    </p>
-                </article>
-                <img class="reception" src="/images/services/reception.jpg" alt="building">
-            </div>
-        </article>
-        <div class="payment-info">
-            <p class="text">
-                For the day of departure, the collection before 10:00 a.m. costs half a day, and after 10:00 a.m., it
-                costs a whole day.
-                Cozy Pet boutique hotels do not charge extra for heating, medication, or administration of special
-                diets. We always insist on keeping your pet on the same diet; the hotel has a variety of food (wet and
-                dry) in case the food your pet is used to is not available, we will ask you to bring your food and a
-                reduction of the price of £0.50 per day on your bill.
-            </p>
-            <span>
+    <section class="content">
+        <div class="content-text">
+            <article class="services">
+                <img class="kennel" src="/images/services/kennel-dog-care-1.jpg" alt="building">
+                <div class="description">
+                    <article>
+                        <h1>Payment</h1>
+                        <p>Payment can be made onboarding arrival or collection by either cash or credit/debit card.
+                            Please
+                            note
+                            that we do not accept cheque payments. Rates are per calendar day, full days charge made for
+                            the
+                            day of
+                            arrival, regardless of arrival time.
+                        </p>
+                    </article>
+                    <img class="reception" src="/images/services/reception.jpg" alt="building">
+                </div>
+            </article>
+            <div class="payment-info">
+                <p class="text">
+                    For the day of departure, the collection before 10:00 a.m. costs half a day, and after 10:00 a.m.,
+                    it
+                    costs a whole day.
+                    Cozy Pet boutique hotels do not charge extra for heating, medication, or administration of special
+                    diets. We always insist on keeping your pet on the same diet; the hotel has a variety of food (wet
+                    and
+                    dry) in case the food your pet is used to is not available, we will ask you to bring your food and a
+                    reduction of the price of £0.50 per day on your bill.
+                </p>
+                <span>
             If you wish to amend dates relating to your booking, please give us between 14 and 7 days notice.
            </span>
-            <p class="text">
-                All dates are booked in advance, even dates that are not used! (i.e., coming in late or collecting
-                early) Any amendment or cancellation is subject to a minimum notice period of 7 days before your
-                booking. Any amendment or cancellation after the seven-day notice period will result in a charge for the
-                entire period you have pre-booked. We reserve the right to charge a deposit with your booking.
-            </p>
-            <p class="text">
-                <strong>Please note our charges over the Christmas period: </strong> Christmas day, Boxing Day, and New
-                Years’ day will all be charged at a double rate!
-            </p>
-            <h2>COLLECTION SERVICE</h2>
-            <p class="text">
-                Your pet’s collection and delivery service are available for a nominal charge. Depending on
-                availability, please give us at least one week’s notice, even on dates not used! (i.e., coming in late
-                or collecting early) Any amendment or cancellation is subject to a <strong>minimum notice period of 7
-                days
-                before your booking.</strong> Any amendment or cancellation after the seven-day notice period will
-                result in a
-                charge for the entire period you have pre-booked. We reserve the right to charge a deposit with your
-                booking.
-            </p>
-            <p class="text">
-                Your pet’s collection and delivery service are available for a nominal charge. Please try to give us at
-                least one week’s notice.
-            </p>
+                <p class="text">
+                    All dates are booked in advance, even dates that are not used! (i.e., coming in late or collecting
+                    early) Any amendment or cancellation is subject to a minimum notice period of 7 days before your
+                    booking. Any amendment or cancellation after the seven-day notice period will result in a charge for
+                    the
+                    entire period you have pre-booked. We reserve the right to charge a deposit with your booking.
+                </p>
+                <p class="text">
+                    <strong>Please note our charges over the Christmas period: </strong> Christmas day, Boxing Day, and
+                    New
+                    Years’ day will all be charged at a double rate!
+                </p>
+                <h2>COLLECTION SERVICE</h2>
+                <p class="text">
+                    Your pet’s collection and delivery service are available for a nominal charge. Depending on
+                    availability, please give us at least one week’s notice, even on dates not used! (i.e., coming in
+                    late
+                    or collecting early) Any amendment or cancellation is subject to a <strong>minimum notice period of
+                    7
+                    days
+                    before your booking.</strong> Any amendment or cancellation after the seven-day notice period will
+                    result in a
+                    charge for the entire period you have pre-booked. We reserve the right to charge a deposit with your
+                    booking.
+                </p>
+                <p class="text">
+                    Your pet’s collection and delivery service are available for a nominal charge. Please try to give us
+                    at
+                    least one week’s notice.
+                </p>
+            </div>
         </div>
-    </div>
-    <button type="submit" class="book-now">
-        <a th:href="@{/book-now}"></a>
-            Book now</button>
-</section>
-<section>
-    <img class="area" src="/images/services/green-areas.jpg" alt="green land">
-</section>
+        <a class="book-now" th:href="@{/book-now}">Book now</a>
+    </section>
+    <section>
+        <img class="area" src="/images/services/green-areas.jpg" alt="green land">
+    </section>
 </main>
 <footer th:replace="~{/fragments/footer}"></footer>
 </body>
