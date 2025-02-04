@@ -1,0 +1,78 @@
+.heading {
+    margin-bottom: 3%;
+}
+
+.profile-content {
+    justify-content: space-evenly;
+}
+.content-left {
+    width: 20%;
+}
+
+.content-right {
+    width: 70%;
+    height: 380px;
+    overflow: auto;
+}
+
+h3 {
+    text-align: center;
+    font-size: larger;
+    font-weight: 600;
+    color: darkgreen;
+    margin-bottom: 6%;
+}
+
+.table-content {
+    width: 100%;
+}
+
+.expired {
+    margin-top: 5%;
+}
+
+.table-header {
+    width: 21%;
+}
+
+.table-info {
+    width: 17%;
+    line-height: 39px;
+    text-align: -webkit-center;
+    border: 1px solid darkgrey;
+}
+
+.heading-expired {
+    color: darkred;
+    margin-top: 10%;
+}
+
+tbody {
+    letter-spacing: normal;
+    color: black;
+ }
+
+tr:nth-child(even) {
+    background-color: darkkhaki;
+}
+ tr:nth-child(odd) {
+     background-color: aliceblue;
+ }
+
+
+tr {
+    line-height: 35px;
+}
+
+td {
+    text-align: center;
+    padding-top: 1%;
+    border: 1px solid darkgrey;
+}
+
+.requirements {
+    font-size: 14px;
+    width: 22%;
+}
+
+

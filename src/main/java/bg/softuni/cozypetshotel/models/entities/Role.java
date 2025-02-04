@@ -30,8 +30,8 @@ public class Role {
         return role;
     }
 
-    public Role setRole(RoleNameEnum role) {
-        this.role = role;
+    public Role setRole(RoleNameEnum roleName) {
+        this.role = roleName;
         return this;
     }
 }

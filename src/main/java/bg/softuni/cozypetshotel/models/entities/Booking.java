@@ -24,10 +24,10 @@ public class Booking {
     private String contactNumber;
 
     @Column(name = "check_in", nullable = false)
-    private LocalDate CheckIn;
+    private LocalDate checkIn;
 
     @Column(name = "check_out", nullable = false)
-    private LocalDate CheckOut;
+    private LocalDate checkOut;
 
     @Column(name = "animal_type", nullable = false)
     private String petType;
@@ -93,21 +93,25 @@ public class Booking {
     }
 
     public LocalDate getCheckIn() {
-        return CheckIn;
+        return checkIn;
     }
 
     public Booking setCheckIn(LocalDate checkIn) {
-        CheckIn = checkIn;
+        this.checkIn = checkIn;
         return this;
     }
 
     public LocalDate getCheckOut() {
-        return CheckOut;
+        return checkOut;
     }
 
     public Booking setCheckOut(LocalDate checkOut) {
-        CheckOut = checkOut;
+        this.checkOut = checkOut;
         return this;
+    }
+
+    public String getPetType() {
+        return petType;
     }
 
     public int getNumberOfPets() {

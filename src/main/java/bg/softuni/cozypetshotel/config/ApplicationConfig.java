@@ -5,10 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ApplicationRunner implements CommandLineRunner {
+public class ApplicationConfig implements CommandLineRunner {
     private final RoleService roleService;
 
-    public ApplicationRunner(RoleService roleService) {
+    public ApplicationConfig(RoleService roleService) {
         this.roleService = roleService;
     }
 

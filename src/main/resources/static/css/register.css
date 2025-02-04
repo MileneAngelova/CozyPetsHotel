@@ -4,7 +4,7 @@ body {
 
 nav {
     width: 90%;
-    padding: 2rem 4rem;
+    padding: 1rem 4rem 0;
 }
 
 .data {
@@ -16,7 +16,7 @@ nav {
 }
 
 .content-left {
-    width: 38%;
+    width: 28%;
     padding: 2%;
 }
 
@@ -25,23 +25,27 @@ nav {
 }
 
 .content-right {
-    width: 38%;
-    display: flex;
+    display: inline-block;
+    width: 44%;
+    margin-top: 3%;
     color: #E5E7EB;
-    flex-direction: column;
-    align-items: center;
+    /*flex-direction: column;*/
+    /*align-items: center;*/
 }
 
 .content-right h3 {
+    margin-bottom: 12%;
+    text-align: center;
     font-size: 30px;
     font-weight: bold;
     color: #bfbfbf;
 }
 
 .group {
-    width: 75%;
-    display: block;
-    margin-bottom: 2%;
+    width: 41%;
+    display: inline-block;
+    margin-left: 5%;
+    margin-bottom: 3%;
 }
 
 .group label {
@@ -55,8 +59,7 @@ nav {
     color: #000000;
     display: block;
     border: none;
-    /*padding: 15px 20px;*/
-    padding: 2.5% 4%;
+    padding: 3.3% 6%;
     border-radius: 25px;
     background: #e5e7eb;
     margin: 1% -3%;

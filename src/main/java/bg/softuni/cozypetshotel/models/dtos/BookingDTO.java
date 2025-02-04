@@ -146,4 +146,21 @@ public class BookingDTO {
         this.additionalInformation = additionalInformation;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "BookingDTO{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", petType='" + petType + '\'' +
+                ", numberOfPets=" + numberOfPets +
+                ", petName='" + petName + '\'' +
+                ", breed='" + breed + '\'' +
+                ", additionalInformation='" + additionalInformation + '\'' +
+                '}';
+    }
 }

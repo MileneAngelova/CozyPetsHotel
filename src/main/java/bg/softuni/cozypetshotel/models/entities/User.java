@@ -2,6 +2,7 @@ package bg.softuni.cozypetshotel.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,11 +33,12 @@ public class User {
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "roles_id")
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
 
     private Integer age;
+    private boolean isActive;
 
     @ManyToOne
     @JoinColumn(name = "address_id")
@@ -44,10 +46,15 @@ public class User {
 
     private String contactNumber;
     @OneToMany(fetch = FetchType.EAGER)
-    private List<Booking> bookings;
+    private List<Booking> activeBookings;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Booking> expiredBookings;
 
     public User() {
         this.roles = new HashSet<>();
+        this.activeBookings = new ArrayList<>();
+        this.isActive = true;
     }
 
     public String getFirstname() {
@@ -148,12 +155,39 @@ public class User {
         return this;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public User setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
+    public User setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+        return this;
+    }
+
+    public List<Booking> getActiveBookings() {
+        return activeBookings;
+    }
+
+    public User setActiveBookings(List<Booking> activeBookings) {
+        this.activeBookings = activeBookings;
+        return this;
+    }
+
+    public List<Booking> getExpiredBookings() {
+        return expiredBookings;
+    }
+
+    public User setExpiredBookings(List<Booking> expiredBookings) {
+        this.expiredBookings = expiredBookings;
+        return this;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public User setActive(boolean active) {
+        isActive = active;
         return this;
     }
 }

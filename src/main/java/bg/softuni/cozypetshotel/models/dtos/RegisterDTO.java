@@ -13,6 +13,14 @@ public class RegisterDTO {
 //    @Size(min = 3, max = 50)
 //    private String username;
 
+    @NotBlank(message = "Enter your first name!")
+    @Size(min = 2, max = 50)
+    private String firstName;
+
+    @NotBlank(message = "Enter your last name!")
+    @Size(min = 2, max = 80)
+    private String lastName;
+
     @NotBlank(message = "Enter your email")
     @Email(message = "Email format is not valid!")
     @UniqueUserEmail(message = "This email is already registered!")
@@ -37,6 +45,25 @@ public class RegisterDTO {
 //        this.username = username;
 //        return this;
 //    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public RegisterDTO setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public RegisterDTO setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
 
     public String getEmail() {
         return email;
@@ -68,7 +95,9 @@ public class RegisterDTO {
     @Override
     public String toString() {
         return "RegisterDTO{" +
-                "email='" + email + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';

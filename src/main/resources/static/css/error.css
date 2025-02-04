@@ -28,13 +28,14 @@ body {
 }
 
 .not-found_description {
+    font-size: 19px;
     line-height: 30px;
     margin-bottom: 24px;
 }
 
 .not-found a {
     color: #186570;
-    font-size: x-large;
+    font-size: 20px;
     font-weight: bold;
 }
 

@@ -36,7 +36,7 @@ public class BookingController {
             return "redirect:/book-now";
         }
 
-        this.bookingService.newBooking(bookingModel);
-        return "redirect:/home";
+        this.bookingService.makeBooking(bookingModel);
+        return "redirect:/user/bookings";
     }
 }

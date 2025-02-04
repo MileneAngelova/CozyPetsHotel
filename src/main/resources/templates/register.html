@@ -24,7 +24,39 @@
             <img src="/images/run-together.webp" alt="cat and dog">
         </div>
         <div class="content-right">
-            <h3>Enter your details below: <br><br></h3>
+            <h3>Enter your details below:</h3>
+            <div class="group">
+                <label for="firstName" class="text-white font-weight-bold">First name: </label>
+                <input required
+                       placeholder="First name"
+                       id="firstName"
+                       type="text"
+                       class="form-control"
+                       name="firstName"
+                       th:field="*{firstName}"
+                       th:errorclass="is-invalid"/>
+                <small class="invalid-feedback errors alert alert-danger">
+                    <div th:each="err : ${#fields.errors('firstName')}"
+                         th:text="${err}">
+                    </div>
+                </small>
+            </div>
+            <div class="group">
+                <label for="lastName" class="text-white font-weight-bold">Last name: </label>
+                <input required
+                       placeholder="Last name"
+                       id="lastName"
+                       type="text"
+                       class="form-control"
+                       name="lastName"
+                       th:field="*{lastName}"
+                       th:errorclass="is-invalid"/>
+                <small class="invalid-feedback errors alert alert-danger">
+                    <div th:each="err : ${#fields.errors('lastName')}"
+                         th:text="${err}">
+                    </div>
+                </small>
+            </div>
             <div class="group">
                 <label for="email" class="text-white font-weight-bold">Email: </label>
                 <input required

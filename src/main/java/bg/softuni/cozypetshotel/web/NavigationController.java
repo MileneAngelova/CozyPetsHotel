@@ -29,9 +29,4 @@ public class NavigationController {
     public String services() {
         return "services";
     }
-
-    @GetMapping("/account")
-    public String account() {
-        return "my-account";
-    }
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://kit.fontawesome.com/09676a0005.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/reset-css.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/user-info.css">
+    <!--    <script th:src="/static/js/greetings.js"></script>-->
+    <title>CozyPetsHotel</title>
+</head>
+<body>
+<nav th:replace="~{/fragments/navbar}"></nav>
+<div class="heading">
+    <h3 th:object="${userData}"
+        id="greetings">Welcome back!
+    </h3>
+    <p th:text="${userData.firstName}"></p>
+</div>
+<div class="profile-content"
+     th:object="${userData}">
+    <aside class="content-left">
+        <section class="profile"
+                 th:action="@{/user/account}">
+            <div class="profile-info">
+                <img src="/images/profilePictures/emptyProfilePicture.jpg" alt="empty picture">
+                <nav class="menu">
+                    <ul>
+                        <li>
+                            <a href="/user/bookings">My bookings</a>
+                        </li>
+                        <li>
+                            <a href="/user/account">Profile info</a>
+                        </li>
+                        <li>
+                            <a href="/services">Settings</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+    </aside>
+    <aside class="content-right">
+        <section class="info">
+            <div class="info-data">
+                <label>First name: </label>
+                <small class="info-details" th:text="*{firstName}">user first name</small>
+            </div>
+            <div class="info-data">
+                <label>Last name: </label>
+                <small class="info-details" th:text="*{lastName}">user last name</small>
+            </div>
+            <div class="info-data">
+                <label>Email: </label>
+                <small class="info-details" th:text="*{email}">user email</small>
+            </div>
+            <div class="info-data">
+                <label>Username: </label>
+                <small class="info-details" th:text="*{username}">username</small>
+            </div>
+            <div class="info-data">
+                <label>Role: </label>
+                <small class="info-details" th:each="role : *{roles}">
+                     <span th:text="${role.role.name()}"/>
+                    </small>
+
+            </div>
+            <div class="info-data">
+                <label>Contact number: </label>
+                <small class="info-details" th:text="*{contactNumber}">contact number</small>
+            </div>
+        </section>
+    </aside>
+</div>
+
+<footer th:replace="~{/fragments/footer}"></footer>
+<script>
+    let myDate = new Date();
+    let hrs = myDate.getHours();
+    let greeting;
+
+    if (hrs < 12)
+        greeting = 'Good Morning, ';
+    else if (hrs >= 12 && hrs <= 17)
+        greeting = 'Good Afternoon, ';
+    else if (hrs >= 17 && hrs <= 24)
+        greeting = 'Good Evening, ';
+
+    document.getElementById('greetings').innerHTML = '<strong>' + greeting + '</strong>';
+</script>
+</body>
+</html>

@@ -7,13 +7,15 @@ import bg.softuni.cozypetshotel.repositories.BookingRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Transient;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
 public class BookingService {
     private final UserRepository userRepository;
-
     private final BookingRepository bookingRepository;
     private final ModelMapper modelMapper;
 
@@ -23,24 +25,14 @@ public class BookingService {
         this.modelMapper = modelMapper;
     }
 
-    public void newBooking(BookingDTO bookingDTO) {
+    public void makeBooking(BookingDTO bookingDTO) {
         Optional<User> byEmail = this.userRepository.findByEmail(bookingDTO.getEmail());
         if (byEmail.isPresent()) {
             Booking newBooking = this.modelMapper.map(bookingDTO, Booking.class);
-
             this.bookingRepository.save(newBooking);
-            byEmail.get().getBookings().add(newBooking);
 
+            byEmail.get().getActiveBookings().add(newBooking);
             this.userRepository.save(this.modelMapper.map(byEmail, User.class));
-
         }
-//        User user = new User();
-//        user.setFirstname(bookingDTO.getFirstName());
-//        user.setLastName(bookingDTO.getLastName());
-//        user.setEmail(bookingDTO.getEmail());
-//        user.setPhoneNumber(bookingDTO.getPhoneNumber());
-
-
     }
-
 }

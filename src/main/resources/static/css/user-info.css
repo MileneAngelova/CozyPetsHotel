@@ -1,0 +1,104 @@
+body {
+    background-color: #cbad88;
+}
+
+nav {
+    justify-content: space-around;
+}
+
+nav ul li a:hover {
+    color: rgb(143 88 14 / 83%);
+}
+
+.heading {
+    text-align: center;
+}
+
+#greetings {
+    display: inline-block;
+    margin: 1% 0 3%;
+    text-align: center;
+    color: #281f1bc2;
+}
+
+.heading p {
+    font-size: 17px;
+    display: inline-block;
+    color: black;
+    font-weight: bold;
+}
+
+.content-left {
+    width: 30%;
+    height: 380px;
+    border-right: groove;
+}
+
+.profile-info {
+    font-size: large;
+    font-weight: 600;
+    color: #1e2427;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-info img {
+    width: 15%;
+}
+
+.menu {
+    justify-content: space-around;
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+}
+
+.menu ul li {
+    margin-top: 12%;
+}
+
+.menu ul li a {
+    font-size: large;
+    /*color: #316b67;*/
+    color: #16625b;
+}
+
+.profile-content {
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content-right {
+    width: 60%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-data {
+    margin-bottom: 2%;
+    color: #30211c;
+}
+
+.info-details {
+    margin-left: 1%;
+    color: black;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.profile-info {
+    margin-left: 4%;
+    font-size: large;
+    font-weight: 600;
+    color: #1e2427;
+}
+
