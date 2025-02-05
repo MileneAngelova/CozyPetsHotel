@@ -88,15 +88,6 @@ public class UserServiceImpl implements UserService {
 
             }
         });
-//        for (Booking booking : activeBookings) {
-//            LocalDate checkOut = booking.getCheckOut();
-//            if (checkOut.isBefore(LocalDate.now())) {
-//                List<Booking> expiredBookings = userDTO.getExpiredBookings();
-//                expiredBookings.add(booking);
-//                activeBookings.remove(booking);
-
-//                this.userRepository.save(this.modelMapper.map(userDTO, User.class));
-
     }
 
 
