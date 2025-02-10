@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<!--      xmlns="http://www.w3.org/1999/html">-->
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
 <nav>
     <a href="/">
-        <img src="/images/logo.png" alt="hotelLogo">
+        <img src="/images/logo.png" alt="hotel logo">
     </a>
     <ul>
         <li sec:authorize="isAuthenticated()">
@@ -28,7 +28,7 @@
     </ul>
     <ul>
         <li sec:authorize="!isAuthenticated()">
-            <a th:href="@{/login}" th:classappend="${activeLink == 'login'}? 'active'">Login</a>
+            <a th:href="@{/login}">Login</a>
         </li>
         <li sec:authorize="!isAuthenticated()">
             <a th:href="@{/register}">Register</a>
