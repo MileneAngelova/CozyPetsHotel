@@ -27,7 +27,7 @@ public class BookingDTO {
 
     @NotNull(message = "This field can not be empty!")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Future(message = "Checkout can not earlier than the checkIn date!")
+    @FutureOrPresent(message = "Checkout can not be earlier than the checkIn date!")
     private LocalDate checkOut;
 
     @NotBlank(message = "Please select one option!")

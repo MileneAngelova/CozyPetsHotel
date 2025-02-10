@@ -53,7 +53,6 @@ public class UserServiceImpl implements UserService {
         Role newUserRole = this.roleRepository.findByRole(RoleNameEnum.USER);
         newUser.setPassword(this.passwordEncoder.encode(registerDTO.getPassword()));
         newUser.getRoles().add(newUserRole);
-
         newUser.setActive(true);
 
         userRepository.save(newUser);
