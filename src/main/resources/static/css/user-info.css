@@ -58,13 +58,25 @@ nav ul li a:hover {
 }
 
 .menu ul li {
-    margin-top: 12%;
+    margin-top: 13%;
 }
 
 .menu ul li a {
     font-size: large;
     /*color: #316b67;*/
     color: #16625b;
+}
+
+.menu .book {
+    margin-top: 30%;
+}
+
+.menu .book-now {
+    display: block;
+    width: 100%;
+    color: #e6e6e6;
+    padding: 18px;
+    background-color: #105d9a;
 }
 
 .profile-content {

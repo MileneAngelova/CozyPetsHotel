@@ -20,7 +20,7 @@ h3 {
     font-size: larger;
     font-weight: 600;
     color: darkgreen;
-    margin-bottom: 6%;
+    margin-bottom: 5%;
 }
 
 .table-content {
@@ -44,7 +44,7 @@ h3 {
 
 .heading-expired {
     color: darkred;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 tbody {

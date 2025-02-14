@@ -1,5 +1,6 @@
 package bg.softuni.cozypetshotel.services;
 
+import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.User;

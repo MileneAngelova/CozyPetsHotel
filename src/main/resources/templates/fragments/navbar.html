@@ -7,10 +7,7 @@
         <img src="/images/logo.png" alt="hotel logo">
     </a>
     <ul>
-        <li sec:authorize="isAuthenticated()">
-            <a href="#">Home</a>
-        </li>
-        <li>
+         <li>
             <a th:href="@{/gallery}">Gallery</a>
         </li>
         <li>

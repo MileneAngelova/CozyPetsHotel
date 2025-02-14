@@ -43,6 +43,7 @@ public class BookingDTO {
     @NotBlank(message = "This field can not be empty!")
     private String breed;
 
+    @Size(max = 2000)
     private String additionalInformation;
 
     public BookingDTO() {

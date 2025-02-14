@@ -4,6 +4,7 @@ import bg.softuni.cozypetshotel.models.entities.Booking;
 import bg.softuni.cozypetshotel.models.entities.Role;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,6 @@ public class UserDTO {
     private String contactNumber;
     @OneToMany(fetch = FetchType.EAGER)
     private List<Booking> activeBookings;
-
     @OneToMany(fetch = FetchType.EAGER)
     private List<Booking> expiredBookings;
     private boolean isActive;

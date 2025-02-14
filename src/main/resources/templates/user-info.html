@@ -28,19 +28,7 @@
                  th:action="@{/user/account}">
             <div class="profile-info">
                 <img src="/images/profilePictures/emptyProfilePicture.jpg" alt="empty picture">
-                <nav class="menu">
-                    <ul>
-                        <li>
-                            <a href="/user/bookings">My bookings</a>
-                        </li>
-                        <li>
-                            <a href="/user/account">Profile info</a>
-                        </li>
-                        <li>
-                            <a href="/services">Settings</a>
-                        </li>
-                    </ul>
-                </nav>
+                <nav th:replace="~{/fragments/user-nav}"></nav>
             </div>
         </section>
     </aside>

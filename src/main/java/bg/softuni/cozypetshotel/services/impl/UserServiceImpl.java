@@ -1,5 +1,6 @@
 package bg.softuni.cozypetshotel.services.impl;
 
+import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.Booking;
@@ -84,10 +85,10 @@ public class UserServiceImpl implements UserService {
                 expiredBookings.add(booking);
                 activeBookings.remove(booking);
                 this.userRepository.save(this.modelMapper.map(userDTO, User.class));
-
             }
         });
     }
+
 
 
 //    @Override
