@@ -18,7 +18,7 @@ public class RegisterDTO {
     private String firstName;
 
     @NotBlank(message = "Enter your last name!")
-    @Size(min = 2, max = 80)
+    @Size(min = 2, max = 50)
     private String lastName;
 
     @NotBlank(message = "Enter your email")

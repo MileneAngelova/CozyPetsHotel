@@ -59,6 +59,13 @@ nav ul li a:active {
     text-decoration: none;
 }
 
+.nav-link #lang {
+    background-color: transparent;
+    border: none;
+    font-size: large;
+    font-weight: 600;
+}
+
 nav form .logout {
     color: white;
     background-color: rgb(143 88 14 / 83%);
@@ -113,6 +120,11 @@ footer .mail {
 
 .contacts p {
     line-height: 1.3em;
+    display: inline-block;
+}
+
+.contents a {
+    display: inline-block;
 }
 
 footer i {

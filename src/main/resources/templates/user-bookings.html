@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/user-info.css">
     <link rel="stylesheet" href="/css/user-bookings.css">
-    <!--    <script th:src="/static/js/greetings.js"></script>-->
     <title>CozyPetsHotel</title>
 </head>
 <body>
@@ -56,7 +55,7 @@
                 <td th:text="${booking.petName}"></td>
                 <td th:text="${booking.numberOfPets}"></td>
                 <td class="requirements" th:text="${booking.additionalInformation}"></td>
-                <td th:if="*{activeBookings.size() == 0}">No active bookings found.</td>
+                <td th:if="${userData.activeBookings.size() == 0}">No active bookings found.</td>
             </tr>
             </tbody>
         </table>
@@ -82,7 +81,6 @@
                 <td th:text="${booking.petName}"></td>
                 <td th:text="${booking.numberOfPets}"></td>
                 <td class="requirements" th:text="${booking.additionalInformation}"></td>
-                <td th:if="*{expiredBookings.size() == 0}">No bookings found.</td>
             </tr>
             </tbody>
         </table>
@@ -90,19 +88,6 @@
 </div>
 
 <footer th:replace="~{/fragments/footer}"></footer>
-<script>
-    let myDate = new Date();
-    let hrs = myDate.getHours();
-    let greeting;
-
-    if (hrs < 12)
-        greeting = 'Good Morning, ';
-    else if (hrs >= 12 && hrs <= 17)
-        greeting = 'Good Afternoon, ';
-    else if (hrs >= 17 && hrs <= 24)
-        greeting = 'Good Evening, ';
-
-    document.getElementById('greetings').innerHTML = '<strong>' + greeting + '</strong>';
-</script>
+<script th:src="@{/js/greetings.js}"></script>
 </body>
 </html>

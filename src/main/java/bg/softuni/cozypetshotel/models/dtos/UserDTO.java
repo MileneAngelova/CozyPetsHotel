@@ -2,8 +2,11 @@ package bg.softuni.cozypetshotel.models.dtos;
 
 import bg.softuni.cozypetshotel.models.entities.Booking;
 import bg.softuni.cozypetshotel.models.entities.Role;
+import bg.softuni.cozypetshotel.validation.UniqueUserEmail;
+import bg.softuni.cozypetshotel.validation.UniqueUsername;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
@@ -12,9 +15,14 @@ import java.util.Set;
 public class UserDTO {
     private Long id;
     private String firstName;
+    @Size(min = 2, max = 50)
     private String lastName;
+    @Size(min = 4, max = 30, message = "Password must be between 4 and 30 symbols long!")
     private String password;
+    @UniqueUsername(message = "Username already exists! Choose another one!")
     private String username;
+    @Email(message = "Email format is not valid!")
+    @UniqueUserEmail(message = "This email is already registered!")
     private String email;
     private Set<Role> roles;
     private String contactNumber;

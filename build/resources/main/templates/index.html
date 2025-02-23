@@ -15,57 +15,59 @@
 <header>
     <nav th:replace="~{/fragments/navbar}"></nav>
     <section class="header-title">
-        <h1>It's time to start your adventures</h1>
-        <p>Welcome to Cozy Pets Boutique Hotel!</p>
-        <p>Enjoy your holidays while your pets are with us.</p>
-        <a class="info" href="/info">MORE INFO</a>
+        <h1 th:text="#{index_header}">It's time to start your adventures</h1>
+        <p th:text="#{index_welcome}">Welcome to Cozy Pets Boutique Hotel!</p>
+        <p th:text="#{index_header_message}">Enjoy your holidays while your pets are with us.</p>
+        <a class="info" href="/info" th:text="#{index_info_button}">MORE INFO</a>
     </section>
 </header>
 <main>
     <section class="team-description">
-        <h3>OUR FABULOUS TEAM</h3>
+        <h3 th:text="#{index_team}">OUR FABULOUS TEAM</h3>
         <div class="team-description-wrapper">
             <article class="team-list">
-                <img src="/images/team/Omar-Trainner.jpg" alt="person">
+                <img src="/images/team/Omar-Trainer.jpg" alt="person">
                 <h4>Omar</h4>
-                <p>Trainner</p>
+                <p th:text="#{index_trainer}">Trainer</p>
             </article>
             <article class="team-list">
                 <img src="/images/team/Dr.Bardeau.jpg" alt="person">
                 <h4>Dr.Badeau’s</h4>
-                <p>Preventative care, internal medicine, and dermatology.</p>
+                <p th:text="#{index_dermatologist}">Preventative care, internal medicine, and dermatology.</p>
             </article>
             <article class="team-list">
                 <img src="/images/team/Samuel.jpg" alt="person">
                 <h4>Samuel</h4>
-                <p>Kennel Technician
+                <p th:text="#{index_kennel}">Kennel Technician
                     & Weekend Caretaker</p>
             </article>
             <article class="team-list">
                 <img src="/images/team/Stephanie-Veterinary-Technician.jpg" alt="person">
                 <h4>Stephanie</h4>
-                <p>Trainer</p>
+                <p th:text="#{index_trainer}">Trainer</p>
             </article>
             <article class="team-list">
                 <img src="/images/team/Mary-Liz-Kennel-Technician.jpg" alt="person">
                 <h4>Mary-Liz</h4>
-                <p>Veterinary-Technician</p>
+                <p th:text="#{index_veterinary}">Veterinary-Technician</p>
             </article>
             <article class="team-list">
                 <img src="/images/team/Lesly-Receptionist.jpg" alt="person">
                 <h4>Lesly</h4>
-                <p>Receptionist</p>
+                <p th:text="#{index_Receptionist}">Receptionist</p>
             </article>
         </div>
     </section>
     <section id="about" class="about-us">
-        <h3>ABOUT US</h3>
-        <h5>We make our hotel a special place for your pet</h5>
-        <p>Cozy Pets Boutique Hotel is a family-run business.Our mission is to deliver the highest hotel experience for
-            your pet while you enjoy your time off.Each team member at Cozy Pet Boutique Hotel pledges to uphold our
+        <h3 th:text="#{index_about}">ABOUT US</h3>
+        <h5 th:text="#{index_h5}">We make our hotel a special place for your pet</h5>
+        <p th:text="#{index_description}">Cozy Pets Boutique Hotel is a family-run business.Our mission is to deliver the highest hotel experience for
+            your pet while you enjoy your time off. Each team member at Cozy Pet Boutique Hotel pledges to uphold our
             core values:
             Communication, Consistency, Empathy, Safety, working together for pets and commitment to quality of care to
-            ensure exceptional experiences for each pet, each person, each day.</p>
+            ensure exceptional experiences for each pet, each person, each day.
+        </p>
+        <a class="book-now" th:href="@{/book-now}">Book now</a>
     </section>
 </main>
 <footer th:replace="~{/fragments/footer}"></footer>

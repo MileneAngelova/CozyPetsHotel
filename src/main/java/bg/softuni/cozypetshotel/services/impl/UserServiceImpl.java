@@ -1,6 +1,6 @@
 package bg.softuni.cozypetshotel.services.impl;
 
-import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
+import bg.softuni.cozypetshotel.models.dtos.EditUserDetailsDTO;
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.Booking;
@@ -12,6 +12,7 @@ import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
 import bg.softuni.cozypetshotel.services.UserService;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
+import bg.softuni.cozypetshotel.validation.FieldsMatch;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +27,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@FieldsMatch(first = "password", second = "confirmPassword", message = "Passwords do not match!")
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+
     private final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     public UserServiceImpl(UserRepository userRepository, BookingRepository bookingRepository, RoleRepository roleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
@@ -89,6 +92,60 @@ public class UserServiceImpl implements UserService {
         });
     }
 
+    @Override
+    public void editEmail(Long id, String newEmail) {
+        if (userRepository.findByEmail(newEmail).isPresent()) {
+            throw new IllegalArgumentException(("User with email " + newEmail + " already exists!"));
+        }
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        user.setEmail(newEmail);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void editPassword(Long userId, String currentPassword, String newPassword) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+            throw new IllegalArgumentException("Incorrect password!");
+        }
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
+
+    @Override
+    public void editUsername(Long id, String username) {
+        if (this.userRepository.findById(id).isEmpty()) {
+            throw new IllegalArgumentException("User not found!");
+        }
+
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+
+        if (this.userRepository.findByUsername(username).isPresent()) {
+            throw new IllegalArgumentException("username is already taken!");
+        }
+        user.setUsername(username);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void editLastName(Long userId, String newLastName) {
+        if (this.userRepository.findById(userId).isEmpty()) {
+            throw new IllegalArgumentException("User not found!");
+        }
+        User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        user.setLastName(newLastName);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void editContactNumber(Long userId, String newContactNumber) {
+        if (this.userRepository.findById(userId).isEmpty()) {
+            throw new IllegalArgumentException("User not found!");
+        }
+        User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        user.setContactNumber(newContactNumber);
+        userRepository.save(user);
+    }
 
 
 //    @Override

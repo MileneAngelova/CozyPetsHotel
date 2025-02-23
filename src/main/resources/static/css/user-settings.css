@@ -1,0 +1,17 @@
+.edit-button, .save, .cancel {
+    border-radius: 12%;
+    width: 63px;
+    height: 29px;
+    background-color: #c09222;
+    margin-left: 2%;
+}
+
+.save {
+    /*width: 53px;*/
+    /*margin-left: 2%;*/
+    background-color: #06c106fc;
+}
+
+.cancel {
+background-color: #dd3a3a;
+}

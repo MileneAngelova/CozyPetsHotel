@@ -3,32 +3,32 @@
         <section class="contacts">
             <article>
                 <i class="fa-solid fa-shop-lock"></i>
-                <h4 class="footer-header">Opening hours:</h4>
+                <h4 class="footer-header" th:text="#{footer_working_hours}">Opening hours:</h4>
+                <p th:text="#{footer_monday_saturday}">
+                    Monday to Saturday:</p>
                 <p>
-                    Monday to Saturday:
-                <p>
-                    9:30-11:30 16:30-18:00
+                    9:30-18:00
                 </p>
                 <br>
-                <p>
-                    Sunday: 9:00-11:00
-                </p>
+                <p th:text="#{footer_sunday}">
+                    Sunday:</p>
+                <p>9:00-14:00</p>
             </article>
         </section>
         <section class="contacts">
             <article>
                 <i class="fa-solid fa-phone-volume"></i>
-                <h4 class="footer-header">Call us: <span>01954212008</span></h4>
-                <p>Phone line available
-                    <br>
-                    in our opening hours.</p>
+                <h4 class="footer-header" th:text="#{footer_call-us}">Call us: <span>01954212008</span></h4>
+                <p th:text="#{footer_call-message}">Phone line available</p>
+                   <p th:text="#{footer_call-message1}"> in our opening hours.</p>
             </article>
         </section>
         <section class="contacts">
             <article>
                 <i class="fa-solid fa-envelope"></i>
-                <h4 class="footer-header">Mail us:</h4>
-                <p>Mail: <a class="mail" href="mailto:cozypetsoffice@gmail.com">cozypetsoffice@gmail.com</a></p>
+                <h4 class="footer-header" th:text="#{footer_email-us}">Mail us:</h4>
+                <p th:text="#{footer_email}">Mail:</p>
+                    <a class="mail" href="mailto:cozypetsoffice@gmail.com">cozypetsoffice@gmail.com</a>
             </article>
         </section>
     </div>

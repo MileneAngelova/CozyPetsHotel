@@ -1,6 +1,7 @@
 package bg.softuni.cozypetshotel.web;
 
-import bg.softuni.cozypetshotel.web.exceptions.ObjectNotFound;
+import bg.softuni.cozypetshotel.web.exceptions.ObjectNotFoundException;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,12 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ObjectNotFound.ObjectNotFoundException.class)
-    public ModelAndView handleObjectNotFound(ObjectNotFound objectNotFound) {
-        ModelAndView modelAndView = new ModelAndView("404");
-        modelAndView.addObject("object", objectNotFound);
+    private final MessageSource messageSource;
 
-        return modelAndView;
+    public GlobalExceptionHandler(MessageSource messageSource) {
+        this.messageSource = messageSource;
     }
+
 }

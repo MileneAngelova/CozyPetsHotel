@@ -155,3 +155,9 @@ h3 {
     margin: 0 auto;
     color: #0c0805;
 }
+.about-us a {
+    text-align: center;
+    width: 150px;
+    padding: 16px;
+    color: black;
+}
