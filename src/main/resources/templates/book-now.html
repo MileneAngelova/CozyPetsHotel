@@ -30,7 +30,8 @@
                            type="text"
                            class="form-control"
                            th:field="*{firstName}"
-                           th:errorclass="is-invalid"/>
+                           th:errorclass="is-invalid"
+                           th:value="*{firstName}"/>
                     <div class="invalid-feedback errors alert alert-danger">
                         <div th:each="err : ${#fields.errors('firstName')}"
                              th:text="${err}">
@@ -44,7 +45,8 @@
                            type="text"
                            class="form-control"
                            th:field="*{lastName}"
-                           th:errorclass="is-invalid"/>
+                           th:errorclass="is-invalid"
+                           th:value="*{lastName}"/>
                     <div class="invalid-feedback errors alert alert-danger">
                         <div th:each="err : ${#fields.errors('lastName')}"
                              th:text="${err}">
@@ -55,11 +57,12 @@
                 <div class="details">
                     <label th:for="email">Email: </label>
                     <input required
-                           placeholder="Email"
                            type="text"
                            class="form-control"
                            th:field="*{email}"
-                           th:errorclass="is-invalid"/>
+                           th:errorclass="is-invalid"
+                           th:value="*{email}"/>
+                    <!--                           placeholder="Email"-->
                     <small class="invalid-feedback errors alert alert-danger">
                         <div th:each="err : ${#fields.errors('email')}"
                              th:text="${err}">
@@ -72,6 +75,7 @@
                            placeholder="Contact number"
                            type="text"
                            class="form-control"
+                           th:value="${bookingModel.contactNumber}"
                            th:field="*{contactNumber}"
                            th:errorclass="is-invalid"/>
                     <small class="invalid-feedback errors alert alert-danger">
@@ -83,13 +87,13 @@
 
                 <div class="details">
                     <label th:for="checkIn">Check-in</label>
-                    <input class="form-control"
+                    <input type="date"
+                           class="form-control"
                            placeholder="dd-MM-yyyy"
                            min="01-01-2025"
                            max="31-12-2030"
                            aria-required="true"
                            aria-invalid="false"
-                           type="date"
                            value=""
                            th:field="*{checkIn}"
                            th:errorclass="is-invalid">
@@ -101,8 +105,8 @@
                 </div>
                 <div class="details">
                     <label th:for="checkOut">Check-out</label>
-                    <input class="form-control"
-                           type="date"
+                    <input type="date"
+                           class="form-control"
                            aria-describedby="createdHelpInline"
                            th:field="*{checkOut}"
                            th:errorclass="is-invalid">
@@ -247,7 +251,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="text-area">
+                  <div class="text-area">
                     <label class="additional-info">Additional information about your pet</label>
                     <span class="pcf7-form-control-wrap" data-name="message">
                     <textarea cols="40"

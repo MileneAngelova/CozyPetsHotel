@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns="http://www.w3.org/1999/html">
-<nav>
+<nav lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--     xmlns="http://www.w3.org/1999/html">-->
     <a href="/">
         <img src="/images/logo.png" alt="hotel logo">
     </a>
@@ -22,8 +20,8 @@
         <li sec:authorize="isAuthenticated()">
             <a th:href="@{/user/account}">My account</a>
         </li>
-        <li sec:authorize="hasRole(1)">
-            <a href="#">Admin Panel</a>
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/admin}">Admin Panel</a>
         </li>
     </ul>
     <a class="nav-link">
@@ -55,4 +53,3 @@
         </li>
     </ul>
 </nav>
-</html>

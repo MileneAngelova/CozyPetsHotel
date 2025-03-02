@@ -44,6 +44,19 @@ public class Booking {
     @Column(name = "additional_information")
     private String additionalInformation;
 
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Booking() {
     }
 
@@ -110,10 +123,6 @@ public class Booking {
         return this;
     }
 
-    public String getPetType() {
-        return petType;
-    }
-
     public int getNumberOfPets() {
         return numberOfPets;
     }
@@ -123,7 +132,7 @@ public class Booking {
         return this;
     }
 
-    public String getPetTypeType() {
+    public String getPetType() {
         return petType;
     }
 

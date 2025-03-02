@@ -1,26 +1,27 @@
 package bg.softuni.cozypetshotel.web;
 
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
+import bg.softuni.cozypetshotel.services.BookingService;
 import bg.softuni.cozypetshotel.services.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
 public class UserPageController {
     private final UserService userService;
-    public UserPageController(UserService userService) {
+    private final BookingService bookingService;
+    public UserPageController(UserService userService, BookingService bookingService) {
         this.userService = userService;
+        this.bookingService = bookingService;
     }
 //    @ModelAttribute("userModel")
 //    public UserDTO initUser() {
@@ -104,22 +105,17 @@ public class UserPageController {
     @PostMapping("/update/contact-number")
     public String updateContactNumber(@AuthenticationPrincipal UserDetails userDetails,
                                  @RequestParam("contactNumber") String contactNumber,
-                                 BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes) {
         UserDTO userDTO = userService.findByEmail(userDetails.getUsername());
-if (bindingResult.hasErrors()) {
-    redirectAttributes.addFlashAttribute("userDTO", userDTO);
-    redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDTO", bindingResult);
-}
 
-        //        try {
+                try {
             userService.editContactNumber(userDTO.getId(), contactNumber);
-//            redirectAttributes.addFlashAttribute("message", "The contact number is successfully updated.");
+            redirectAttributes.addFlashAttribute("message", "The contact number is successfully updated.");
             return "redirect:/user/settings";
-//        } catch (IllegalArgumentException e) {
-//            redirectAttributes.addFlashAttribute("error", e.getMessage());
-//            return "redirect:/user/settings";
-//        }
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/user/settings";
+        }
     }
 
     @PostMapping("/update/last-name")
@@ -137,6 +133,16 @@ if (bindingResult.hasErrors()) {
             return "redirect:/user/settings";
         }
     }
+
+//    @Transactional
+//    @DeleteMapping("/user/bookings/delete/{id}")
+//    public String deleteById(@PathVariable Long id, Principal principal) {
+//        UserDTO byEmail = userService.findByEmail(principal.getName());
+//        this.bookingService.cancelBooking(id);
+//        this.userService.updateBookings(byEmail);
+//        return "redirect:/user/bookings";
+////        return ResponseEntity.ok().build();
+//    }
 }
 
 

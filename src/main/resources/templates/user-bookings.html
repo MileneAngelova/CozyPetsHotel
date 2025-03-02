@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -44,6 +45,7 @@
                 <th class="table-info">Pet name</th>
                 <th class="table-info">Number of pets</th>
                 <th class="table-info">Additional information</th>
+                <th class="table-info">Cancel booking</th>
             </tr>
             </thead>
             <tbody>
@@ -51,14 +53,26 @@
                 <td th:text="${booking.id}"></td>
                 <td th:text="${booking.checkIn}"></td>
                 <td th:text="${booking.checkOut}"></td>
-                <td th:text="${booking.petTypeType}"></td>
+                <td th:text="${booking.petType}"></td>
                 <td th:text="${booking.petName}"></td>
                 <td th:text="${booking.numberOfPets}"></td>
                 <td class="requirements" th:text="${booking.additionalInformation}"></td>
-                <td th:if="${userData.activeBookings.size() == 0}">No active bookings found.</td>
+                <td>
+                    <form th:method="delete"
+                          th:action="@{/user/bookings/delete/{id}(id = ${booking.id})}">
+                        <input sec:authorize="isAuthenticated()"
+                               class="btn btn-link"
+                               type="submit"
+                               value="Cancel booking"/>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
+        <small th:if="*{activeBookings.size() == 0}" class="table-summary">
+            No active bookings found.
+        </small>
+
         <table class="table-content expired">
             <h3 class="heading-expired"> Expired Bookings: </h3>
             <thead class="table-header">
@@ -77,13 +91,14 @@
                 <td th:text="${booking.id}"></td>
                 <td th:text="${booking.checkIn}"></td>
                 <td th:text="${booking.checkOut}"></td>
-                <td th:text="${booking.petTypeType}"></td>
+                <td th:text="${booking.petType}"></td>
                 <td th:text="${booking.petName}"></td>
                 <td th:text="${booking.numberOfPets}"></td>
                 <td class="requirements" th:text="${booking.additionalInformation}"></td>
             </tr>
             </tbody>
         </table>
+        <small th:if="${ userData.expiredBookings.size() == 0}" class="table-summary">No bookings found</small>
     </aside>
 </div>
 

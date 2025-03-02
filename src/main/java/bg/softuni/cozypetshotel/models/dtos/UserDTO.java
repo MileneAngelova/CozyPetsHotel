@@ -26,9 +26,9 @@ public class UserDTO {
     private String email;
     private Set<Role> roles;
     private String contactNumber;
-    @OneToMany(fetch = FetchType.EAGER)
+
     private List<Booking> activeBookings;
-    @OneToMany(fetch = FetchType.EAGER)
+
     private List<Booking> expiredBookings;
     private boolean isActive;
 

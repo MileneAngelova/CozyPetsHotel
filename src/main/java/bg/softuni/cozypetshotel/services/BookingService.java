@@ -8,7 +8,10 @@ import bg.softuni.cozypetshotel.repositories.BookingRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +38,8 @@ public class BookingService {
             this.userRepository.save(this.modelMapper.map(byEmail, User.class));
             this.userService.updateBookings(this.modelMapper.map(byEmail, UserDTO.class));
         }
+    }
+    public void cancelBooking(Long bookingId) {
+    this.bookingRepository.deleteById(bookingId);
     }
 }

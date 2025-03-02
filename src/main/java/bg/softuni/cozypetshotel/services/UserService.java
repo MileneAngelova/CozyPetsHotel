@@ -6,6 +6,8 @@ import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -25,6 +27,15 @@ public interface UserService {
     public void editLastName(Long userId, String lastName);
 
     public void editContactNumber(Long userId, String contactNumber);
+    public UserDTO convertToDTO(User user);
+//    public void cancelBooking(Long bookingId);
 
+//    List<UserDTO> findAllUsers();
+//
+//    void disableUser(Long userId);
+//
+//    void enableUser(Long userId);
+//
+//    Optional<User> findById(Long userId);
 }
 

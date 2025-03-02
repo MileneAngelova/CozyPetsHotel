@@ -45,10 +45,10 @@ public class User {
     private Address address;
 
     private String contactNumber;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Booking> activeBookings;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Booking> expiredBookings;
 
     public User() {

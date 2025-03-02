@@ -25,6 +25,10 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 @FieldsMatch(first = "password", second = "confirmPassword", message = "Passwords do not match!")
@@ -147,20 +151,27 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public UserDTO convertToDTO(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setFirstName(user.getFirstName());
+        userDTO.setLastName(user.getLastName());
+        userDTO.setRoles(user.getRoles());
+        userDTO.setActive(user.isActive());
+        return userDTO;
+    }
 
 //    @Override
-//    public UserDTO convertToDTO(User user) {
-//        UserDTO userDTO = new UserDTO();
-//        userDTO.setId(user.getId());
-//        userDTO.setEmail(user.getEmail());
-//        userDTO.setFirstName(user.getFirstName());
-//        userDTO.setLastName(user.getLastName());
-//        userDTO.setRoles(user.getRoles()
-//                .stream()
-//                .map(role -> role.getRole().name())
-//                .collect(Collectors.toSet()));
-//        userDTO.setActive(user.isActive());
-//        return userDTO;
+//    public void cancelBooking(Long bookingId) {
+//        Booking bookingToDelete = bookingRepository.findById(bookingId).orElse(null);
+//        assert bookingToDelete != null;
+//        User user = bookingToDelete.getUser();
+//        List<Booking> activeBookings = user.getActiveBookings();
+//        activeBookings.remove(bookingToDelete);
+//        this.userRepository.save(user);
+//        this.bookingRepository.deleteById(bookingId);
 //    }
 }
 

@@ -21,13 +21,13 @@ public class BookingDTO {
     private String contactNumber;
 
     @NotNull(message = "This field can not be empty!")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @FutureOrPresent(message = "The date can not be in the past!")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate checkIn;
 
     @NotNull(message = "This field can not be empty!")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @FutureOrPresent(message = "Checkout can not be earlier than the checkIn date!")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate checkOut;
 
     @NotBlank(message = "Please select one option!")

@@ -24,7 +24,7 @@ h3 {
 }
 
 .table-content {
-    width: 100%;
+    width: 98%;
 }
 
 .expired {
@@ -51,6 +51,14 @@ tbody {
     letter-spacing: normal;
     color: black;
  }
+
+.table-summary {
+    margin-top: 2%;
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    color: rgb(68 68 70);
+}
 
 tr:nth-child(even) {
     background-color: darkkhaki;
