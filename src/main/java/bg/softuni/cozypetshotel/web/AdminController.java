@@ -33,6 +33,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String adminPanel() {
         return "/admin";
     }

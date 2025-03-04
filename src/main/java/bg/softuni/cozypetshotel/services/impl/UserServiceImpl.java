@@ -38,7 +38,6 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-
     private final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     public UserServiceImpl(UserRepository userRepository, BookingRepository bookingRepository, RoleRepository roleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
@@ -85,15 +84,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateBookings(UserDTO userDTO) {
         List<Booking> activeBookings = userDTO.getActiveBookings();
-        activeBookings.forEach(booking -> {
-            LocalDate checkOut = booking.getCheckOut();
-            if (checkOut.isBefore(LocalDate.now())) {
-                List<Booking> expiredBookings = userDTO.getExpiredBookings();
-                expiredBookings.add(booking);
-                activeBookings.remove(booking);
-                this.userRepository.save(this.modelMapper.map(userDTO, User.class));
-            }
-        });
+
+        if (activeBookings.size() > 0) {
+            activeBookings.forEach(booking -> {
+                LocalDate checkOut = booking.getCheckOut();
+                if (checkOut.isBefore(LocalDate.now())) {
+                    List<Booking> expiredBookings = userDTO.getExpiredBookings();
+                    expiredBookings.add(booking);
+                    activeBookings.remove(booking);
+                }
+            });
+        } else {
+            LOGGER.info("No active bookings found");
+        }
+        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
     }
 
     @Override

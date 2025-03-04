@@ -20,7 +20,7 @@
         <li sec:authorize="isAuthenticated()">
             <a th:href="@{/user/account}">My account</a>
         </li>
-        <li sec:authorize="isAuthenticated()">
+        <li sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/admin}">Admin Panel</a>
         </li>
     </ul>
