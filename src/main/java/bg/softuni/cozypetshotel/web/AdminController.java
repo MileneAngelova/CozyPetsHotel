@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/admin")
+//@RequestMapping("/admin")
 public class AdminController {
     private final AdminService adminService;
     private final UserService userService;

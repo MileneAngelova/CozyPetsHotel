@@ -59,7 +59,7 @@
                 <td class="requirements" th:text="${booking.additionalInformation}"></td>
                 <td>
                     <form th:method="delete"
-                          th:action="@{/user/bookings/delete/{id}(id = ${booking.id})}">
+                          th:action="@{/bookings/delete/{id}(id = *{id})}">
                         <input sec:authorize="isAuthenticated()"
                                class="btn btn-link"
                                type="submit"

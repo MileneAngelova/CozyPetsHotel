@@ -1,9 +1,8 @@
 package bg.softuni.cozypetshotel.services;
 
-import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
-import bg.softuni.cozypetshotel.models.dtos.EditUserDetailsDTO;
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
+import bg.softuni.cozypetshotel.models.entities.Booking;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
 
@@ -19,6 +18,8 @@ public interface UserService {
 
     public void updateBookings(UserDTO userDTO);
 
+//    public List<Booking> getActiveBookings();
+
     public void editEmail(Long id, String newEmail);
 
     public void editPassword(Long userId, String currentPassword, String newPassword);
@@ -28,6 +29,9 @@ public interface UserService {
 
     public void editContactNumber(Long userId, String contactNumber);
     public UserDTO convertToDTO(User user);
+//    public void deleteActiveBooking(Long bookingId, UserDTO userDTO);
+
+
 //    public void cancelBooking(Long bookingId);
 
 //    List<UserDTO> findAllUsers();

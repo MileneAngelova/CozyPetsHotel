@@ -39,7 +39,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
     private static GrantedAuthority map(RoleNameEnum role) {
         return new SimpleGrantedAuthority(
-                "Role_" + role
+                "ROLE_" + role
         );
     }
 }

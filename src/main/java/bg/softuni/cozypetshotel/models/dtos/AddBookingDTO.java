@@ -1,12 +1,12 @@
 package bg.softuni.cozypetshotel.models.dtos;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class BookingDTO {
+public class AddBookingDTO {
+    private Long id;
     @NotBlank(message = "Please enter your first name!")
     private String firstName;
 
@@ -46,14 +46,18 @@ public class BookingDTO {
     @Size(max = 2000)
     private String additionalInformation;
 
-    public BookingDTO() {
+    public AddBookingDTO() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public BookingDTO setFirstName(String firstName) {
+    public AddBookingDTO setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -62,7 +66,7 @@ public class BookingDTO {
         return lastName;
     }
 
-    public BookingDTO setLastName(String lastName) {
+    public AddBookingDTO setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -71,7 +75,7 @@ public class BookingDTO {
         return email;
     }
 
-    public BookingDTO setEmail(String email) {
+    public AddBookingDTO setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -80,7 +84,7 @@ public class BookingDTO {
         return contactNumber;
     }
 
-    public BookingDTO setContactNumber(String phoneNumber) {
+    public AddBookingDTO setContactNumber(String phoneNumber) {
         this.contactNumber = phoneNumber;
         return this;
     }
@@ -89,7 +93,7 @@ public class BookingDTO {
         return checkIn;
     }
 
-    public BookingDTO setCheckIn(LocalDate checkIn) {
+    public AddBookingDTO setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
         return this;
     }
@@ -98,7 +102,7 @@ public class BookingDTO {
         return checkOut;
     }
 
-    public BookingDTO setCheckOut(LocalDate checkOut) {
+    public AddBookingDTO setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
         return this;
     }
@@ -107,7 +111,7 @@ public class BookingDTO {
         return petType;
     }
 
-    public BookingDTO setPetType(String petType) {
+    public AddBookingDTO setPetType(String petType) {
         this.petType = petType;
         return this;
     }
@@ -116,7 +120,7 @@ public class BookingDTO {
         return numberOfPets;
     }
 
-    public BookingDTO setNumberOfPets(int numberOfPets) {
+    public AddBookingDTO setNumberOfPets(int numberOfPets) {
         this.numberOfPets = numberOfPets;
         return this;
     }
@@ -125,7 +129,7 @@ public class BookingDTO {
         return petName;
     }
 
-    public BookingDTO setPetName(String petName) {
+    public AddBookingDTO setPetName(String petName) {
         this.petName = petName;
         return this;
     }
@@ -134,7 +138,7 @@ public class BookingDTO {
         return breed;
     }
 
-    public BookingDTO setBreed(String breed) {
+    public AddBookingDTO setBreed(String breed) {
         this.breed = breed;
         return this;
     }
@@ -143,14 +147,14 @@ public class BookingDTO {
         return additionalInformation;
     }
 
-    public BookingDTO setAdditionalInformation(String additionalInformation) {
+    public AddBookingDTO setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
         return this;
     }
 
     @Override
     public String toString() {
-        return "BookingDTO{" +
+        return "AddBookingDTO{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

@@ -129,11 +129,10 @@
                                    value="dog"
                                    th:field="*{petType}"
                                    th:errorclass="is-invalid">
-                                   <small class="invalid-feedback errors alert alert-danger">
-                        <div th:each="err : ${#fields.errors('petType')}"
-                             th:text="${err}">
-                        </div>
-                    </small>
+                                   <small th:errors="*{petType}"
+                                          class="invalid-feedback errors alert alert-danger">
+
+                                   </small>
                                 <span class="pcf7-list-item-label">Dog</span>
                             </label>
                         </span>
@@ -153,10 +152,8 @@
                                        value="cat"
                                        th:field="*{petType}"
                                        th:errorclass="is-invalid">
-                                   <small class="invalid-feedback errors alert alert-danger">
-                                       <div th:each="err : ${#fields.errors('petType')}"
-                                            th:text="${err}">
-                                   </div>
+                                   <small th:errors="*{petType}"
+                                          class="invalid-feedback errors alert alert-danger">
                                    </small>
                                 <span class="pcf7-list-item-label">Cat</span>
                             </label>
@@ -175,10 +172,7 @@
                                        value="otherPet"
                                        th:field="*{petType}"
                                        th:errorclass="is-invalid">
-                                   <small class="invalid-feedback errors alert alert-danger">
-                                       <div th:each="err : ${#fields.errors('petType')}"
-                                            th:text="${err}">
-                                       </div>
+                                   <small th:errors="*{petType}" class="invalid-feedback errors alert alert-danger">
                                    </small>
                                 <span class="pcf7-list-item-label">Other pets</span>
                 </label>
@@ -199,10 +193,8 @@
                                 aria-invalid="false"
                                 th:field="*{numberOfPets}"
                                 th:errorclass="is-invalid">
-                                   <small class="invalid-feedback errors alert alert-danger">
-                                       <div th:each="err : ${#fields.errors('numberOfPets')}"
-                                            th:text="${err}">
-                                       </div>
+                                   <small th:errors="*{numberOfPets}"
+                                          class="invalid-feedback errors alert alert-danger">
                                    </small>
                             <option th:value="1">1</option>
                             <option th:value="2">2</option>
@@ -223,10 +215,8 @@
                                    type="text"
                                    th:field="*{petName}"
                                    th:errorclass="is-invalid">
-                                   <small class="invalid-feedback errors alert alert-danger">
-                                       <div th:each="err : ${#fields.errors('petName')}"
-                                            th:text="${err}">
-                                       </div>
+                                   <small th:errors="*{petName}"
+                                          class="invalid-feedback errors alert alert-danger">
                                    </small>
                         </span>
                     </div>
@@ -243,15 +233,13 @@
                                    type="text"
                                    th:field="*{breed}"
                                    th:errorclass="is-invalid">
-                                   <small class="invalid-feedback errors alert alert-danger">
-                                       <div th:each="err : ${#fields.errors('breed')}"
-                                            th:text="${err}">
-                                       </div>
+                                   <small th:errors="*{breed}"
+                                          class="invalid-feedback errors alert alert-danger">
                                    </small>
                         </span>
                     </div>
                 </div>
-                  <div class="text-area">
+                <div class="text-area">
                     <label class="additional-info">Additional information about your pet</label>
                     <span class="pcf7-form-control-wrap" data-name="message">
                     <textarea cols="40"
@@ -262,10 +250,8 @@
                               placeholder="Enter additional information"
                               th:field="*{additionalInformation}"
                               th:errorclass="is-invalid">
-                                   <small class="invalid-feedback errors alert alert-danger">
-                                       <div th:each="err : ${#fields.errors('additionalInformation')}"
-                                            th:text="${err}">
-                                       </div>
+                                   <small th:errors="*{additionalInformation}"
+                                          class="invalid-feedback errors alert alert-danger">
                                    </small>
                     </textarea>
                 </span>

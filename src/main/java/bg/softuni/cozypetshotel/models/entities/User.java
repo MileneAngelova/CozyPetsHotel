@@ -40,10 +40,6 @@ public class User {
     private Integer age;
     private boolean isActive;
 
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
-
     private String contactNumber;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Booking> activeBookings;
@@ -82,14 +78,6 @@ public class User {
     public User setPhoneNumber(String phoneNumber) {
         this.contactNumber = phoneNumber;
         return this;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public Set<Role> getRoles() {

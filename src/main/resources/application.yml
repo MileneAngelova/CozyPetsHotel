@@ -30,4 +30,7 @@ logging:
     blog: WARN
 server:
   port: 8080
+bookings:
+  api:
+    baseUrl: "http://localhost:8081"
 
