@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -53,13 +54,12 @@ public class BookingController {
     }
 
     //    @Transactional
-    @DeleteMapping("/bookings/delete/{id}")
-    public String deleteById(@PathVariable("id") Long id, Principal principal) {
-        UserDTO byEmail = userService.findByEmail(principal.getName());
-//        this.userService.deleteActiveBooking(id, byEmail);
-        this.bookingService.cancelBooking(id);
-        this.userService.updateBookings(byEmail);
-        return "redirect:/user/bookings";
-//        return ResponseEntity.ok().build();
-    }
+//    @DeleteMapping("/bookings/delete/{id}")
+//    public String deleteById(@PathVariable("id") Long id, Principal principal) {
+//        UserDTO byEmail = userService.findByEmail(principal.getName());
+////        this.userService.deleteActiveBooking(id, byEmail);
+//        this.bookingService.cancelBooking(id);
+//        this.userService.updateBookings(byEmail);
+//        return "redirect:/user/bookings";
+//    }
 }

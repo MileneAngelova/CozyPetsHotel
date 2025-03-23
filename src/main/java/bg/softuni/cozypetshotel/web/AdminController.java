@@ -1,23 +1,28 @@
 package bg.softuni.cozypetshotel.web;
 
+import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
-import bg.softuni.cozypetshotel.models.entities.Role;
-import bg.softuni.cozypetshotel.models.entities.User;
-import bg.softuni.cozypetshotel.models.enums.RoleNameEnum;
+import bg.softuni.cozypetshotel.models.views.UserViewModel;
+import bg.softuni.cozypetshotel.repositories.UserRepository;
 import bg.softuni.cozypetshotel.services.AdminService;
+import bg.softuni.cozypetshotel.services.BookingService;
 import bg.softuni.cozypetshotel.services.RoleService;
 import bg.softuni.cozypetshotel.services.UserService;
-import bg.softuni.cozypetshotel.web.exceptions.RoleAlreadyExistsException;
-import bg.softuni.cozypetshotel.web.exceptions.RoleDoesNotExistsException;
+import bg.softuni.cozypetshotel.session.AppUserDetails;
+import bg.softuni.cozypetshotel.session.AppUserDetailsService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 //@RequestMapping("/admin")
@@ -25,103 +30,95 @@ public class AdminController {
     private final AdminService adminService;
     private final UserService userService;
     private final RoleService roleService;
+    private final BookingService bookingService;
+    private static int currentPageOn;
+    private final UserRepository userRepository;
 
-    public AdminController(AdminService adminService, UserService userService, RoleService roleService) {
+    public AdminController(AdminService adminService, UserService userService, RoleService roleService, BookingService bookingService,
+                           UserRepository userRepository) {
         this.adminService = adminService;
         this.userService = userService;
         this.roleService = roleService;
+        this.bookingService = bookingService;
+        this.userRepository = userRepository;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/admin")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String adminPanel() {
-        return "/admin";
-    }
-
-//    @GetMapping("/contacts")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-//    public String viewMessages(Model model) {
-//        List<ContactMessage> messages = contactService.findAllContactMessages();
-//        model.addAttribute("messages", messages);
-//        return "contact-messages";
-//    }
-
-//    @GetMapping("/reports")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-//    public String viewReports(Model model) {
-//        List<Report> reports = reportService.getAllReports();
-//        model.addAttribute("reports", reports);
-//        return "admin-reports";
-//    }
-
-//    @PostMapping("/sendReply")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-//    public String sendReply(@Valid ReplyContactMessageDto replyMessageDto,
-//                            BindingResult bindingResult,
-//                            RedirectAttributes redirectAttributes) {
-//
-//        if (bindingResult.hasErrors()) {
-//            redirectAttributes.addFlashAttribute("errorMessage", "Грешка при изпращане на отговора. Моля, проверете въведените данни!");
-//            return "redirect:/admin/contacts";
-//        }
-//
-//        try {
-//            ContactMessageDto contactMessage = contactService.findMessageById(replyMessageDto.getMessageId());
-//            emailService.sendReply(replyMessageDto.getRecipientEmail(), replyMessageDto.getReplyMessage(), contactMessage);
-//            redirectAttributes.addFlashAttribute("successMessage", "Отговорът беше изпратен успешно!");
-//        } catch (MailException e) {
-//            redirectAttributes.addFlashAttribute("errorMessage", "Грешка при изпращане на отговора. Моля, опитайте отново!");
-//        }
-//        return "redirect:/admin/contacts";
-//    }
-
-    @PostMapping("/users/{userId}/roles")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String addRoleToUser(@PathVariable Long userId,
-                                @RequestParam("role") String roleName,
-                                RedirectAttributes redirectAttributes) {
+    public String getAllUsers(Model model, RedirectAttributes redirectAttributes) {
         try {
-            Optional<User> user = adminService.findById(userId);
-            user.ifPresent(value -> roleService.addRoleToUser(value, RoleNameEnum.valueOf(roleName)));
-            return "redirect:/admin";
-        } catch (RoleAlreadyExistsException ex) {
-            redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
-            return "redirect:/admin";
+            List<UserDTO> allUsers = this.adminService.getAllUsers();
+            model.addAttribute("allUsers", allUsers);
+        } catch (NullPointerException exception) {
+            redirectAttributes.addFlashAttribute(exception.getMessage());
         }
+        return "admin_users-all";
     }
 
-    @PostMapping("/users/{userId}/remove-role")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String removeRoleFromUser(@PathVariable Long userId,
-                                     @RequestParam("role") String roleName,
-                                     RedirectAttributes redirectAttributes) {
-        try {
-            Optional<User> user = adminService.findById(userId);
-            user.ifPresent(u -> roleService.removeRoleFromUser(u, RoleNameEnum.valueOf(roleName)));
-            return "redirect:/admin";
-        } catch (RoleDoesNotExistsException ex) {
-            redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
-            return "redirect:/admin";
-        }
+    @GetMapping("/admin/users/all/{pageNumber}")
+    public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage) {
+        Page<UserViewModel> page = adminService.findPage(currentPage);
+        int totalPages = page.getTotalPages();
+        long totalUsers = userRepository.count();
+        List<UserViewModel> users = page.getContent();
+        currentPageOn = currentPage;
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalUsers", totalUsers);
+        model.addAttribute("users", users);
+
+        return "redirect:/admin";
     }
 
-    @PostMapping("/users/{userId}/disable")
+    @GetMapping("/admin/users/all")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String disableUser(@PathVariable Long userId,
-                              RedirectAttributes redirectAttributes) {
-        adminService.disableUser(userId);
+    public String getAllPages(Model model) {
+        return getOnePage(model, 1);
+    }
+
+    //    @Transactional
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PatchMapping("/admin/users/activate/{id}")
+    public String activateUserAccount(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        adminService.activateUserAccount(id);
+        String successMessage = "User activated";
+        redirectAttributes.addFlashAttribute("successMessage", successMessage);
+
+        return "redirect:/admin";
+    }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PostMapping("/admin/users/deactivate/{id}")
+    public String blockUserAccount(@PathVariable Long id,
+                                   RedirectAttributes redirectAttributes) {
+        adminService.blockUser(id);
         String successMessage = "The user was disabled.";
         redirectAttributes.addFlashAttribute("successMessage", successMessage);
         return "redirect:/admin";
     }
 
-    @PostMapping("/users/{userId}/enable")
+
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String enableUser(@PathVariable Long userId,
-                             RedirectAttributes redirectAttributes) {
-        adminService.enableUser(userId);
-        String successMessage = "Потребителят е активиран.";
-        redirectAttributes.addFlashAttribute("successMessage", successMessage);
+    @PostMapping("/admin/users/promote/{id}")
+    public String promoteUser(@PathVariable("id") Long id) {
+        adminService.addRoleAdminToUser(id);
         return "redirect:/admin";
+    }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PostMapping("/admin/users/demote/{id}")
+    @Transactional
+    public String demoteUser(@PathVariable("id") Long id) {
+        adminService.removeRoleAdminFromUser(id);
+        return "redirect:/admin";
+    }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping("/bookings/all")
+    public String getAllBookings(Model model, @PageableDefault(size = 3, sort = "id") Pageable pageable, @AuthenticationPrincipal AppUserDetails appUserDetails) {
+        Page<BookingDTO> allBookings = bookingService.getAllBookings(pageable);
+        model.addAttribute("allBookings", allBookings);
+        return "admin_bookings-all";
     }
 }

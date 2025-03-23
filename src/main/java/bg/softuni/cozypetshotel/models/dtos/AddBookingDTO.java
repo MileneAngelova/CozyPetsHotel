@@ -53,6 +53,11 @@ public class AddBookingDTO {
         return id;
     }
 
+    public AddBookingDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public String getFirstName() {
         return firstName;
     }

@@ -1,11 +1,10 @@
 package bg.softuni.cozypetshotel.models.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import static java.sql.Types.VARCHAR;
 
 @Entity
 @Table(name = "users")
@@ -13,6 +12,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @UUIDSequence
+    @JdbcTypeCode(VARCHAR)
+    private UUID uuid;
 
     @Column(name = "first_name")
     private String firstName;
@@ -51,6 +53,23 @@ public class User {
         this.roles = new HashSet<>();
         this.activeBookings = new ArrayList<>();
         this.isActive = true;
+    }    public Long getId() {
+        return id;
+    }
+
+
+    public User setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public User setUuid(UUID uuid) {
+        this.uuid = uuid;
+        return this;
     }
 
     public String getFirstname() {
@@ -86,15 +105,6 @@ public class User {
 
     public User setRoles(Set<Role> roles) {
         this.roles = roles;
-        return this;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User setId(Long id) {
-        this.id = id;
         return this;
     }
 

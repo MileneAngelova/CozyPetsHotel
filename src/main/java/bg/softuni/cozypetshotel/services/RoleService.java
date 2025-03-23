@@ -32,32 +32,4 @@ public class RoleService {
                     });
         }
     }
-
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public List<Role> findAllRolesOfUser() {
-        return roleRepository.findAll();
-    }
-
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public void addRoleToUser(User user, RoleNameEnum roleName) {
-        Role role = roleRepository.findByRole(roleName);
-            user.getRoles().add(role);
-            userRepository.save(user);
-        }
-
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public void removeRoleFromUser(User user, RoleNameEnum roleName) {
-        Role roleToRemove = user.getRoles().stream()
-                .filter(r -> r.getRole().equals(roleName))
-                .findFirst()
-                .orElse(null);
-
-        if (roleToRemove != null) {
-            user.getRoles().remove(roleToRemove);
-            userRepository.save(user);
-        } else {
-            throw new RoleDoesNotExistsException("User does not have this role.");
-        }
-    }
-
 }

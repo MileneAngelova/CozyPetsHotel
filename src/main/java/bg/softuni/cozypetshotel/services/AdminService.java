@@ -1,58 +1,100 @@
 package bg.softuni.cozypetshotel.services;
 
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
+import bg.softuni.cozypetshotel.models.entities.Role;
 import bg.softuni.cozypetshotel.models.entities.User;
+import bg.softuni.cozypetshotel.models.enums.RoleNameEnum;
+import bg.softuni.cozypetshotel.models.views.UserViewModel;
+import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
+import bg.softuni.cozypetshotel.web.exceptions.UserNotFoundException;
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class AdminService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final UserService userService;
+    private final ModelMapper modelMapper;
 
-    public AdminService(UserRepository userRepository, UserService userService) {
+    public AdminService(UserRepository userRepository, RoleRepository roleRepository, UserService userService, ModelMapper modelMapper) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
         this.userService = userService;
+        this.modelMapper = modelMapper;
     }
 
-    @Transactional
     public void deleteUser(String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         userRepository.delete(user);
     }
 
-    public void disableUser(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
-        user.setActive(false);
-        userRepository.save(user);
-    }
-
-    public void enableUser(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UsernameNotFoundException("Потребителят не е намерен."));
-        user.setActive(true);
-        userRepository.save(user);
-    }
-
-
-    public Optional<User> findById(Long ownerId) {
-        return userRepository.findById(ownerId);
-    }
-
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public List<UserDTO> findAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
                 .map(userService::convertToDTO)
                 .collect(Collectors.toList());
+    }
+
+    public Page<UserViewModel> findPage(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, 10);
+        return userRepository.findAll(pageable)
+                .map(userEntity -> {
+                    UserViewModel userWithRoleViewModel = modelMapper.map(userEntity, UserViewModel.class);
+                    List<RoleNameEnum> roles = userEntity.getRoles()
+                            .stream()
+                            .map(role -> RoleNameEnum.valueOf(role.getRole().name()))
+                            .toList();
+                    userWithRoleViewModel.setRoles(roles);
+                    return userWithRoleViewModel;
+                });
+    }
+
+    public void addRoleAdminToUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found!"));
+        Role roleAdmin = roleRepository.findByRole(RoleNameEnum.ADMIN);
+
+        if (user.getRoles().contains(roleAdmin)) {
+            throw new RuntimeException("User already has role Admin!");
+        }
+        user.getRoles().add(roleAdmin);
+        this.userRepository.save(user);
+    }
+
+    public void removeRoleAdminFromUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found!"));
+        Set<Role> roles = user.getRoles();
+        roles.removeIf(role -> role.getId() == 1);
+    }
+
+    public void activateUserAccount(Long id) {
+        userRepository.findById(id)
+                .ifPresent(user -> {
+                    user.setActive(true);
+                    userRepository.save(user);
+                });
+    }
+
+    public void blockUser(Long id) {
+        userRepository.findById(id)
+                .ifPresent(userEntity -> {
+                    userEntity.setActive(false);
+                    userRepository.save(userEntity);
+                });
     }
 }

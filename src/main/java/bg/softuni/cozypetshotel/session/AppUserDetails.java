@@ -4,24 +4,25 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.UUID;
 
 public class AppUserDetails extends User {
-    private final Long id;
+    private final UUID uuid;
     private String firstName;
     private String lastName;
 
-    public AppUserDetails(Long id, String email, String password,
+    public AppUserDetails(UUID uuid, String email, String password,
                           Collection<? extends GrantedAuthority> authorities,
                           String firstName,
                           String lastName) {
         super(email, password, authorities);
-        this.id = id;
+        this.uuid = uuid;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public Long getId() {
-        return id;
+    public UUID getUuid() {
+        return uuid;
     }
 
     public String getFirstName() {

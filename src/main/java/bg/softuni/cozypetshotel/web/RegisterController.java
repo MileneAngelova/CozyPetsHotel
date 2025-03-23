@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RegisterController {
     private final UserService userService;
-
     public RegisterController(UserService userService) {
         this.userService = userService;
     }

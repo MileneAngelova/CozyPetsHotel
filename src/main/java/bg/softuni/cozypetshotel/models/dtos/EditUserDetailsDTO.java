@@ -38,6 +38,11 @@ public class EditUserDetailsDTO {
         return id;
     }
 
+    public EditUserDetailsDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public String getUsername() {
         return username;
     }

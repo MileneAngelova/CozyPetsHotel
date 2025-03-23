@@ -1,14 +1,10 @@
 package bg.softuni.cozypetshotel.services.impl;
-
-import bg.softuni.cozypetshotel.models.dtos.AddBookingDTO;
-import bg.softuni.cozypetshotel.models.dtos.EditUserDetailsDTO;
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.Booking;
 import bg.softuni.cozypetshotel.models.entities.Role;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.models.enums.RoleNameEnum;
-import bg.softuni.cozypetshotel.repositories.BookingRepository;
 import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
 import bg.softuni.cozypetshotel.services.UserService;
@@ -17,43 +13,29 @@ import bg.softuni.cozypetshotel.validation.FieldsMatch;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 @FieldsMatch(first = "password", second = "confirmPassword", message = "Passwords do not match!")
 public class UserServiceImpl implements UserService {
-
-    private RestClient bookingsRestClient;
     private final UserRepository userRepository;
-    private final BookingRepository bookingRepository;
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
-    public UserServiceImpl(@Qualifier("bookingsRestClient") RestClient bookingsRestClient, UserRepository userRepository, BookingRepository bookingRepository, RoleRepository roleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.bookingRepository = bookingRepository;
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
-        this.bookingsRestClient = bookingsRestClient;
     }
 
     @Override
@@ -107,6 +89,7 @@ public class UserServiceImpl implements UserService {
         }
 //        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
     }
+
 
 //    public List<Booking> getActiveBookings() {
 //        LOGGER.info("Getting active bookings...");
@@ -184,6 +167,7 @@ public class UserServiceImpl implements UserService {
         userDTO.setActive(user.isActive());
         return userDTO;
     }
+
 
 //    @Override
 //    public void deleteActiveBooking(Long id, UserDTO userDTO) {

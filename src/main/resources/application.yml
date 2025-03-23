@@ -13,9 +13,9 @@ spring:
         enabled: 'true'
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/cozy_pets_hotel?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
     username: ${db_username}
     password: ${db_password}
-    url: jdbc:mysql://localhost:3306/cozy_pets_hotel?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
   sql:
     init:
       mode: never
@@ -33,4 +33,7 @@ server:
 bookings:
   api:
     baseUrl: "http://localhost:8081"
+jwt:
+  secret: ${JWT_KEY:ntPHxykAkDpPDR1K3lMEkAaWzAwP0nFSThiASB}
+  expiration:  ${JWT_EXPIRATION:60000}
 

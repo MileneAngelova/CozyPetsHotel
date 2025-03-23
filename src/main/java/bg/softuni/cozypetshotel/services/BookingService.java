@@ -1,6 +1,8 @@
 package bg.softuni.cozypetshotel.services;
 
 import bg.softuni.cozypetshotel.models.dtos.AddBookingDTO;
+import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
+import bg.softuni.cozypetshotel.models.dtos.PageResponse;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.Booking;
 import bg.softuni.cozypetshotel.models.entities.User;
@@ -11,10 +13,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -86,5 +93,33 @@ public class BookingService {
                 .setNumberOfPets(addBookingDTO.getNumberOfPets())
                 .setPetName(addBookingDTO.getPetName())
                 .setPetType(addBookingDTO.getPetType());
+    }
+
+//    public List<BookingDTO> getAllBookings() {
+//        LOGGER.info("Getting all bookings...");
+//
+//        return bookingsRestClient
+//                .get()
+//                .uri("/bookings")
+//                .accept(MediaType.APPLICATION_JSON)
+//                .retrieve()
+//                .body(new ParameterizedTypeReference<>(){});
+//    }
+
+    public Page<BookingDTO> getAllBookings(Pageable pageable) {
+        PageResponse<BookingDTO> offers = bookingsRestClient
+                .get()
+                .uri("/bookings/all?page={page}&size={size}&sort=id,desc",
+                        pageable.getPageNumber(),
+                        pageable.getPageSize()
+                )
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .body(new ParameterizedTypeReference<>() {
+                });
+
+        assert offers != null;
+
+        return new PageImpl<>(offers.getContent(), pageable, offers.getPage().totalElements());
     }
 }

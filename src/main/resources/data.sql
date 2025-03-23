@@ -1,8 +1,108 @@
-INSERT INTO users(first_name, username, password, email, age, is_active)
-VALUES ('Admin', 'admin', 'f95d600a99d805f10a7d133729122fcc09e3c0a53e6fe64cba3f969f081d3d565b604a265ca9a8a7e2c197f75165363f', 'admin@mail.com', 33, true);
--- ('petar', '$2a$12$pp/k7HzJ2E86kPfX7YA8Oe7tjHgNMhGv8pVSOS3Pz0ppAwIfSbR1C', 'petar@abv.bg', 23);
-
+INSERT INTO roles VALUES (1, 'ADMIN'), (2, 'USER');
+--
+INSERT INTO users(first_name, username, password, email, age, is_active, uuid)
+VALUES ('Admin', 'admin', 'f95d600a99d805f10a7d133729122fcc09e3c0a53e6fe64cba3f969f081d3d565b604a265ca9a8a7e2c197f75165363f', 'admin@mail.com', 33, true, '8dda5916-f8dd-40ca-80f7-a9cdacc444f8');
+-- -- ('petar', '$2a$12$pp/k7HzJ2E86kPfX7YA8Oe7tjHgNMhGv8pVSOS3Pz0ppAwIfSbR1C', 'petar@abv.bg', 23);
+--
 INSERT INTO users_roles(user_id, role_id)
-VALUES  (1, 1);
---         (1, 2);
---       (2, 2);
+VALUES  (1, 1),
+        (1, 2);
+-- --       (2, 2);
+
+-- insert into users (email, first_name, is_active, last_name, password, username)
+-- values
+--         ('petar@abv.bg1', 'Petar1', true, 'Petrov1', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho1'),
+--         ('petar@abv.bg2', 'Petar2', true, 'Petrov2', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho2'),
+--         ('petar@abv.bg3', 'Petar3', true, 'Petrov3', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho3'),
+--         ('petar@abv.bg4', 'Petar4', true, 'Petrov4', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho4'),
+--         ('petar@abv.bg5', 'Petar5', true, 'Petrov5', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho5'),
+--         ('petar@abv.bg6', 'Petar6', true, 'Petrov6', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho6'),
+--         ('petar@abv.bg7', 'Petar7', true, 'Petrov7', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho7'),
+--         ('petar@abv.bg8', 'Petar8', true, 'Petrov8', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho8'),
+--         ('petar@abv.bg9', 'Petar9', true, 'Petrov9', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho9'),
+--         ('petar@abv.bg10', 'Petar10', true, 'Petrov10', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho10'),
+--         ('petar@abv.bg11', 'Petar11', true, 'Petrov11', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho11'),
+--         ('petar@abv.bg12', 'Petar12', true, 'Petrov12', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho12'),
+--         ('petar@abv.bg13', 'Petar13', true, 'Petrov13', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho13'),
+--         ('petar@abv.bg14', 'Petar14', true, 'Petrov14', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho14'),
+--         ('petar@abv.bg15', 'Petar15', true, 'Petrov15', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho15'),
+--         ('petar@abv.bg16', 'Petar16', true, 'Petrov16', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho16'),
+--         ('petar@abv.bg17', 'Petar17', true, 'Petrov17', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho17'),
+--         ('petar@abv.bg18', 'Petar18', true, 'Petrov18', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho18'),
+--         ('petar@abv.bg19', 'Petar19', true, 'Petrov19', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho19'),
+--         ('petar@abv.bg20', 'Petar20', true, 'Petrov20', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho20'),
+--         ('petar@abv.bg21', 'Petar21', true, 'Petrov21', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho21'),
+--         ('petar@abv.bg22', 'Petar22', true, 'Petrov22', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho22'),
+--         ('petar@abv.bg23', 'Petar23', true, 'Petrov23', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho23'),
+--         ('petar@abv.bg24', 'Petar24', true, 'Petrov24', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho24'),
+--         ('petar@abv.bg25', 'Petar25', true, 'Petrov25', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho25'),
+--         ('petar@abv.bg26', 'Petar26', true, 'Petrov26', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho26'),
+--         ('petar@abv.bg27', 'Petar27', true, 'Petrov27', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho27'),
+--         ('petar@abv.bg28', 'Petar28', true, 'Petrov28', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho28'),
+--         ('petar@abv.bg29', 'Petar29', true, 'Petrov29', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho29'),
+--         ('petar@abv.bg30', 'Petar30', true, 'Petrov30', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho30'),
+--         ('petar@abv.bg31', 'Petar31', true, 'Petrov31', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho31'),
+--         ('petar@abv.bg32', 'Petar32', true, 'Petrov32', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho32'),
+--         ('petar@abv.bg33', 'Petar33', true, 'Petrov33', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho33'),
+--         ('petar@abv.bg34', 'Petar34', true, 'Petrov34', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho34'),
+--         ('petar@abv.bg35', 'Petar35', true, 'Petrov35', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho35'),
+--         ('petar@abv.bg36', 'Petar36', true, 'Petrov36', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho36'),
+--         ('petar@abv.bg37', 'Petar37', true, 'Petrov37', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho37'),
+--         ('petar@abv.bg38', 'Petar38', true, 'Petrov38', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho38'),
+--         ('petar@abv.bg39', 'Petar39', true, 'Petrov39', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho39'),
+--         ('petar@abv.bg40', 'Petar40', true, 'Petrov40', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho40'),
+--         ('petar@abv.bg41', 'Petar41', true, 'Petrov41', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho41'),
+--         ('petar@abv.bg42', 'Petar42', true, 'Petrov42', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho42'),
+--         ('petar@abv.bg43', 'Petar43', true, 'Petrov43', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho43'),
+--         ('petar@abv.bg44', 'Petar44', true, 'Petrov44', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho44'),
+--         ('petar@abv.bg45', 'Petar45', true, 'Petrov45', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho45'),
+--         ('petar@abv.bg46', 'Petar46', true, 'Petrov46', '0c80bd23ba6f97372917af9fb9dd309b432d5212f7375707d6674b0619fefe6d13f9f462b686fb1d126bc9bc1a40c546', 'Pesho46');
+
+
+-- insert into users_roles (user_id, role_id)
+-- values  (50, 2),
+--         (51, 2),
+--         (52, 1),
+--         (53, 2),
+--         (54, 2),
+--         (55, 2),
+--         (56, 2),
+--         (57, 1),
+--         (58, 2),
+--         (59, 2),
+--         (60, 2),
+--         (61, 2),
+--         (62, 1),
+--         (63, 2),
+--         (64, 2),
+--         (65, 2),
+--         (66, 2),
+--         (67, 2),
+--         (68, 2),
+--         (69, 2),
+--         (70, 2),
+--         (71, 2),
+--         (72, 2),
+--         (73, 2),
+--         (74, 2),
+--         (75, 2),
+--         (76, 2),
+--         (77, 2),
+--         (78, 2),
+--         (79, 2),
+--         (80, 2),
+--         (81, 2),
+--         (82, 2),
+--         (83, 2),
+--         (84, 2),
+--         (85, 2),
+--         (86, 2),
+--         (87, 2),
+--         (88, 2),
+--         (89, 2),
+--         (90, 2),
+--         (91, 2),
+--         (92, 2),
+--         (93, 2),
+--         (94, 2),
+--         (95, 2);

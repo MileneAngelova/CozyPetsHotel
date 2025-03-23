@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://kit.fontawesome.com/09676a0005.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/reset-css.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/book-now.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <title>CozyPetsHotel</title>
+</head>
+
+<body>
+<nav th:replace="~{/fragments/navbar}"></nav>
+<div class="buttons">
+    <a class="show users" th:href="@{/admin}">All users</a>
+    <a class="show bookings" th:href="@{/bookings/all}">All bookings</a>
+</div>
+<div class="table-responsive m-5">
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th class="align-middle" scope="col">Booking number</th>
+        <th class="align-middle" scope="col">CheckIn</th>
+        <th class="align-middle" scope="col">CheckOut</th>
+        <th class="align-middle" scope="col">First name</th>
+        <th class="align-middle" scope="col">Last name</th>
+        <th class="align-middle" scope="col">Pet type</th>
+        <th class="align-middle" scope="col">Pet name</th>
+        <th class="align-middle" scope="col">Number of pets</th>
+        <th class="align-middle" scope="col">Additional information</th>
+        <th class="align-middle" scope="col">Cancel booking</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    <tr th:each="booking : ${allBookings}" th:object="${booking}">
+        <td class="align-middle col-md-auto" th:text="*{id}">id</td>
+        <td class="align-middle col-md-auto" th:text="*{checkIn}">checkIn</td>
+        <td class="align-middle col-md-3" th:text="*{checkOut}">check out</td>
+        <td class="align-middle col-md-auto" th:text="*{firstName}">User first name</td>
+        <td class="align-middle col-md-auto" th:text="*{lastName}">User last name</td>
+        <td class="align-middle col-md-auto" th:text="*{petType}">pet type</td>
+        <td class="align-middle col-md-auto" th:text="*{petName}">pet name</td>
+        <td class="align-middle col-md-auto" th:text="*{numberOfPets}">
+        <td class="align-middle col-md-auto" th:if="*{additionalInformation}">
+        <td>
+            <form th:method="delete"
+                  th:action="@{/bookings/delete/{id}(id = *{id})}">
+                <input sec:authorize="hasRole('ADMIN')"
+                       class="btn btn-link"
+                       type="submit"
+                       value="Delete booking"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<footer>
+    <th:block th:replace="~{fragments/footer::footer}"></th:block>
+</footer>
+<div class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+</body>
+</html>

@@ -23,7 +23,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/user/account", "/book-now", "/logout").authenticated()
                                 .requestMatchers("/", "/gallery", "/services", "/info", "/prices", "/login", "/register", "/login-error").permitAll()
-                                .requestMatchers("/admin").hasRole("ADMIN")
+                                .requestMatchers("/admin/", "/admin/users/all", "bookings", "/bookings/all", "/bookings/delete/{id}").hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated())
                 .formLogin(formLogin ->
