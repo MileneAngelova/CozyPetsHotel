@@ -1,4 +1,6 @@
 package bg.softuni.cozypetshotel.services.impl;
+
+import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.Booking;
@@ -7,20 +9,27 @@ import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.models.enums.RoleNameEnum;
 import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
+import bg.softuni.cozypetshotel.services.BookingService;
 import bg.softuni.cozypetshotel.services.UserService;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
 import bg.softuni.cozypetshotel.validation.FieldsMatch;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @FieldsMatch(first = "password", second = "confirmPassword", message = "Passwords do not match!")
@@ -71,24 +80,59 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(user, UserDTO.class);
     }
 
-    @Override
-    public void updateBookings(UserDTO userDTO) {
-        List<Booking> activeBookings = userDTO.getActiveBookings();
+//    public List<BookingDTO> getUserBookings(String userId) {
+//        LOGGER.info("Getting user bookings...");
+//        getAuthentication();
+//
+//        return bookingsRestClient
+//                .get().uri("/bookings/user/" + userId)
+//                .accept(MediaType.APPLICATION_JSON).retrieve()
+//                .body(new ParameterizedTypeReference<>() {
+//                });
+//    }
 
-        if (activeBookings.size() > 0) {
-            activeBookings.forEach(booking -> {
-                LocalDate checkOut = booking.getCheckOut();
-                if (checkOut.isBefore(LocalDate.now())) {
-                    List<Booking> expiredBookings = userDTO.getExpiredBookings();
-                    expiredBookings.add(booking);
-                    activeBookings.remove(booking);
-                }
-            });
-        } else {
-            LOGGER.info("No active bookings found");
-        }
+//    @Override
+//    public void updateBookings(UserDTO userDTO) {
+//        List<BookingDTO> userBookings = this.bookingService.getUserBookings(userDTO.getUuid());
+//
+//
+//        List<Booking> activeBookings = userDTO.getActiveBookings();
+//        activeBookings.addAll(userBookings.stream().map((element) -> modelMapper.map(element, Booking.class)).toList());
+//
+//        if (activeBookings.size() > 0) {
+//            activeBookings.forEach(booking -> {
+//                LocalDate checkOut = booking.getCheckOut();
+//                if (checkOut.isBefore(LocalDate.now())) {
+//                    List<Booking> expiredBookings = userDTO.getExpiredBookings();
+//                    expiredBookings.add(booking);
+//                    activeBookings.remove(booking);
+//                }
+//            });
+//        } else {
+//            LOGGER.info("No active bookings found");
+//        }
 //        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
-    }
+
+
+
+
+
+//        List<Booking> activeBookings = userDTO.getActiveBookings();
+//
+//        if (activeBookings.size() > 0) {
+//            activeBookings.forEach(booking -> {
+//                LocalDate checkOut = booking.getCheckOut();
+//                if (checkOut.isBefore(LocalDate.now())) {
+//                    List<Booking> expiredBookings = userDTO.getExpiredBookings();
+//                    expiredBookings.add(booking);
+//                    activeBookings.remove(booking);
+//                }
+//            });
+//        } else {
+//            LOGGER.info("No active bookings found");
+//        }
+//        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
+//    }
 
 
 //    public List<Booking> getActiveBookings() {
@@ -159,7 +203,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO convertToDTO(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
+        userDTO.setUuid(user.getUuid());
         userDTO.setEmail(user.getEmail());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());

@@ -21,7 +21,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                         authorizeRequests -> authorizeRequests
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/user/account", "/book-now", "/logout").authenticated()
+                                .requestMatchers("/user/account", "/book-now", "/bookings/user", "/logout").authenticated()
                                 .requestMatchers("/", "/gallery", "/services", "/info", "/prices", "/login", "/register", "/login-error").permitAll()
                                 .requestMatchers("/admin/", "/admin/users/all", "bookings", "/bookings/all", "/bookings/delete/{id}").hasRole("ADMIN")
                                 .anyRequest()
@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                                 .loginPage("/login")
                                 .usernameParameter("email")
                                 .passwordParameter("password")
-                                .defaultSuccessUrl("/user/bookings", true)
+                                .defaultSuccessUrl("/bookings/user", true)
                                 .failureForwardUrl("/login-error"))
 
                 .logout(logout ->

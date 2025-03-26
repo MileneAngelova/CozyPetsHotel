@@ -23,7 +23,7 @@
     <p th:text="${userData.firstName}"></p>
 </div>
 <div class="profile-content"
-     th:action="@{/user/bookings}"
+     th:action="@{/bookings/user}"
      th:object="${userData}">
     <aside class="content-left">
         <section class="profile">
@@ -49,7 +49,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="booking : *{activeBookings}">
+            <tr th:each="booking : ${myBookings}">
                 <td th:text="${booking.id}"></td>
                 <td th:text="${booking.checkIn}"></td>
                 <td th:text="${booking.checkOut}"></td>
@@ -59,7 +59,7 @@
                 <td class="requirements" th:text="${booking.additionalInformation}"></td>
                 <td>
                     <form th:method="delete"
-                          th:action="@{/bookings/delete/{id}(id = *{id})}">
+                          th:action="@{/bookings/delete/{id}(id = ${booking.id})}">
                         <input sec:authorize="isAuthenticated()"
                                class="btn btn-link"
                                type="submit"

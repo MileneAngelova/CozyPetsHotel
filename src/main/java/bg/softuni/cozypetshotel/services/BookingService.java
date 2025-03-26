@@ -18,11 +18,15 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class BookingService {
@@ -59,14 +63,15 @@ public class BookingService {
 
 //            byEmail.get().getActiveBookings().add(this.modelMapper.map(addBookingDTO, Booking.class));
 //            this.userRepository.save(this.modelMapper.map(byEmail, User.class));
-            this.userService.updateBookings(this.modelMapper.map(byEmail, UserDTO.class));
+
+//            this.userService.updateBookings(this.modelMapper.map(byEmail, UserDTO.class));
         }
     }
 
     public void cancelBooking(Long id) {
         bookingsRestClient
                 .delete()
-                .uri("/bookings/delete/{id}")
+                .uri("/bookings/delete/{id}", id)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {
@@ -95,19 +100,21 @@ public class BookingService {
                 .setPetType(addBookingDTO.getPetType());
     }
 
-//    public List<BookingDTO> getAllBookings() {
-//        LOGGER.info("Getting all bookings...");
-//
-//        return bookingsRestClient
-//                .get()
-//                .uri("/bookings")
-//                .accept(MediaType.APPLICATION_JSON)
-//                .retrieve()
-//                .body(new ParameterizedTypeReference<>(){});
-//    }
+    public List<BookingDTO> getUserBookings(String email) {
+        LOGGER.info("Getting user bookings...");
+        getAuthentication();
+
+        return bookingsRestClient
+                .get()
+                .uri("/bookings/user")
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .body(new ParameterizedTypeReference<>() {
+                });
+    }
 
     public Page<BookingDTO> getAllBookings(Pageable pageable) {
-        PageResponse<BookingDTO> offers = bookingsRestClient
+        PageResponse<BookingDTO> bookings = bookingsRestClient
                 .get()
                 .uri("/bookings/all?page={page}&size={size}&sort=id,desc",
                         pageable.getPageNumber(),
@@ -118,8 +125,19 @@ public class BookingService {
                 .body(new ParameterizedTypeReference<>() {
                 });
 
-        assert offers != null;
+        assert bookings != null;
 
-        return new PageImpl<>(offers.getContent(), pageable, offers.getPage().totalElements());
+        return new PageImpl<>(bookings.getContent(), pageable, bookings.getPage().totalElements());
+    }
+
+    private void getAuthentication() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails principal = (UserDetails) authentication.getPrincipal();
+        Optional<User> user = userRepository.findByEmail(principal.getUsername());
+        if (user.isPresent()) {
+            if (!user.get().isActive()) {
+                throw new RuntimeException("User is disabled");
+            }
+        }
     }
 }

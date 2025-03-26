@@ -25,6 +25,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -60,7 +61,7 @@ public class UserServiceImplTest {
     @BeforeEach
     void setUp() {
         toTest = new UserServiceImpl(
-                mockedUserRepository,
+              mockedUserRepository,
                 mockRoleRepository,
                 new ModelMapper(),
                 mockedPasswordEncoder);
@@ -147,6 +148,7 @@ public class UserServiceImplTest {
 
     @Test
     public void testEditEmail_Success() {
+//        UUID userId = UUID.randomUUID();
         Random random = new Random();
         Long userId = random.nextLong();
         String newEmail = TEST_EMAIL;
@@ -163,6 +165,7 @@ public class UserServiceImplTest {
 
     @Test
     public void testEditEmail_UserNotFound() {
+//        UUID userId = UUID.randomUUID();
         Random random = new Random();
         Long userId = random.nextLong();
 
@@ -185,26 +188,27 @@ public class UserServiceImplTest {
         when(mockedPasswordEncoder.matches("1234", "encodedOldPassword")).thenReturn(true);
         when(mockedPasswordEncoder.encode("123456")).thenReturn("encodedNewPassword");
 
-        when(mockedUserRepository.findById(user.getId())).thenReturn(Optional.of(user));
+        when(mockedUserRepository.findById(user.getId()).orElseThrow());
         when(mockedUserRepository.save(user)).thenReturn(user);
 
         toTest.editPassword(user.getId(), "1234", "123456");
 
         verify(mockedPasswordEncoder).matches("1234", "encodedOldPassword");
         verify(mockedPasswordEncoder).encode("123456");
-        Assertions.assertEquals("encodedNewPassword", user.getPassword());
+        assertEquals("encodedNewPassword", user.getPassword());
         verify(mockedUserRepository).save(user);
     }
 
     @Test
     public void testEditPassword_IncorrectCurrentPassword() {
+//        UUID userId = UUID.randomUUID();
         Random random = new Random();
         Long userId = random.nextLong();
         String currentPassword = "wrongPassword";
         String newPassword = "newPassword";
 
         User user = new User();
-        user.setId(userId);
+//        user.setUuid(userId);
         user.setPassword(mockedPasswordEncoder.encode("correctPassword"));
 
         when(mockedUserRepository.findById(userId)).thenReturn(Optional.of(user));
@@ -217,8 +221,10 @@ public class UserServiceImplTest {
 
     @Test
     public void testEditPassword_UserNotFound() {
+//        UUID userId = UUID.randomUUID();
         Random random = new Random();
         Long userId = random.nextLong();
+
         String currentPassword = "correctPassword";
         String newPassword = "newPassword";
 
@@ -231,6 +237,7 @@ public class UserServiceImplTest {
 
     @Test
     public void testEditUsername_Success() {
+//        UUID userId = UUID.randomUUID();
         Random random = new Random();
         Long userId = random.nextLong();
         String newUsername = "newUsername";
@@ -247,6 +254,7 @@ public class UserServiceImplTest {
 
     @Test
     public void editLastName() {
+//        UUID userId = UUID.randomUUID();
         Random random = new Random();
         Long userId = random.nextLong();
         String newLastName = "newLastName";
@@ -263,6 +271,7 @@ public class UserServiceImplTest {
 
     @Test
     public void editContactNumber() {
+//        UUID userId = UUID.randomUUID();
         Random random = new Random();
         Long userId = random.nextLong();
         String newContactNumber = "newContactNumber";

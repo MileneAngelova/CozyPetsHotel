@@ -2,6 +2,7 @@ package bg.softuni.cozypetshotel.models.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.*;
 import static java.sql.Types.VARCHAR;
@@ -12,7 +13,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @UUIDSequence
+    @UuidGenerator
     @JdbcTypeCode(VARCHAR)
     private UUID uuid;
 
@@ -53,10 +54,11 @@ public class User {
         this.roles = new HashSet<>();
         this.activeBookings = new ArrayList<>();
         this.isActive = true;
-    }    public Long getId() {
-        return id;
     }
 
+    public Long getId() {
+        return id;
+    }
 
     public User setId(Long id) {
         this.id = id;

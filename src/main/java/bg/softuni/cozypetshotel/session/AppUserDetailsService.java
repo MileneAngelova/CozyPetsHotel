@@ -33,7 +33,8 @@ public class AppUserDetailsService implements UserDetailsService {
                 user.getPassword(),
                 user.getRoles().stream().map(Role::getRole).map(AppUserDetailsService::map).toList(),
                 user.getFirstname(),
-                user.getLastName()
+                user.getLastName(),
+                user.getActiveBookings()
         );
     }
 

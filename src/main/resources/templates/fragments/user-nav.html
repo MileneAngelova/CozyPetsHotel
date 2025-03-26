@@ -1,13 +1,14 @@
-<nav class="menu">
+<nav class="menu"
+     xmlns:th="http://www.thymeleaf.org">
   <ul>
     <li>
-      <a href="/user/bookings">My bookings</a>
+      <a th:href="@{/bookings/user}">My bookings</a>
     </li>
     <li>
-      <a href="/user/account">Profile info</a>
+      <a th:href="@{/user/account}">Profile info</a>
     </li>
     <li>
-      <a href="/user/settings">Settings</a>
+      <a th:href="@{/user/settings}">Settings</a>
     </li>
     <li class="book">
       <a class="book-now" th:href="@{/book-now}">Book now</a>

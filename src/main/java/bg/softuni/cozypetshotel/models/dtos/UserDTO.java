@@ -11,9 +11,11 @@ import jakarta.validation.constraints.Size;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public class UserDTO {
     private Long id;
+    private UUID uuid;
     private String firstName;
     @Size(min = 2, max = 50)
     private String lastName;
@@ -35,8 +37,13 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public Long getId() {
-        return id;
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public UserDTO setUuid(UUID uuid) {
+        this.uuid = uuid;
+        return this;
     }
 
     public String getFirstName() {
@@ -102,11 +109,6 @@ public class UserDTO {
         return this;
     }
 
-    public UserDTO setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
     public List<Booking> getActiveBookings() {
         return activeBookings;
     }
@@ -131,6 +133,15 @@ public class UserDTO {
 
     public UserDTO setActive(boolean active) {
         isActive = active;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public UserDTO setId(Long id) {
+        this.id = id;
         return this;
     }
 }

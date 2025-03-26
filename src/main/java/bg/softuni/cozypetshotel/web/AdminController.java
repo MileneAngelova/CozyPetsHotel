@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 //@RequestMapping("/admin")
@@ -71,11 +72,11 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/users/all")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String getAllPages(Model model) {
-        return getOnePage(model, 1);
-    }
+//    @GetMapping("/admin/users/all")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    public String getAllPages(Model model) {
+//        return getOnePage(model, 1);
+//    }
 
     //    @Transactional
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -116,7 +117,7 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/bookings/all")
-    public String getAllBookings(Model model, @PageableDefault(size = 3, sort = "id") Pageable pageable, @AuthenticationPrincipal AppUserDetails appUserDetails) {
+    public String getAllBookings(Model model, @PageableDefault(size = 5, sort = "id") Pageable pageable, @AuthenticationPrincipal AppUserDetails appUserDetails) {
         Page<BookingDTO> allBookings = bookingService.getAllBookings(pageable);
         model.addAttribute("allBookings", allBookings);
         return "admin_bookings-all";

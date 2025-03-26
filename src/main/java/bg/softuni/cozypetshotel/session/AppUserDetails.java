@@ -1,20 +1,24 @@
 package bg.softuni.cozypetshotel.session;
 
+import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
+import bg.softuni.cozypetshotel.models.entities.Booking;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public class AppUserDetails extends User {
     private final UUID uuid;
     private String firstName;
     private String lastName;
+    private List<BookingDTO> bookings;
 
     public AppUserDetails(UUID uuid, String email, String password,
                           Collection<? extends GrantedAuthority> authorities,
                           String firstName,
-                          String lastName) {
+                          String lastName, List<Booking> activeBookings) {
         super(email, password, authorities);
         this.uuid = uuid;
         this.firstName = firstName;
@@ -57,5 +61,14 @@ public class AppUserDetails extends User {
         }
 
         return fullName.toString();
+    }
+
+    public List<BookingDTO> getBookings() {
+        return bookings;
+    }
+
+    public AppUserDetails setBookings(List<BookingDTO> bookings) {
+        this.bookings = bookings;
+        return this;
     }
 }
