@@ -22,8 +22,11 @@
               th:method="post">
             <div class="content-left">
                 <h3>Enter your details below: <br><br></h3>
+                <div th:if="${disabled}" class="alert text-danger">
+                    <p th:text="${disabled}"></p>
+                </div>
                 <div th:if="${loginError}" class="alert text-danger">
-                    <p th:text="${loginError}"></p>
+                    <small th:text="${loginError}"></small>
                 </div>
                 <div class="group">
                     <label for="email" class="text-white font-weight-bold">Email: </label>

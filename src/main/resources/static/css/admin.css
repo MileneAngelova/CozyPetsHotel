@@ -10,6 +10,11 @@ body {
 
 }
 
+.table-responsive {
+    width: 90%;
+    overflow: auto;
+}
+
 .buttons .show {
     width: 12%;
     border-color: rgba(255, 255, 255, 0);

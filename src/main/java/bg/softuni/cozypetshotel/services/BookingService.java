@@ -100,13 +100,13 @@ public class BookingService {
                 .setPetType(addBookingDTO.getPetType());
     }
 
-    public List<BookingDTO> getUserBookings(String email) {
+    public List<BookingDTO> getUserBookings(UUID uuid) {
         LOGGER.info("Getting user bookings...");
         getAuthentication();
 
         return bookingsRestClient
                 .get()
-                .uri("/bookings/user")
+                .uri("/bookings/user", uuid)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {

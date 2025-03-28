@@ -148,15 +148,14 @@ public class UserServiceImplTest {
 
     @Test
     public void testEditEmail_Success() {
-//        UUID userId = UUID.randomUUID();
-        Random random = new Random();
-        Long userId = random.nextLong();
+        User user = new User();
+        String email = user.getEmail();
         String newEmail = TEST_EMAIL;
 
-        when(mockedUserRepository.findById(userId)).thenReturn(Optional.of(new User()));
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.of(new User()));
         when(mockedUserRepository.findByEmail(newEmail)).thenReturn(Optional.empty());
 
-        toTest.editEmail(userId, newEmail);
+        toTest.editEmail(email, newEmail);
 
         verify(mockedUserRepository).save(userCaptor.capture());
         User savedUser = userCaptor.getValue();
@@ -166,21 +165,21 @@ public class UserServiceImplTest {
     @Test
     public void testEditEmail_UserNotFound() {
 //        UUID userId = UUID.randomUUID();
-        Random random = new Random();
-        Long userId = random.nextLong();
+//        Random random = new Random();
+//        Long userId = random.nextLong();
 
-        when(mockedUserRepository.findById(userId)).thenReturn(Optional.empty());
+        User user = new User();
+        String email = user.getEmail();
 
-        Assertions.assertThrows(UsernameNotFoundException.class, () -> toTest.editEmail(userId, TEST_EMAIL));
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(UsernameNotFoundException.class, () -> toTest.editEmail(email, TEST_EMAIL));
     }
 
     @Test
     public void testEditPassword_Success() {
-        Random random = new Random();
-        Long userId = random.nextLong();
         User user = new User();
         user.setEmail(TEST_EMAIL);
-        user.setId(userId);
         user.setFirstName("Petar");
         user.setLastName("Petrov");
         user.setPassword("encodedOldPassword");
@@ -188,10 +187,10 @@ public class UserServiceImplTest {
         when(mockedPasswordEncoder.matches("1234", "encodedOldPassword")).thenReturn(true);
         when(mockedPasswordEncoder.encode("123456")).thenReturn("encodedNewPassword");
 
-        when(mockedUserRepository.findById(user.getId()).orElseThrow());
+        when(mockedUserRepository.findById(user.getUuid())).thenThrow();
         when(mockedUserRepository.save(user)).thenReturn(user);
 
-        toTest.editPassword(user.getId(), "1234", "123456");
+        toTest.editPassword(user.getEmail(), "1234", "123456");
 
         verify(mockedPasswordEncoder).matches("1234", "encodedOldPassword");
         verify(mockedPasswordEncoder).encode("123456");
@@ -201,88 +200,79 @@ public class UserServiceImplTest {
 
     @Test
     public void testEditPassword_IncorrectCurrentPassword() {
-//        UUID userId = UUID.randomUUID();
-        Random random = new Random();
-        Long userId = random.nextLong();
         String currentPassword = "wrongPassword";
         String newPassword = "newPassword";
 
         User user = new User();
-//        user.setUuid(userId);
+        String email = user.getEmail();
+        user.setEmail(email);
         user.setPassword(mockedPasswordEncoder.encode("correctPassword"));
 
-        when(mockedUserRepository.findById(userId)).thenReturn(Optional.of(user));
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.of(user));
         when(mockedPasswordEncoder.matches(currentPassword, user.getPassword())).thenReturn(false);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            toTest.editPassword(userId, currentPassword, newPassword);
+            toTest.editPassword(email, currentPassword, newPassword);
         });
     }
 
     @Test
     public void testEditPassword_UserNotFound() {
-//        UUID userId = UUID.randomUUID();
-        Random random = new Random();
-        Long userId = random.nextLong();
+        User user = new User();
+        String email = user.getEmail();
+        user.setEmail(email);
 
         String currentPassword = "correctPassword";
         String newPassword = "newPassword";
 
-        when(mockedUserRepository.findById(userId)).thenReturn(Optional.empty());
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(UsernameNotFoundException.class, () -> {
-            toTest.editPassword(userId, currentPassword, newPassword);
+            toTest.editPassword(email, currentPassword, newPassword);
         });
     }
 
     @Test
     public void testEditUsername_Success() {
-//        UUID userId = UUID.randomUUID();
-        Random random = new Random();
-        Long userId = random.nextLong();
         String newUsername = "newUsername";
 
         User user = new User();
-        user.setId(userId);
+        String email = user.getEmail();
         user.setUsername(newUsername);
 
-        when(mockedUserRepository.findById(userId)).thenReturn(Optional.of(new User()));
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.of(new User()));
 
-        toTest.editUsername(userId, newUsername);
+        toTest.editUsername(email, newUsername);
         assertEquals(newUsername, user.getUsername());
     }
 
     @Test
     public void editLastName() {
-//        UUID userId = UUID.randomUUID();
-        Random random = new Random();
-        Long userId = random.nextLong();
         String newLastName = "newLastName";
 
         User user = new User();
-        user.setId(userId);
+        String email = user.getEmail();
+        user.setEmail(email);
         user.setLastName(newLastName);
 
-        when(mockedUserRepository.findById(userId)).thenReturn(Optional.of(new User()));
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.of(new User()));
 
-        toTest.editLastName(userId, newLastName);
+        toTest.editLastName(email, newLastName);
         assertEquals(newLastName, user.getLastName());
     }
 
     @Test
     public void editContactNumber() {
-//        UUID userId = UUID.randomUUID();
-        Random random = new Random();
-        Long userId = random.nextLong();
         String newContactNumber = "newContactNumber";
 
         User user = new User();
-        user.setId(userId);
+        String email = user.getEmail();
+        user.setEmail(email);
         user.setContactNumber(newContactNumber);
 
-        when(mockedUserRepository.findById(userId)).thenReturn(Optional.of(new User()));
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.of(new User()));
 
-        toTest.editLastName(userId, newContactNumber);
+        toTest.editLastName(email, newContactNumber);
         assertEquals(newContactNumber, user.getContactNumber());
     }
 }

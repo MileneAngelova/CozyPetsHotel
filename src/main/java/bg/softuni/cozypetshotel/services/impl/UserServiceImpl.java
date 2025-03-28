@@ -146,18 +146,18 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public void editEmail(Long id, String newEmail) {
+    public void editEmail(String email, String newEmail) {
         if (userRepository.findByEmail(newEmail).isPresent()) {
             throw new IllegalArgumentException(("User with email " + newEmail + " already exists!"));
         }
-        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         user.setEmail(newEmail);
         userRepository.save(user);
     }
 
     @Override
-    public void editPassword(Long userId, String currentPassword, String newPassword) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+    public void editPassword(String email, String currentPassword, String newPassword) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
             throw new IllegalArgumentException("Incorrect password!");
         }
@@ -166,12 +166,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUsername(Long id, String username) {
-        if (this.userRepository.findById(id).isEmpty()) {
+    public void editUsername(String email, String username) {
+        if (this.userRepository.findByEmail(email).isEmpty()) {
             throw new IllegalArgumentException("User not found!");
         }
 
-        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
 
         if (this.userRepository.findByUsername(username).isPresent()) {
             throw new IllegalArgumentException("username is already taken!");
@@ -181,21 +181,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editLastName(Long userId, String newLastName) {
-        if (this.userRepository.findById(userId).isEmpty()) {
+    public void editLastName(String email, String newLastName) {
+        if (this.userRepository.findByEmail(email).isEmpty()) {
             throw new IllegalArgumentException("User not found!");
         }
-        User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         user.setLastName(newLastName);
         userRepository.save(user);
     }
 
     @Override
-    public void editContactNumber(Long userId, String newContactNumber) {
-        if (this.userRepository.findById(userId).isEmpty()) {
+    public void editContactNumber(String email, String newContactNumber) {
+        if (this.userRepository.findByEmail(email).isEmpty()) {
             throw new IllegalArgumentException("User not found!");
         }
-        User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         user.setContactNumber(newContactNumber);
         userRepository.save(user);
     }

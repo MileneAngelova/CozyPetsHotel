@@ -64,8 +64,8 @@ public class AdminService {
                 });
     }
 
-    public void addRoleAdminToUser(Long id) {
-        User user = userRepository.findById(id)
+    public void addRoleAdminToUser(String email) {
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
         Role roleAdmin = roleRepository.findByRole(RoleNameEnum.ADMIN);
 
@@ -76,26 +76,32 @@ public class AdminService {
         this.userRepository.save(user);
     }
 
-    public void removeRoleAdminFromUser(Long id) {
-        User user = userRepository.findById(id)
+    public void removeRoleAdminFromUser(String email) {
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
         Set<Role> roles = user.getRoles();
         roles.removeIf(role -> role.getId() == 1);
     }
 
-    public void activateUserAccount(Long id) {
-        userRepository.findById(id)
+    public void activateUserAccount(String email) {
+        userRepository.findByEmail(email)
                 .ifPresent(user -> {
+                    String userEmail = user.getEmail();
+                    if (userEmail.contains("disabled")) {
+                        user.setEmail(userEmail.substring(0, userEmail.length() - 8));
+                    }
                     user.setActive(true);
                     userRepository.save(user);
                 });
     }
 
-    public void blockUser(Long id) {
-        userRepository.findById(id)
-                .ifPresent(userEntity -> {
-                    userEntity.setActive(false);
-                    userRepository.save(userEntity);
+    public void blockUser(String email) {
+        userRepository.findByEmail(email)
+                .ifPresent(user -> {
+                    String userEmail = user.getEmail();
+                    user.setActive(false);
+                    user.setEmail(userEmail + "disabled");
+                    userRepository.save(user);
                 });
     }
 }

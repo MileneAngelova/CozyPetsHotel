@@ -3,6 +3,7 @@ package bg.softuni.cozypetshotel.models.entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import static java.sql.Types.VARCHAR;
@@ -10,9 +11,17 @@ import static java.sql.Types.VARCHAR;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+@Id
+@GeneratedValue(generator = "UUID")
+@Column(name = "id",
+        columnDefinition = "BINARY(16)",
+        unique = true,
+        updatable = false,
+        nullable = false)
+    private UUID id;
     @UuidGenerator
     @JdbcTypeCode(VARCHAR)
     private UUID uuid;
@@ -56,14 +65,23 @@ public class User {
         this.isActive = true;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public User setId(Long id) {
+    public User setId(UUID id) {
         this.id = id;
         return this;
     }
+
+    //    public Long getId() {
+//        return id;
+//    }
+//
+//    public User setId(Long id) {
+//        this.id = id;
+//        return this;
+//    }
 
     public UUID getUuid() {
         return uuid;

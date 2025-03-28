@@ -74,7 +74,7 @@ public class UserPageController {
         UserDTO userDTO = userService.findByEmail(userDetails.getUsername());
 
         try {
-            userService.editEmail(userDTO.getId(), email);
+            userService.editEmail(userDTO.getEmail(), email);
             redirectAttributes.addFlashAttribute("message", "The email was successfully updated.");
         return "redirect:/user/settings";
         } catch (IllegalArgumentException e) {
@@ -91,7 +91,7 @@ public class UserPageController {
         UserDTO userDTO = userService.findByEmail(userDetails.getUsername());
 
         try {
-            userService.editPassword(userDTO.getId(), currentPassword, newPassword);
+            userService.editPassword(userDTO.getEmail(), currentPassword, newPassword);
             redirectAttributes.addFlashAttribute("message", "The password was successfully updated.");
             return "redirect:/user/settings";
         } catch (IllegalArgumentException e) {
@@ -107,7 +107,7 @@ public class UserPageController {
         UserDTO userDTO = userService.findByEmail(userDetails.getUsername());
 
         try {
-            userService.editUsername(userDTO.getId(), username);
+            userService.editUsername(userDTO.getEmail(), username);
             redirectAttributes.addFlashAttribute("message", "The username was successfully updated.");
             return "redirect:/user/settings";
         } catch (IllegalArgumentException e) {
@@ -123,7 +123,7 @@ public class UserPageController {
         UserDTO userDTO = userService.findByEmail(userDetails.getUsername());
 
                 try {
-            userService.editContactNumber(userDTO.getId(), contactNumber);
+            userService.editContactNumber(userDTO.getEmail(), contactNumber);
             redirectAttributes.addFlashAttribute("message", "The contact number is successfully updated.");
             return "redirect:/user/settings";
         } catch (IllegalArgumentException e) {
@@ -139,7 +139,7 @@ public class UserPageController {
         UserDTO userDTO = userService.findByEmail(userDetails.getUsername());
 
         try {
-            userService.editLastName(userDTO.getId(), lastName);
+            userService.editLastName(userDTO.getEmail(), lastName);
             redirectAttributes.addFlashAttribute("message", "Your last name is successfully updated.");
             return "redirect:/user/settings";
         } catch (IllegalArgumentException e) {

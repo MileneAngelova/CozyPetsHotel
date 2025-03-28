@@ -80,9 +80,9 @@ public class AdminController {
 
     //    @Transactional
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PatchMapping("/admin/users/activate/{id}")
-    public String activateUserAccount(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-        adminService.activateUserAccount(id);
+    @PatchMapping("/admin/users/activate/{email}")
+    public String activateUserAccount(@PathVariable("email") String email, RedirectAttributes redirectAttributes) {
+        adminService.activateUserAccount(email);
         String successMessage = "User activated";
         redirectAttributes.addFlashAttribute("successMessage", successMessage);
 
@@ -90,28 +90,28 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping("/admin/users/deactivate/{id}")
-    public String blockUserAccount(@PathVariable Long id,
+    @PostMapping("/admin/users/deactivate/{email}")
+    public String blockUserAccount(@PathVariable String email,
                                    RedirectAttributes redirectAttributes) {
-        adminService.blockUser(id);
+        adminService.blockUser(email);
         String successMessage = "The user was disabled.";
         redirectAttributes.addFlashAttribute("successMessage", successMessage);
         return "redirect:/admin";
     }
 
 
+    @PostMapping("/admin/users/promote/{email}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping("/admin/users/promote/{id}")
-    public String promoteUser(@PathVariable("id") Long id) {
-        adminService.addRoleAdminToUser(id);
+    public String promoteUser(@PathVariable("email") String email) {
+        adminService.addRoleAdminToUser(email);
         return "redirect:/admin";
     }
 
+    @PostMapping("/admin/users/demote/{email}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping("/admin/users/demote/{id}")
     @Transactional
-    public String demoteUser(@PathVariable("id") Long id) {
-        adminService.removeRoleAdminFromUser(id);
+    public String demoteUser(@PathVariable("email") String email) {
+        adminService.removeRoleAdminFromUser(email);
         return "redirect:/admin";
     }
 

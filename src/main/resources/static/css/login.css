@@ -94,6 +94,12 @@ nav {
 
 .text-danger p {
     font-size: 21px;
-    color: #640303;
     font-weight: 700;
+    color: #640303;
+}
+
+.text-danger small {
+    font-size: 21px;
+    font-weight: 700;
+    color: #c97f10;
 }

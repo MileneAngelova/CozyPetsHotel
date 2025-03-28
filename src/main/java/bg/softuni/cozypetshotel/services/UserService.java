@@ -25,25 +25,20 @@ public interface UserService {
 
 //    public List<Booking> getActiveBookings();
 
-    public void editEmail(Long id, String newEmail);
+    public void editEmail(String email, String newEmail);
 
-    public void editPassword(Long userId, String currentPassword, String newPassword);
+    public void editPassword(String email, String currentPassword, String newPassword);
 
-    public void editUsername(Long id, String username);
+    public void editUsername(String email, String username);
 
-    public void editLastName(Long userId, String lastName);
+    public void editLastName(String email, String lastName);
 
-    public void editContactNumber(Long userId, String contactNumber);
+    public void editContactNumber(String email, String contactNumber);
     public UserDTO convertToDTO(User user);
 
 //    public void deleteActiveBooking(Long bookingId, UserDTO userDTO);
 //    public void cancelBooking(Long bookingId);
 //    List<UserDTO> findAllUsers();
 //
-//    void disableUser(Long userId);
-//
-//    void enableUser(Long userId);
-//
-//    Optional<User> findById(Long userId);
 }
 

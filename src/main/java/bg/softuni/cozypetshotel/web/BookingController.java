@@ -59,28 +59,13 @@ public class BookingController {
     }
 
     @GetMapping("/bookings/user")
-    public String getUserBookings(Model model, Principal principal) {
-        List<BookingDTO> userBookings = bookingService.getUserBookings(principal.getName());
-        UserDTO byEmail = userService.findByEmail(principal.getName());
+    public String getUserBookings(Model model, @AuthenticationPrincipal AppUserDetails appUserDetails) {
+        List<BookingDTO> userBookings = bookingService.getUserBookings(appUserDetails.getUuid());
+        UserDTO byEmail = userService.findByEmail(appUserDetails.getUsername());
         model.addAttribute("myBookings", userBookings);
         model.addAttribute("userData", byEmail);
         return "user-bookings";
     }
-
-
-//    @GetMapping("/bookings/user/{userId}")
-//    public String userBookings(Model model, @AuthenticationPrincipal UserDetails userDetails, @PathVariable ("userId") UUID userId) {
-//        String email = userDetails.getUsername();
-//        UserDTO user = userService.findByEmail(email);
-//
-//        if (!model.containsAttribute("myBookings")) {
-//            model.addAttribute("myBookings", this.bookingService.getUserBookings(userId));
-//            model.addAttribute("userData", user);
-//            return "user-bookings";
-//        }
-//        return "user-bookings";
-//    }
-
 
 
     //    @Transactional

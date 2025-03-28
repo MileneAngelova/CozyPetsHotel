@@ -38,33 +38,38 @@
         </thead>
         <tbody class="table-group-divider">
         <tr th:each="user : ${allUsers}" th:action="@{/admin/users/all}">
-            <td class="align-middle col-md-auto" th:text="${user.id}">User id</td>
+            <td class="align-middle col-md-auto" th:text="${user.uuid}">User id</td>
             <td class="align-middle col-md-auto" th:text="${user.username}">Username</td>
             <td class="align-middle col-md-3" th:text="${user.email}">User email</td>
             <td class="align-middle col-md-auto" th:text="${user.firstName}">User first name</td>
             <td class="align-middle col-md-auto" th:text="${user.lastName}">User last name</td>
             <td class="align-middle col-md-auto" th:text="${user.isActive}">Is active</td>
-            <td class="align-middle col-md-auto" th:each="role : ${user.roles}" th:text="${role.role.name()}">User roles</td>>
+            <td class="align-middle col-md-auto">
+                <small th:each="role : ${user.roles}" th:text="${role.role.name()}">
+                    User roles
+                </small>
+            </td>
+            >
             <td class="align-middle col-md-auto" th:if="${user.roles.size() == 1}">
                 <form th:method="post"
-                      th:action="@{/admin/users/promote/{id}(id=${user.id})}">
+                      th:action="@{/admin/users/promote/{email}(email=${user.email})}">
                     <input type="submit" value="Promote" class="btn btn-outline-success">
                 </form>
             </td>
             <td class="align-middle col-md-auto" th:if="${user.roles.size()} == 2">
                 <form th:method="post"
-                      th:action="@{/admin/users/demote/{id}(id=${user.id})}">
+                      th:action="@{/admin/users/demote/{email}(email=${user.email})}">
                     <input type="submit" value="Demote" class="btn btn-outline-warning">
                 </form>
             <td class="align-middle col-md-auto" th:if="${user.isActive()}">
                 <form th:method="post"
-                      th:action="@{/admin/users/deactivate/{id}(id = ${user.id})}">
+                      th:action="@{/admin/users/deactivate/{email}(email=${user.email})}">
                     <input type="submit" value="Deactivate user" class="btn btn-outline-danger">
                 </form>
             </td>
             <td class="align-middle col-md-auto" th:unless="${user.isActive()}">
                 <form th:method="patch"
-                      th:action="@{/admin/users/activate/{id}(id=${user.id})}">
+                      th:action="@{/admin/users/activate/{email}(email=${user.email})}">
                     <input type="submit" value="Activate user" class="btn btn-outline-success">
                 </form>
             </td>
@@ -72,33 +77,30 @@
         </tbody>
     </table>
 
-<nav aria-label="file-pages">
-    <ul class="pagination justify-content-center">
-        <li class="page-item">
-            <a class="page-link" th:href="@{/admin/users/all}">First</a>
-        </li>
-        <li class="page-item" th:if="${currentPage > 1}">
-            <a class="page-link" th:href="@{'/admin/users/all/' + ${currentPage - 1}}">Previous</a>
-        </li>
-<!--        <li class="page-item" th:each="page : ${#numbers.sequence(1, totalPages)}">-->
-<!--            <a class="page-link" th:href="@{'/admin/users/all/' + ${page}}">[[${page}]]</a>-->
-<!--        </li>-->
-        <li class="page-item" th:if="${currentPage < totalPages}">
-            <a class="page-link" th:href="@{'/admin/users/all/' + ${currentPage + 1}}">Next</a>
-        </li>
-        <li class="page-item" th:if="${currentPage < totalPages}">
-            <a class="page-link" th:href="@{'/admin/users/all/' + ${totalPages}}">Last</a>
-        </li>
-    </ul>
-    <p class="text-center">Total users found: [[${totalUsers}]] : Page [[${currentPage}]] of [[${totalPages}]]</p></nav>
-
-    <footer>
+    <nav aria-label="file-pages">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" th:href="@{/admin/users/all}">First</a>
+            </li>
+            <li class="page-item" th:if="${currentPage > 1}">
+                <a class="page-link" th:href="@{'/admin/users/all/' + ${currentPage - 1}}">Previous</a>
+            </li>
+            <li class="page-item" th:each="page : ${totalPages}">
+                <a class="page-link" th:href="@{'/admin/users/all/' + ${page}}">[[${page}]]</a>
+            </li>
+            <li class="page-item" th:if="${currentPage < totalPages}">
+                <a class="page-link" th:href="@{'/admin/users/all/' + ${currentPage + 1}}">Next</a>
+            </li>
+            <li class="page-item" th:if="${currentPage < totalPages}">
+                <a class="page-link" th:href="@{'/admin/users/all/' + ${totalPages}}">Last</a>
+            </li>
+        </ul>
+        <p class="text-center">Total users found: [[${totalUsers}]] : Page [[${currentPage}]] of [[${totalPages}]]</p>
+    </nav>
+</div>
+<footer>
     <th:block th:replace="~{fragments/footer::footer}"></th:block>
 </footer>
-<div class="scroll-to-top" id="scrollToTop">
-    <i class="fas fa-arrow-up"></i>
-</div>
-</div>
 
 </body>
 </html>
