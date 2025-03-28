@@ -61,7 +61,7 @@ public class AdminController {
     public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage) {
         Page<UserViewModel> page = adminService.findPage(currentPage);
         int totalPages = page.getTotalPages();
-        long totalUsers = userRepository.count();
+        Long totalUsers = page.getTotalElements();
         List<UserViewModel> users = page.getContent();
         currentPageOn = currentPage;
         model.addAttribute("currentPage", currentPage);
@@ -72,11 +72,11 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-//    @GetMapping("/admin/users/all")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-//    public String getAllPages(Model model) {
-//        return getOnePage(model, 1);
-//    }
+    @GetMapping("/admin/users/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String getAllPages(Model model) {
+        return getOnePage(model, 1);
+    }
 
     //    @Transactional
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")

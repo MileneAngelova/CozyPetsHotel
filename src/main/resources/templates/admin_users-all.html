@@ -25,7 +25,7 @@
     <table class="table table-hover table-bordered">
         <thead>
         <tr>
-            <th class="align-middle" scope="col">ID</th>
+            <th class="align-middle" scope="col">User id</th>
             <th class="align-middle" scope="col">Username</th>
             <th class="align-middle" scope="col">Email</th>
             <th class="align-middle" scope="col">First name</th>
@@ -45,11 +45,10 @@
             <td class="align-middle col-md-auto" th:text="${user.lastName}">User last name</td>
             <td class="align-middle col-md-auto" th:text="${user.isActive}">Is active</td>
             <td class="align-middle col-md-auto">
-                <small th:each="role : ${user.roles}" th:text="${role.role.name()}">
-                    User roles
+                <small th:each="role : ${user.roles}">
+                    <small th:text="${role.role.name()}"></small>
                 </small>
             </td>
-            >
             <td class="align-middle col-md-auto" th:if="${user.roles.size() == 1}">
                 <form th:method="post"
                       th:action="@{/admin/users/promote/{email}(email=${user.email})}">
@@ -77,26 +76,26 @@
         </tbody>
     </table>
 
-    <nav aria-label="file-pages">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" th:href="@{/admin/users/all}">First</a>
-            </li>
-            <li class="page-item" th:if="${currentPage > 1}">
-                <a class="page-link" th:href="@{'/admin/users/all/' + ${currentPage - 1}}">Previous</a>
-            </li>
-            <li class="page-item" th:each="page : ${totalPages}">
-                <a class="page-link" th:href="@{'/admin/users/all/' + ${page}}">[[${page}]]</a>
-            </li>
-            <li class="page-item" th:if="${currentPage < totalPages}">
-                <a class="page-link" th:href="@{'/admin/users/all/' + ${currentPage + 1}}">Next</a>
-            </li>
-            <li class="page-item" th:if="${currentPage < totalPages}">
-                <a class="page-link" th:href="@{'/admin/users/all/' + ${totalPages}}">Last</a>
-            </li>
-        </ul>
-        <p class="text-center">Total users found: [[${totalUsers}]] : Page [[${currentPage}]] of [[${totalPages}]]</p>
-    </nav>
+<!--    <nav aria-label="file-pages">-->
+<!--        <ul class="pagination justify-content-center">-->
+<!--            <li class="page-item">-->
+<!--                <a class="page-link" th:href="@{/admin/users/all}">First</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:if="${currentPage > 1}">-->
+<!--                <a class="page-link" th:href="@{'/admin/users/all/' + ${currentPage - 1}}">Previous</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:each="page : ${totalPages}">-->
+<!--                <a class="page-link" th:href="@{'/admin/users/all/' + ${page}}">[[${page}]]</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:if="${currentPage < totalPages}">-->
+<!--                <a class="page-link" th:href="@{'/admin/users/all/' + ${currentPage + 1}}">Next</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:if="${currentPage < totalPages}">-->
+<!--                <a class="page-link" th:href="@{'/admin/users/all/' + ${totalPages}}">Last</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <p class="text-center">Total users found: <small th:text="${tot}"></small> : Page <small>${currentPage}</small> of [[${totalPages}]]</p>-->
+<!--    </nav>-->
 </div>
 <footer>
     <th:block th:replace="~{fragments/footer::footer}"></th:block>

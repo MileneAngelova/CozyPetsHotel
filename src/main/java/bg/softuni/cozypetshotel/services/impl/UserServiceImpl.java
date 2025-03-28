@@ -80,16 +80,6 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(user, UserDTO.class);
     }
 
-//    public List<BookingDTO> getUserBookings(String userId) {
-//        LOGGER.info("Getting user bookings...");
-//        getAuthentication();
-//
-//        return bookingsRestClient
-//                .get().uri("/bookings/user/" + userId)
-//                .accept(MediaType.APPLICATION_JSON).retrieve()
-//                .body(new ParameterizedTypeReference<>() {
-//                });
-//    }
 
 //    @Override
 //    public void updateBookings(UserDTO userDTO) {
