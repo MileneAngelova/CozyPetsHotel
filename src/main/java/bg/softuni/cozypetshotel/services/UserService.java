@@ -19,12 +19,6 @@ public interface UserService {
 
     public UserDTO findByEmail(String email);
 
-//    public List<BookingDTO> getUserBookings(String userId);
-
-//    public void updateBookings(UserDTO userDTO);
-
-//    public List<Booking> getActiveBookings();
-
     public void editEmail(String email, String newEmail);
 
     public void editPassword(String email, String currentPassword, String newPassword);
@@ -34,11 +28,7 @@ public interface UserService {
     public void editLastName(String email, String lastName);
 
     public void editContactNumber(String email, String contactNumber);
-    public UserDTO convertToDTO(User user);
 
-//    public void deleteActiveBooking(Long bookingId, UserDTO userDTO);
-//    public void cancelBooking(Long bookingId);
-//    List<UserDTO> findAllUsers();
-//
+    public UserDTO convertToDTO(User user);
 }
 

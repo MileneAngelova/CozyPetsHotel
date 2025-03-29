@@ -26,22 +26,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-//@RequestMapping("/admin")
 public class AdminController {
     private final AdminService adminService;
-    private final UserService userService;
-    private final RoleService roleService;
     private final BookingService bookingService;
-    private static int currentPageOn;
-    private final UserRepository userRepository;
 
-    public AdminController(AdminService adminService, UserService userService, RoleService roleService, BookingService bookingService,
-                           UserRepository userRepository) {
+    public AdminController(AdminService adminService, BookingService bookingService) {
         this.adminService = adminService;
-        this.userService = userService;
-        this.roleService = roleService;
         this.bookingService = bookingService;
-        this.userRepository = userRepository;
     }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -56,29 +47,6 @@ public class AdminController {
         return "admin_users-all";
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping("/admin/users/all/{pageNumber}")
-    public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage) {
-        Page<UserViewModel> page = adminService.findPage(currentPage);
-        int totalPages = page.getTotalPages();
-        Long totalUsers = page.getTotalElements();
-        List<UserViewModel> users = page.getContent();
-        currentPageOn = currentPage;
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("totalUsers", totalUsers);
-        model.addAttribute("users", users);
-
-        return "redirect:/admin";
-    }
-
-    @GetMapping("/admin/users/all")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String getAllPages(Model model) {
-        return getOnePage(model, 1);
-    }
-
-    //    @Transactional
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PatchMapping("/admin/users/activate/{email}")
     public String activateUserAccount(@PathVariable("email") String email, RedirectAttributes redirectAttributes) {

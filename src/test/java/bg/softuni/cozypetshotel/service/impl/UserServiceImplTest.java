@@ -5,6 +5,7 @@ import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
+import bg.softuni.cozypetshotel.services.BookingService;
 import bg.softuni.cozypetshotel.services.impl.UserServiceImpl;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
 import org.junit.jupiter.api.Assertions;
@@ -24,8 +25,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -44,6 +43,8 @@ public class UserServiceImplTest {
     @Mock
     private RoleRepository mockRoleRepository;
     @Mock
+    private BookingService mockedBookingService;
+    @Mock
     private PasswordEncoder mockedPasswordEncoder;
     @Mock
     private SecurityContext mockedSecurityContext;
@@ -55,14 +56,17 @@ public class UserServiceImplTest {
     @Mock
     private AppUserDetails mockedAppUserDetails;
 
-    public UserServiceImplTest() {
+    public UserServiceImplTest(BookingService mockedBookingService, UserDetails mockedUserDetails) {
+        this.mockedUserDetails = mockedUserDetails;
+        this.mockedBookingService = mockedBookingService;
     }
 
     @BeforeEach
     void setUp() {
         toTest = new UserServiceImpl(
-              mockedUserRepository,
+                mockedUserRepository,
                 mockRoleRepository,
+//                mockedBookingService,
                 new ModelMapper(),
                 mockedPasswordEncoder);
         SecurityContextHolder.setContext(mockedSecurityContext);
@@ -122,7 +126,6 @@ public class UserServiceImplTest {
 
         Assertions.assertFalse(result.isPresent());
     }
-
 
     @Test
     public void testFindByEmail_ExistingUser() {

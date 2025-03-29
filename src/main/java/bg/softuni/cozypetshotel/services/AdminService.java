@@ -50,19 +50,19 @@ public class AdminService {
                 .collect(Collectors.toList());
     }
 
-    public Page<UserViewModel> findPage(int pageNumber) {
-        Pageable pageable = PageRequest.of(pageNumber - 1, 10);
-        return userRepository.findAll(pageable)
-                .map(user -> {
-                    UserViewModel userViewModel = modelMapper.map(user, UserViewModel.class);
-                    List<RoleNameEnum> roles = user.getRoles()
-                            .stream()
-                            .map(role -> RoleNameEnum.valueOf(role.getRole().name()))
-                            .toList();
-                    userViewModel.setRoles(roles);
-                    return userViewModel;
-                });
-    }
+//    public Page<UserViewModel> findPage(int pageNumber) {
+//        Pageable pageable = PageRequest.of(pageNumber - 1, 10);
+//        return userRepository.findAll(pageable)
+//                .map(user -> {
+//                    UserViewModel userViewModel = modelMapper.map(user, UserViewModel.class);
+//                    List<RoleNameEnum> roles = user.getRoles()
+//                            .stream()
+//                            .map(role -> RoleNameEnum.valueOf(role.getRole().name()))
+//                            .toList();
+//                    userViewModel.setRoles(roles);
+//                    return userViewModel;
+//                });
+//    }
 
     public void addRoleAdminToUser(String email) {
         User user = userRepository.findByEmail(email)

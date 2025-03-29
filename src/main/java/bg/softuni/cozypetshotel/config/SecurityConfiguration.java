@@ -21,7 +21,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                         authorizeRequests -> authorizeRequests
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/user/account", "/book-now", "/bookings/user", "/logout").authenticated()
+                                .requestMatchers("/user/account", "/book-now", "/bookings/user", "/bookings/delete/{id}", "/logout").authenticated()
                                 .requestMatchers("/", "/gallery", "/services", "/info", "/prices", "/login", "/register", "/login-error").permitAll()
                                 .requestMatchers("/admin/**", "/bookings/**").hasRole("ADMIN")
                                 .anyRequest()

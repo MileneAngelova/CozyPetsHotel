@@ -26,13 +26,10 @@ import java.util.UUID;
 public class BookingController {
     private final BookingService bookingService;
     private final UserService userService;
-    private final ModelMapper modelMapper;
 
-    public BookingController(BookingService bookingService, UserService userService,
-                             ModelMapper modelMapper) {
+    public BookingController(BookingService bookingService, UserService userService) {
         this.bookingService = bookingService;
         this.userService = userService;
-        this.modelMapper = modelMapper;
     }
 
     @ModelAttribute("bookingModel")
@@ -54,7 +51,6 @@ public class BookingController {
         }
 
         this.bookingService.makeBooking(bookingModel);
-//        this.userService.getActiveBookings().add(this.modelMapper.map(bookingModel, Booking.class));
         return "redirect:/bookings/user";
     }
 
@@ -67,15 +63,11 @@ public class BookingController {
         return "user-bookings";
     }
 
-
-    //    @Transactional
-//    @DeleteMapping("/bookings/delete/{id}")
-//    public String deleteById(@PathVariable("id") Long id, Principal principal) {
-//        UserDTO byEmail = userService.findByEmail(principal.getName());
-////        this.userService.deleteActiveBooking(id, byEmail);
-//        this.bookingService.cancelBooking(id);
-//        this.userService.updateBookings(byEmail);
-//        return "redirect:/user/bookings";
-//    }
+    @Transactional
+    @DeleteMapping("/bookings/delete/{id}")
+    public String deleteById(@PathVariable("id") Long id) {
+        this.bookingService.cancelBooking(id);
+        return "redirect:/bookings/user";
+    }
 }
 

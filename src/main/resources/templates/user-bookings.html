@@ -69,7 +69,7 @@
             </tr>
             </tbody>
         </table>
-        <small th:if="*{activeBookings.size() == 0}" class="table-summary">
+        <small th:if="${myBookings.size() == 0}" class="table-summary">
             No active bookings found.
         </small>
 
@@ -98,7 +98,7 @@
             </tr>
             </tbody>
         </table>
-        <small th:if="${ userData.expiredBookings.size() == 0}" class="table-summary">No bookings found</small>
+        <small th:if="${myBookings.size() == 0}" class="table-summary">No bookings found</small>
     </aside>
 </div>
 

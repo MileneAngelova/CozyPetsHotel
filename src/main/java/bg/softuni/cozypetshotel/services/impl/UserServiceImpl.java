@@ -80,15 +80,13 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(user, UserDTO.class);
     }
 
-
 //    @Override
 //    public void updateBookings(UserDTO userDTO) {
 //        List<BookingDTO> userBookings = this.bookingService.getUserBookings(userDTO.getUuid());
 //
-//
 //        List<Booking> activeBookings = userDTO.getActiveBookings();
 //        activeBookings.addAll(userBookings.stream().map((element) -> modelMapper.map(element, Booking.class)).toList());
-//
+
 //        if (activeBookings.size() > 0) {
 //            activeBookings.forEach(booking -> {
 //                LocalDate checkOut = booking.getCheckOut();
@@ -101,9 +99,8 @@ public class UserServiceImpl implements UserService {
 //        } else {
 //            LOGGER.info("No active bookings found");
 //        }
-//        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
-
-
+////        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
+//    }
 
 
 
@@ -201,24 +198,5 @@ public class UserServiceImpl implements UserService {
         userDTO.setActive(user.isActive());
         return userDTO;
     }
-
-
-//    @Override
-//    public void deleteActiveBooking(Long id, UserDTO userDTO) {
-//        List<Booking> activeBookings = userDTO.getActiveBookings();
-//        activeBookings.remove(this.modelMapper.map(id, Booking.class));
-////        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
-//    }
-
-//    @Override
-//    public void cancelBooking(Long bookingId) {
-//        Booking bookingToDelete = bookingRepository.findById(bookingId).orElse(null);
-//        assert bookingToDelete != null;
-//        User user = bookingToDelete.getUser();
-//        List<Booking> activeBookings = user.getActiveBookings();
-//        activeBookings.remove(bookingToDelete);
-//        this.userRepository.save(user);
-//        this.bookingRepository.deleteById(bookingId);
-//    }
 }
 

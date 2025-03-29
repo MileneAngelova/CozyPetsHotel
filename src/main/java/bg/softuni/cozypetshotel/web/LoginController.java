@@ -29,7 +29,6 @@ public class LoginController {
     @PostMapping("/login-error")
     public String onFail(@ModelAttribute("email") String email, Model model) {
         model.addAttribute("email", email);
-
         String disabledEmail = email + "disabled";
 
         if (userRepository.findByEmail(disabledEmail).isPresent()) {
