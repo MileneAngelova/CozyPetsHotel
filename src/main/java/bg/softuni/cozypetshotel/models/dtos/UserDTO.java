@@ -14,7 +14,6 @@ import java.util.Set;
 import java.util.UUID;
 
 public class UserDTO {
-//    private Long id;
     private UUID uuid;
     private String firstName;
     @Size(min = 2, max = 50)
@@ -29,9 +28,7 @@ public class UserDTO {
     private Set<Role> roles;
     private String contactNumber;
 
-    private List<Booking> activeBookings;
-
-    private List<Booking> expiredBookings;
+//    private List<BookingDTO> expiredBookings;
 
     private boolean isActive;
 
@@ -109,24 +106,15 @@ public class UserDTO {
         this.contactNumber = contactNumber;
         return this;
     }
+//
+//    public List<BookingDTO> getExpiredBookings() {
+//        return expiredBookings;
+//    }
 
-    public List<Booking> getActiveBookings() {
-        return activeBookings;
-    }
-
-    public UserDTO setActiveBookings(List<Booking> activeBookings) {
-        this.activeBookings = activeBookings;
-        return this;
-    }
-
-    public List<Booking> getExpiredBookings() {
-        return expiredBookings;
-    }
-
-    public UserDTO setExpiredBookings(List<Booking> expiredBookings) {
-        this.expiredBookings = expiredBookings;
-        return this;
-    }
+//    public UserDTO setExpiredBookings(List<BookingDTO> expiredBookings) {
+//        this.expiredBookings = expiredBookings;
+//        return this;
+//    }
 
     public boolean isActive() {
         return isActive;
@@ -136,13 +124,4 @@ public class UserDTO {
         isActive = active;
         return this;
     }
-
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public UserDTO setId(Long id) {
-//        this.id = id;
-//        return this;
-//    }
 }

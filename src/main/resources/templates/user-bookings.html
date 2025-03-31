@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
@@ -87,18 +88,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="booking : *{expiredBookings}">
-                <td th:text="${booking.id}"></td>
-                <td th:text="${booking.checkIn}"></td>
-                <td th:text="${booking.checkOut}"></td>
-                <td th:text="${booking.petType}"></td>
-                <td th:text="${booking.petName}"></td>
-                <td th:text="${booking.numberOfPets}"></td>
-                <td class="requirements" th:text="${booking.additionalInformation}"></td>
+            <tr th:each="expBooking : ${expiredBookings}">
+                <td th:text="${expBooking.id}"></td>
+                <td th:text="${expBooking.checkIn}"></td>
+                <td th:text="${expBooking.checkOut}"></td>
+                <td th:text="${expBooking.petType}"></td>
+                <td th:text="${expBooking.petName}"></td>
+                <td th:text="${expBooking.numberOfPets}"></td>
+                <td class="requirements" th:text="${expBooking.additionalInformation}"></td>
             </tr>
             </tbody>
         </table>
-        <small th:if="${myBookings.size() == 0}" class="table-summary">No bookings found</small>
+        <small th:if="${expiredBookings.size() == 0}" class="table-summary">No bookings found</small>
     </aside>
 </div>
 

@@ -53,15 +53,13 @@ public class User {
     private boolean isActive;
 
     private String contactNumber;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Booking> activeBookings;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Booking> expiredBookings;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private List<Booking> expiredBookings;
 
     public User() {
         this.roles = new HashSet<>();
-        this.activeBookings = new ArrayList<>();
+//        this.expiredBookings = new ArrayList<>();
         this.isActive = true;
     }
 
@@ -182,23 +180,14 @@ public class User {
         return this;
     }
 
-    public List<Booking> getActiveBookings() {
-        return activeBookings;
-    }
-
-    public User setActiveBookings(List<Booking> activeBookings) {
-        this.activeBookings = activeBookings;
-        return this;
-    }
-
-    public List<Booking> getExpiredBookings() {
-        return expiredBookings;
-    }
-
-    public User setExpiredBookings(List<Booking> expiredBookings) {
-        this.expiredBookings = expiredBookings;
-        return this;
-    }
+//    public List<Booking> getExpiredBookings() {
+//        return expiredBookings;
+//    }
+//
+//    public User setExpiredBookings(List<Booking> expiredBookings) {
+//        this.expiredBookings = expiredBookings;
+//        return this;
+//    }
 
     public boolean isActive() {
         return isActive;

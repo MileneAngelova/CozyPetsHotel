@@ -13,12 +13,14 @@ public class AppUserDetails extends User {
     private final UUID uuid;
     private String firstName;
     private String lastName;
-    private List<BookingDTO> bookings;
+//    private List<BookingDTO> expiredBookings;
 
     public AppUserDetails(UUID uuid, String email, String password,
                           Collection<? extends GrantedAuthority> authorities,
                           String firstName,
-                          String lastName, List<Booking> activeBookings) {
+                          String lastName
+//            , List<Booking> activeBookings
+    ) {
         super(email, password, authorities);
         this.uuid = uuid;
         this.firstName = firstName;
@@ -62,13 +64,13 @@ public class AppUserDetails extends User {
 
         return fullName.toString();
     }
-
-    public List<BookingDTO> getBookings() {
-        return bookings;
-    }
-
-    public AppUserDetails setBookings(List<BookingDTO> bookings) {
-        this.bookings = bookings;
-        return this;
-    }
+//
+//    public List<BookingDTO> getExpiredBookings() {
+//        return expiredBookings;
+//    }
+//
+//    public AppUserDetails setExpiredBookings(List<BookingDTO> expiredBookings) {
+//        this.expiredBookings = expiredBookings;
+//        return this;
+//    }
 }
