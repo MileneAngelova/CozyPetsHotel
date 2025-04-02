@@ -3,24 +3,21 @@ package bg.softuni.cozypetshotel.models.entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+
 import static java.sql.Types.VARCHAR;
 
 @Entity
 @Table(name = "users")
 public class User {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-@Id
-@GeneratedValue(generator = "UUID")
-@Column(name = "id",
-        columnDefinition = "BINARY(16)",
-        unique = true,
-        updatable = false,
-        nullable = false)
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @Column(name = "id",
+            columnDefinition = "BINARY(16)",
+            unique = true,
+            updatable = false,
+            nullable = false)
     private UUID id;
     @UuidGenerator
     @JdbcTypeCode(VARCHAR)
@@ -49,17 +46,12 @@ public class User {
     )
     private Set<Role> roles;
 
-    private Integer age;
     private boolean isActive;
 
     private String contactNumber;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private List<Booking> expiredBookings;
-
     public User() {
         this.roles = new HashSet<>();
-//        this.expiredBookings = new ArrayList<>();
         this.isActive = true;
     }
 
@@ -72,14 +64,6 @@ public class User {
         return this;
     }
 
-    //    public Long getId() {
-//        return id;
-//    }
-//
-//    public User setId(Long id) {
-//        this.id = id;
-//        return this;
-//    }
 
     public UUID getUuid() {
         return uuid;
@@ -153,15 +137,6 @@ public class User {
         return this;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public User setAge(Integer age) {
-        this.age = age;
-        return this;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -179,15 +154,6 @@ public class User {
         this.contactNumber = contactNumber;
         return this;
     }
-
-//    public List<Booking> getExpiredBookings() {
-//        return expiredBookings;
-//    }
-//
-//    public User setExpiredBookings(List<Booking> expiredBookings) {
-//        this.expiredBookings = expiredBookings;
-//        return this;
-//    }
 
     public boolean isActive() {
         return isActive;

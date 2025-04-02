@@ -39,18 +39,18 @@
         </thead>
         <tbody class="table-group-divider">
         <tr th:each="booking : ${allBookings}" th:object="${booking}">
-            <td class="align-middle col-md-auto" th:text="*{id}">id</td>
-            <td class="align-middle col-md-auto" th:text="*{checkIn}">checkIn</td>
-            <td class="align-middle col-md-3" th:text="*{checkOut}">check out</td>
-            <td class="align-middle col-md-auto" th:text="*{firstName}">User first name</td>
-            <td class="align-middle col-md-auto" th:text="*{lastName}">User last name</td>
-            <td class="align-middle col-md-auto" th:text="*{petType}">pet type</td>
-            <td class="align-middle col-md-auto" th:text="*{petName}">pet name</td>
-            <td class="align-middle col-md-auto" th:text="*{numberOfPets}">
-            <td class="align-middle col-md-auto" th:if="*{additionalInformation}">
+            <td class="align-middle col-md-auto" th:text="${booking.id}">id</td>
+            <td class="align-middle col-md-auto" th:text="${booking.checkIn}">checkIn</td>
+            <td class="align-middle col-md-3" th:text="${booking.checkOut}">check out</td>
+            <td class="align-middle col-md-auto" th:text="${booking.firstName}">User first name</td>
+            <td class="align-middle col-md-auto" th:text="${booking.lastName}">User last name</td>
+            <td class="align-middle col-md-auto" th:text="${booking.petType}">pet type</td>
+            <td class="align-middle col-md-auto" th:text="${booking.petName}">pet name</td>
+            <td class="align-middle col-md-auto" th:text="${booking.numberOfPets}">
+            <td class="align-middle col-md-auto" th:text="${booking.additionalInformation}">
             <td>
                 <form th:method="delete"
-                      th:action="@{/bookings/delete/{id}(id = *{id})}">
+                      th:action="@{/bookings/delete/{id}(id = ${booking.id})}">
                     <input sec:authorize="hasRole('ADMIN')"
                            class="btn btn-link"
                            type="submit"

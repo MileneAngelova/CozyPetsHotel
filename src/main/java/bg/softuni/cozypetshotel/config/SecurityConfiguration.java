@@ -1,6 +1,5 @@
 package bg.softuni.cozypetshotel.config;
 
-import bg.softuni.cozypetshotel.models.enums.RoleNameEnum;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
 import bg.softuni.cozypetshotel.session.AppUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -23,7 +22,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/user/account", "/book-now", "/bookings/user", "/bookings/delete/{id}", "/logout").authenticated()
                                 .requestMatchers("/", "/gallery", "/services", "/info", "/prices", "/login", "/register", "/login-error").permitAll()
-                                .requestMatchers("/admin/**", "/bookings/**").hasRole("ADMIN")
+                                .requestMatchers("/admin/**", "/admin/users/delete",  "/bookings/**").hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated())
                 .formLogin(formLogin ->

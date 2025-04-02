@@ -89,12 +89,12 @@
             </thead>
             <tbody>
             <tr th:each="expBooking : ${expiredBookings}">
-                <td th:text="${expBooking.id}"></td>
-                <td th:text="${expBooking.checkIn}"></td>
-                <td th:text="${expBooking.checkOut}"></td>
-                <td th:text="${expBooking.petType}"></td>
-                <td th:text="${expBooking.petName}"></td>
-                <td th:text="${expBooking.numberOfPets}"></td>
+                <td class="inactive" th:text="${expBooking.id}"></td>
+                <td class="inactive" th:text="${expBooking.checkIn}"></td>
+                <td class="inactive" th:text="${expBooking.checkOut}"></td>
+                <td class="inactive" th:text="${expBooking.petType}"></td>
+                <td class="inactive" th:text="${expBooking.petName}"></td>
+                <td class="inactive" th:text="${expBooking.numberOfPets}"></td>
                 <td class="requirements" th:text="${expBooking.additionalInformation}"></td>
             </tr>
             </tbody>

@@ -35,7 +35,12 @@ public class RegisterController {
 
             return "redirect:/register";
         }
+        try {
             this.userService.register(registerModel);
             return "redirect:/login";
+        } catch (Exception exception) {
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred, please try again later!");
+       return "redirect:/register";
+        }
     }
 }

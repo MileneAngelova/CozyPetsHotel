@@ -13,8 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import java.util.Optional;
@@ -29,9 +28,10 @@ public class RegisterControllerTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @Test
     void testRegister_ValidInput() throws Exception {
-                mockMvc.perform(post("/register")
+        mockMvc.perform(post("/register")
                         .param("firstName", "Petar")
                         .param("lastName", "Petrov")
                         .param("email", "petar@abv.bg")

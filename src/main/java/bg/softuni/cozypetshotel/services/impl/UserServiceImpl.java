@@ -1,35 +1,27 @@
 package bg.softuni.cozypetshotel.services.impl;
 
-import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
-import bg.softuni.cozypetshotel.models.entities.Booking;
 import bg.softuni.cozypetshotel.models.entities.Role;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.models.enums.RoleNameEnum;
 import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
-import bg.softuni.cozypetshotel.services.BookingService;
 import bg.softuni.cozypetshotel.services.UserService;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
 import bg.softuni.cozypetshotel.validation.FieldsMatch;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
+import static bg.softuni.cozypetshotel.utils.Constants.PASSWORD_REGEX;
 
 @Service
 @FieldsMatch(first = "password", second = "confirmPassword", message = "Passwords do not match!")
@@ -38,7 +30,6 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    private final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -80,58 +71,6 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(user, UserDTO.class);
     }
 
-//    @Override
-//    public void updateBookings(UserDTO userDTO) {
-//        List<BookingDTO> userBookings = this.bookingService.getUserBookings(userDTO.getUuid());
-//
-//        List<Booking> activeBookings = userDTO.getActiveBookings();
-//        activeBookings.addAll(userBookings.stream().map((element) -> modelMapper.map(element, Booking.class)).toList());
-
-//        if (activeBookings.size() > 0) {
-//            activeBookings.forEach(booking -> {
-//                LocalDate checkOut = booking.getCheckOut();
-//                if (checkOut.isBefore(LocalDate.now())) {
-//                    List<Booking> expiredBookings = userDTO.getExpiredBookings();
-//                    expiredBookings.add(booking);
-//                    activeBookings.remove(booking);
-//                }
-//            });
-//        } else {
-//            LOGGER.info("No active bookings found");
-//        }
-////        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
-//    }
-
-
-
-//        List<Booking> activeBookings = userDTO.getActiveBookings();
-//
-//        if (activeBookings.size() > 0) {
-//            activeBookings.forEach(booking -> {
-//                LocalDate checkOut = booking.getCheckOut();
-//                if (checkOut.isBefore(LocalDate.now())) {
-//                    List<Booking> expiredBookings = userDTO.getExpiredBookings();
-//                    expiredBookings.add(booking);
-//                    activeBookings.remove(booking);
-//                }
-//            });
-//        } else {
-//            LOGGER.info("No active bookings found");
-//        }
-//        this.userRepository.save(this.modelMapper.map(userDTO, User.class));
-//    }
-
-
-//    public List<Booking> getActiveBookings() {
-//        LOGGER.info("Getting active bookings...");
-//       return bookingsRestClient
-//                .get()
-//                .uri("/bookings")
-//                .accept(MediaType.APPLICATION_JSON)
-//                .retrieve()
-//                .body(new ParameterizedTypeReference<>() {});
-//    }
-
     @Override
     public void editEmail(String email, String newEmail) {
         if (userRepository.findByEmail(newEmail).isPresent()) {
@@ -147,6 +86,9 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
             throw new IllegalArgumentException("Incorrect password!");
+        }
+        if (!isValidPassword(newPassword)) {
+            throw new IllegalArgumentException("Password must be between 4 and 30 symbols long!");
         }
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
@@ -185,6 +127,11 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         user.setContactNumber(newContactNumber);
         userRepository.save(user);
+    }
+
+    @Override
+    public boolean isValidPassword(String password) {
+        return password.matches(PASSWORD_REGEX);
     }
 
     @Override

@@ -5,7 +5,6 @@ import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
-import bg.softuni.cozypetshotel.services.BookingService;
 import bg.softuni.cozypetshotel.services.impl.UserServiceImpl;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
 import org.junit.jupiter.api.Assertions;
@@ -20,14 +19,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -43,30 +40,20 @@ public class UserServiceImplTest {
     @Mock
     private RoleRepository mockRoleRepository;
     @Mock
-    private BookingService mockedBookingService;
-    @Mock
     private PasswordEncoder mockedPasswordEncoder;
     @Mock
     private SecurityContext mockedSecurityContext;
     @Mock
     private Authentication mockedAuthentication;
     @Mock
-    private UserDetails mockedUserDetails;
-
-    @Mock
     private AppUserDetails mockedAppUserDetails;
 
-    public UserServiceImplTest(BookingService mockedBookingService, UserDetails mockedUserDetails) {
-        this.mockedUserDetails = mockedUserDetails;
-        this.mockedBookingService = mockedBookingService;
-    }
 
     @BeforeEach
     void setUp() {
         toTest = new UserServiceImpl(
                 mockedUserRepository,
                 mockRoleRepository,
-//                mockedBookingService,
                 new ModelMapper(),
                 mockedPasswordEncoder);
         SecurityContextHolder.setContext(mockedSecurityContext);
@@ -146,7 +133,7 @@ public class UserServiceImplTest {
         String nonExistingEmail = NOT_EXISTENT_EMAIL;
         when(mockedUserRepository.findByEmail(nonExistingEmail)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(UsernameNotFoundException.class, () -> toTest.findByEmail(nonExistingEmail));
+        assertThrows(UsernameNotFoundException.class, () -> toTest.findByEmail(nonExistingEmail));
     }
 
     @Test
@@ -167,16 +154,28 @@ public class UserServiceImplTest {
 
     @Test
     public void testEditEmail_UserNotFound() {
-//        UUID userId = UUID.randomUUID();
-//        Random random = new Random();
-//        Long userId = random.nextLong();
-
         User user = new User();
         String email = user.getEmail();
+        String newEmail = TEST_EMAIL;
 
-        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.empty());
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.of(new User()));
+        when(mockedUserRepository.findByEmail(newEmail)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(UsernameNotFoundException.class, () -> toTest.editEmail(email, TEST_EMAIL));
+        toTest.editEmail(email, newEmail);
+        verify(mockedUserRepository).save(userCaptor.capture());
+        User savedUser = userCaptor.getValue();
+        Assertions.assertEquals(newEmail, savedUser.getEmail());
+    }
+
+    @Test
+    public void testEditEmail_EmailAlreadyExists() {
+        User user = new User();
+        String email = user.getEmail();
+        String newEmail = TEST_EMAIL;
+
+        when(mockedUserRepository.findByEmail(newEmail)).thenReturn(Optional.of(new User()));
+
+        assertThrows(IllegalArgumentException.class, () -> toTest.editEmail(email, newEmail));
     }
 
     @Test
@@ -190,7 +189,7 @@ public class UserServiceImplTest {
         when(mockedPasswordEncoder.matches("1234", "encodedOldPassword")).thenReturn(true);
         when(mockedPasswordEncoder.encode("123456")).thenReturn("encodedNewPassword");
 
-        when(mockedUserRepository.findById(user.getUuid())).thenThrow();
+        when(mockedUserRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
         when(mockedUserRepository.save(user)).thenReturn(user);
 
         toTest.editPassword(user.getEmail(), "1234", "123456");
@@ -214,9 +213,29 @@ public class UserServiceImplTest {
         when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.of(user));
         when(mockedPasswordEncoder.matches(currentPassword, user.getPassword())).thenReturn(false);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             toTest.editPassword(email, currentPassword, newPassword);
         });
+    }
+
+    @Test
+    public void testEditPassword_IncorrectNewPassword() {
+        String currentPassword = "correctPassword";
+        String newPassword = "invalidNewPassword";
+
+        User user = new User();
+        String email = user.getEmail();
+        user.setEmail(email);
+        user.setPassword(mockedPasswordEncoder.encode(currentPassword));
+
+        when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.of(user));
+        when(mockedPasswordEncoder.matches(currentPassword, user.getPassword())).thenReturn(true);
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
+            toTest.editPassword(email, currentPassword, newPassword);
+        });
+
+        Assertions.assertEquals("Password must be between 4 and 30 symbols long!", thrown.getMessage());
     }
 
     @Test
@@ -230,7 +249,7 @@ public class UserServiceImplTest {
 
         when(mockedUserRepository.findByEmail(email)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(UsernameNotFoundException.class, () -> {
+        assertThrows(UsernameNotFoundException.class, () -> {
             toTest.editPassword(email, currentPassword, newPassword);
         });
     }

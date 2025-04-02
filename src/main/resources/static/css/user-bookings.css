@@ -78,6 +78,10 @@ td {
     border: 1px solid darkgrey;
 }
 
+.inactive {
+    color: #656565;
+}
+
 .requirements {
     font-size: 14px;
     width: 22%;

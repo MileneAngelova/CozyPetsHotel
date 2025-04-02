@@ -2,20 +2,14 @@ package bg.softuni.cozypetshotel.web;
 
 import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
-import bg.softuni.cozypetshotel.models.views.UserViewModel;
-import bg.softuni.cozypetshotel.repositories.UserRepository;
 import bg.softuni.cozypetshotel.services.AdminService;
 import bg.softuni.cozypetshotel.services.BookingService;
-import bg.softuni.cozypetshotel.services.RoleService;
-import bg.softuni.cozypetshotel.services.UserService;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
-import bg.softuni.cozypetshotel.session.AppUserDetailsService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -85,9 +79,17 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/bookings/all")
-    public String getAllBookings(Model model, @PageableDefault(size = 5, sort = "id") Pageable pageable, @AuthenticationPrincipal AppUserDetails appUserDetails) {
+    public String getAllBookings(Model model, @PageableDefault(size = 15, sort = "id") Pageable pageable) {
         Page<BookingDTO> allBookings = bookingService.getAllBookings(pageable);
         model.addAttribute("allBookings", allBookings);
         return "admin_bookings-all";
+    }
+
+    @Transactional
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/admin/users/delete/{email}")
+    public String deleteUser(@PathVariable String email) {
+        this.adminService.deleteUser(email);
+        return "redirect:/admin";
     }
 }

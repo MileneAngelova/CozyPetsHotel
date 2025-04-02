@@ -7,18 +7,21 @@ import bg.softuni.cozypetshotel.validation.UniqueUsername;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import static bg.softuni.cozypetshotel.utils.Constants.PASSWORD_REGEX;
+
 public class UserDTO {
     private UUID uuid;
     private String firstName;
     @Size(min = 2, max = 50)
     private String lastName;
-    @Size(min = 4, max = 30, message = "Password must be between 4 and 30 symbols long!")
+    @Pattern(regexp = PASSWORD_REGEX, message = "Password must be between 4 and 30 symbols long!")
     private String password;
     @UniqueUsername(message = "Username already exists! Choose another one!")
     private String username;
@@ -27,9 +30,6 @@ public class UserDTO {
     private String email;
     private Set<Role> roles;
     private String contactNumber;
-
-//    private List<BookingDTO> expiredBookings;
-
     private boolean isActive;
 
     public UserDTO() {
@@ -106,15 +106,6 @@ public class UserDTO {
         this.contactNumber = contactNumber;
         return this;
     }
-//
-//    public List<BookingDTO> getExpiredBookings() {
-//        return expiredBookings;
-//    }
-
-//    public UserDTO setExpiredBookings(List<BookingDTO> expiredBookings) {
-//        this.expiredBookings = expiredBookings;
-//        return this;
-//    }
 
     public boolean isActive() {
         return isActive;
