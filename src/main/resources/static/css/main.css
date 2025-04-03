@@ -60,9 +60,6 @@ nav ul li a:active {
 }
 
 .nav-link #lang {
-    background-color: transparent;
-    border: none;
-    font-size: large;
     font-weight: 600;
 }
 
