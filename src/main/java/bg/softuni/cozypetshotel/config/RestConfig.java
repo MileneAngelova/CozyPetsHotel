@@ -20,7 +20,7 @@ public class RestConfig {
     }
 
     @Bean("bookingsRestClient")
-            public RestClient bookingsrestClient(BookingApiConfig bookingApiConfig, ClientHttpRequestInterceptor requestInterceptor) {
+            public RestClient bookingsRestClient(BookingApiConfig bookingApiConfig, ClientHttpRequestInterceptor requestInterceptor) {
         return RestClient.builder()
                 .baseUrl(bookingApiConfig.getBaseUrl())
                 .defaultHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)

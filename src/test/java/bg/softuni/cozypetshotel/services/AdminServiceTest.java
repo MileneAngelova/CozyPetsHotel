@@ -1,4 +1,4 @@
-package bg.softuni.cozypetshotel.service;
+package bg.softuni.cozypetshotel.services;
 
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.Role;
@@ -6,9 +6,6 @@ import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.models.enums.RoleNameEnum;
 import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
-import bg.softuni.cozypetshotel.services.AdminService;
-import bg.softuni.cozypetshotel.services.BookingService;
-import bg.softuni.cozypetshotel.services.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -53,14 +53,12 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/admin/users/deactivate/{email}")
-    public String blockUserAccount(@PathVariable String email,
-                                   RedirectAttributes redirectAttributes) {
+    public String blockUserAccount(@PathVariable String email, RedirectAttributes redirectAttributes) {
         adminService.blockUser(email);
         String successMessage = "The user was disabled.";
         redirectAttributes.addFlashAttribute("successMessage", successMessage);
         return "redirect:/admin";
     }
-
 
     @PostMapping("/admin/users/promote/{email}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -79,8 +77,8 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/bookings/all")
-    public String getAllBookings(Model model, @PageableDefault(size = 15, sort = "id") Pageable pageable) {
-        Page<BookingDTO> allBookings = bookingService.getAllBookings(pageable);
+    public String getAllBookings(Model model) {
+        List<BookingDTO> allBookings = bookingService.getAllBookings();
         model.addAttribute("allBookings", allBookings);
         return "admin_bookings-all";
     }

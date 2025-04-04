@@ -1,11 +1,10 @@
-package bg.softuni.cozypetshotel.service.impl;
+package bg.softuni.cozypetshotel.services.impl;
 
 import bg.softuni.cozypetshotel.models.dtos.RegisterDTO;
 import bg.softuni.cozypetshotel.models.dtos.UserDTO;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.repositories.RoleRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
-import bg.softuni.cozypetshotel.services.impl.UserServiceImpl;
 import bg.softuni.cozypetshotel.session.AppUserDetails;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

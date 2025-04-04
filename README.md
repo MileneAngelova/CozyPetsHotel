@@ -1,12 +1,12 @@
 <div align="center">
   <h1>CozyPetsHotel</h1>
-  <img src="https://github.com/MileneAngelova/CozyPetsHotel/blob/6b26367bb722b815625259cbd0fccfadfda87117/src/main/resources/static/images/paw.jpg" alt="DamApp's logo" width="40%">
+  <img src="https://github.com/MileneAngelova/CozyPetsHotel/blob/7388fdb828e311c2cfc85f72fcb74409215f084c/src/main/resources/static/images/logo.png" alt="DamApp's logo" width="40%">
   <p>Welcome to Cozy Pets Hotel!</p>
 </div>
 
 
-Cozy Pets Hotel ia a web application, designed to facilitate people with a travelling journey
-to provide the highest level of care for their pets during their absence.
+Cozy Pets Hotel is a web application, designed to facilitate people with a travelling journey
+to provide the highest level of care for their pets, during their absence.
 
 This project utilizes a microservices architecture with REST APIs for communication between services.</p>
 ## Project Overview
@@ -61,17 +61,17 @@ Here are some screenshots of the Dam Platform in action:
   ![Home Page](/src/main/resources/static/images/screenshots/Index.png)
 
 - **Register Page**
-  ![Register Page](./src/main/resources/static/images/screenshots/Register.png)
+  ![Register Page](/src/main/resources/static/images/screenshots/Register.png)
 
 - **Services Page**
-  ![Services Page](./src/main/resources/static/images/screenshots/Services.png)
+  ![Services Page](/src/main/resources/static/images/screenshots/Services.png)
 
 - **Gallery Page**
-  ![Gallery Page](./src/main/resources/static/images/screenshots/Galellry.png)
+  ![Gallery Page](/src/main/resources/static/images/screenshots/Galellry.png)
 
 - **User Page**
-  ![User Page - Settings](./src/main/resources/static/images/screenshots/User-Settings.png)
+  ![User Page - Settings](/src/main/resources/static/images/screenshots/User-Settings.png)
 
 - **Admin Page**
-  ![Admin Page - All Bookings](./src/main/resources/static/images/screenshots/Admin-bookings.png)
+  ![Admin Page - All Bookings](./src/main/resources/static/images/screenshots/Admin-Users.png)
 

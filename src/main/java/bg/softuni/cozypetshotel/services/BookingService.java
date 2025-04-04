@@ -72,21 +72,18 @@ public class BookingService {
                 });
     }
 
-    public Page<BookingDTO> getAllBookings(Pageable pageable) {
-        PageResponse<BookingDTO> bookings = bookingsRestClient
+    public List<BookingDTO> getAllBookings() {
+       return bookingsRestClient
                 .get()
-                .uri("/bookings/all?page={page}&size={size}&sort=id,desc",
-                        pageable.getPageNumber(),
-                        pageable.getPageSize()
-                )
+                .uri("/bookings/all")
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {
                 });
 
-        assert bookings != null;
+//        assert bookings != null;
 
-        return new PageImpl<>(bookings.getContent(), pageable, bookings.getPage().totalElements());
+//        return new PageImpl<>(bookings.getContent());
     }
 
     private void getAuthentication() {

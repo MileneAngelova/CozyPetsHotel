@@ -32,7 +32,8 @@ server:
   port: 8080
 bookings:
   api:
-    baseUrl: "http://localhost:8081"
+    baseUrl: "${BOOKINGS_BASE_URL:http://localhost:8081}"
+
 jwt:
   secret: ${JWT_KEY:ntPHxykAkDpPDR1K3lMEkAaWzAwP0nFSThiASB}
   expiration:  ${JWT_EXPIRATION:60000}

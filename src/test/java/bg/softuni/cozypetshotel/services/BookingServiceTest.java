@@ -1,4 +1,4 @@
-package bg.softuni.cozypetshotel.service;
+package bg.softuni.cozypetshotel.services;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
