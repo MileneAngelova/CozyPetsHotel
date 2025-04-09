@@ -2,7 +2,6 @@ package bg.softuni.cozypetshotel.services;
 
 import bg.softuni.cozypetshotel.models.dtos.AddBookingDTO;
 import bg.softuni.cozypetshotel.models.dtos.BookingDTO;
-import bg.softuni.cozypetshotel.models.dtos.PageResponse;
 import bg.softuni.cozypetshotel.models.entities.User;
 import bg.softuni.cozypetshotel.repositories.BookingRepository;
 import bg.softuni.cozypetshotel.repositories.UserRepository;
@@ -10,9 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,7 +38,7 @@ public class BookingService {
         if (byEmail.isPresent()) {
             bookingsRestClient
                     .post()
-                    .uri("http://localhost:8081/bookings")
+                    .uri("/bookings")
                     .accept(MediaType.APPLICATION_JSON)
                     .body(addBookingDTO)
                     .retrieve();

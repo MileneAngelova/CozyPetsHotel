@@ -18,10 +18,12 @@
             th:text="#{nav_bar_services}">Services</a>
         </li>
         <li sec:authorize="isAuthenticated()">
-            <a th:href="@{/user/account}">My account</a>
+            <a th:href="@{/user/account}"
+            th:text="#{nav_bar_my-account}">My account</a>
         </li>
         <li sec:authorize="hasRole('ADMIN')">
-            <a th:href="@{/admin}">Admin Panel</a>
+            <a th:href="@{/admin}"
+            th:text="#{nav_bar_admin-panel}">Admin Panel</a>
         </li>
     </ul>
     <a class="nav-link">

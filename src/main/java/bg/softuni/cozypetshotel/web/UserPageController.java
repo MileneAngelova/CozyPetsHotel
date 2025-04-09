@@ -17,7 +17,6 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
 public class UserPageController {
     private final UserService userService;
     private final BookingService bookingService;
@@ -25,13 +24,8 @@ public class UserPageController {
         this.userService = userService;
         this.bookingService = bookingService;
     }
-//    @ModelAttribute("userModel")
-//    public UserDTO initUser() {
-//        return new UserDTO();
-//    }
 
-
-    @GetMapping("/account")
+    @GetMapping("/user/account")
     public String userAccount(Model model, Principal principal) {
         UserDTO userDTO = userService.findByEmail(principal.getName());
         model.addAttribute("userData", userDTO);
@@ -39,35 +33,14 @@ public class UserPageController {
         return "user-info";
     }
 
-//    @GetMapping("/bookings")
-//    public String userBookings(Model model, Principal principal) {
-//        UserDTO byEmail = userService.findByEmail(principal.getName());
-//
-//        if (!model.containsAttribute("myBookings")) {
-//            model.addAttribute("myBookings", this.bookingService.getUserBookings(byEmail.getUuid()));
-//        return "user-bookings";
-//        }
-
-
-
-
-
-//        UserDTO byEmail = userService.findByEmail(principal.getName());
-//        model.addAttribute("userData", byEmail);
-//        this.userService.updateBookings(byEmail);
-
-//        return "user-bookings";
-//    }
-
-    @GetMapping("/settings")
+    @GetMapping("/user/settings")
     public String userSettings(Model model, Principal principal) {
         UserDTO byEmail = userService.findByEmail(principal.getName());
         model.addAttribute("userData", byEmail);
-//        this.userService.updateBookings(byEmail);
         return "/user-settings";
     }
 
-    @PostMapping("/update/email")
+    @PostMapping("/user/update/email")
     public String userSettings(@AuthenticationPrincipal UserDetails userDetails,
                                @RequestParam("email") String email,
                                RedirectAttributes redirectAttributes) {
@@ -83,7 +56,7 @@ public class UserPageController {
         }
     }
 
-    @PostMapping("/update/password")
+    @PostMapping("/user/update/password")
         public String updatePassword(@AuthenticationPrincipal UserDetails userDetails,
                                      @RequestParam("currentPassword") String currentPassword,
                                      @RequestParam("newPassword") String newPassword,
@@ -100,7 +73,7 @@ public class UserPageController {
         }
     }
 
-    @PostMapping("/update/username")
+    @PostMapping("/user/update/username")
     public String updateUsername(@AuthenticationPrincipal UserDetails userDetails,
                                  @RequestParam("username") String username,
                                  RedirectAttributes redirectAttributes) {
@@ -116,7 +89,7 @@ public class UserPageController {
         }
     }
 
-    @PostMapping("/update/contact-number")
+    @PostMapping("/user/update/contact-number")
     public String updateContactNumber(@AuthenticationPrincipal UserDetails userDetails,
                                  @RequestParam("contactNumber") String contactNumber,
                                  RedirectAttributes redirectAttributes) {
@@ -132,7 +105,7 @@ public class UserPageController {
         }
     }
 
-    @PostMapping("/update/last-name")
+    @PostMapping("/user/update/last-name")
     public String updateLastName(@AuthenticationPrincipal UserDetails userDetails,
                                       @RequestParam("lastName") String lastName,
                                       RedirectAttributes redirectAttributes) {
@@ -148,16 +121,12 @@ public class UserPageController {
         }
     }
 
-//    @Transactional
-//    @DeleteMapping("/user/bookings/delete/{id}")
-//    public String deleteById(@PathVariable Long id, Principal principal) {
-//        UserDTO byEmail = userService.findByEmail(principal.getName());
-//        this.bookingService.cancelBooking(id);
-//        this.userService.updateBookings(byEmail);
-//        return "redirect:/user/bookings";
-////        return ResponseEntity.ok().build();
-//    }
-}
+    @Transactional
+    @DeleteMapping("/bookings/user/delete/{id}")
+    public String deleteBookingById(@PathVariable("id") Long id) {
+        this.bookingService.cancelBooking(id);
+        return "redirect:/bookings/user";
+    }}
 
 
 

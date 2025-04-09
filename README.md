@@ -1,6 +1,6 @@
 <div align="center">
   <h1>CozyPetsHotel</h1>
-  <img src="https://github.com/MileneAngelova/CozyPetsHotel/blob/7388fdb828e311c2cfc85f72fcb74409215f084c/src/main/resources/static/images/logo.png" alt="DamApp's logo" width="40%">
+  <img src="https://github.com/MileneAngelova/CozyPetsHotel/blob/7388fdb828e311c2cfc85f72fcb74409215f084c/src/main/resources/static/images/logo.png" alt="PetsHotel's logo" width="40%" style="background-color: darkgoldenrod">
   <p>Welcome to Cozy Pets Hotel!</p>
 </div>
 
