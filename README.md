@@ -1,6 +1,6 @@
 <div align="center">
   <h1>CozyPetsHotel</h1>
-  <img src="https://github.com/MileneAngelova/CozyPetsHotel/blob/7388fdb828e311c2cfc85f72fcb74409215f084c/src/main/resources/static/images/logo.png" alt="PetsHotel's logo" width="40%" style="background-color: darkgoldenrod">
+  <img src="https://github.com/MileneAngelova/CozyPetsHotel/blob/edbbb947f2f95262f79c8a24a2b6faa987ab4f43/src/main/resources/static/images/paw.jpg" alt="PetsHotel's logo" width="40%" style="background-color: darkgoldenrod">
   <p>Welcome to Cozy Pets Hotel!</p>
 </div>
 
@@ -75,3 +75,17 @@ Here are some screenshots of the Dam Platform in action:
 - **Admin Page**
   ![Admin Page - All Bookings](./src/main/resources/static/images/screenshots/Admin-Users.png)
 
+## Getting Started
+
+To get started with the Cozy Pets Hotel Application, follow these steps:
+
+1. **Clone the Repository**
+2. **Navigate to the Project Directory**
+3. **Install Dependencies**
+   Make sure you have the necessary dependencies installed.
+4. **Replace the placeholders**
+   To start the project, please replace the placeholders in your configuration file with your actual credentials.
+5. **Run the Application**
+   Follow the instructions for running the application locally or deploy it to your server.
+6. **Access the Platform**
+   Open your web browser and navigate to start using the CozyPetsHotel.
